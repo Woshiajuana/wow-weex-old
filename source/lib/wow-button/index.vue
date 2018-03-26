@@ -14,7 +14,7 @@
 <script>
     import config from './config'
     export default {
-        name: 'wov-button',
+        name: 'wow-button',
         data () {
             return {
                 flag: true
