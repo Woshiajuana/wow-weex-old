@@ -2,12 +2,16 @@ import WowView      from './../lib/wow-view'
 import WowButton    from './../lib/wow-button'
 import WowCarousel  from './../lib/wow-carousel'
 import WowInput     from './../lib/wow-input'
-import WoWCell      from './../lib/wow-cell'
+import WowCell      from './../lib/wow-cell'
+import WowNull      from './../lib/wow-null'
+import WowNavBar    from './../lib/wow-navbar'
 
 export {
     WowView,
     WowButton,
     WowCarousel,
     WowInput,
-    WoWCell,
+    WowCell,
+    WowNull,
+    WowNavBar,
 }
