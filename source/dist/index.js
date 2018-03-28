@@ -5,6 +5,7 @@ import WowInput     from './../lib/wow-input'
 import WowCell      from './../lib/wow-cell'
 import WowNull      from './../lib/wow-null'
 import WowNavBar    from './../lib/wow-navbar'
+import WowScroll    from './../lib/wow-scroll'
 
 export {
     WowView,
@@ -14,4 +15,5 @@ export {
     WowCell,
     WowNull,
     WowNavBar,
+    WowScroll,
 }
