@@ -24,7 +24,7 @@ export default {
     cell_padding_right: 0,
     cell_inner_padding_left: 0,
     cell_inner_padding_right: 0,
-    cell_border_width: 2,
+    cell_border_width: 1,
     cell_border_color: '#ddd',
     cell_inner_border_width: 0,
     cell_inner_border_color: '#ddd',

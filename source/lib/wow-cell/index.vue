@@ -5,7 +5,7 @@
          paddingLeft: cell_padding_left,
          paddingRight: cell_padding_right,
          borderBottomWidth: cell_border_width,
-         borderBottomColor: cell_border_color}">
+         borderColor: cell_border_color}">
         <image class="cell-img"
                v-if="cell_left_src"
                :src="cell_left_src"
@@ -19,7 +19,7 @@
               paddingLeft: cell_inner_padding_left,
               paddingRight: cell_inner_padding_right,
               borderBottomWidth: cell_inner_border_width,
-              borderBottomColor: cell_inner_border_color}">
+              borderColor: cell_inner_border_color}">
             <div v-if="cell_left_width" class="cell-left" :style="{width: cell_left_width}">
                 <text class="cell-left-text"
                       :style="{color:cell_left_color,
