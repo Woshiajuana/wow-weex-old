@@ -171,6 +171,7 @@
     }
     .cell-right{
         flex: 1;
+        align-items: center;
         flex-direction: row;
     }
     .cell-right-text{

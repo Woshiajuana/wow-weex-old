@@ -7,6 +7,7 @@ import WowNull      from './../lib/wow-null'
 import WowNavBar    from './../lib/wow-navbar'
 import WowScroll    from './../lib/wow-scroll'
 import WowSwitch    from './../lib/wow-switch'
+import WowTextArea  from './../lib/wow-text-area'
 
 export {
     WowView,
@@ -18,4 +19,5 @@ export {
     WowNavBar,
     WowScroll,
     WowSwitch,
+    WowTextArea,
 }

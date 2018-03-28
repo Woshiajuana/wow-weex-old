@@ -1,0 +1,25 @@
+{
+  "name": "wow-navbar",
+  "version": "0.1.0",
+  "description": "Weex 导航条",
+  "main": "index.js",
+  "type": "weex",
+  "repository": "https://github.com/Woshiajuana/wow-weex/tree/master/source/lib/wow-text-area",
+  "keywords": [
+    "Weex",
+    "Vue",
+    "WeexComponent",
+    "Layout",
+    "navbar",
+    "wow"
+  ],
+  "weex": {
+    "plugins": {},
+    "market": {
+      "thumbnail": "http://gtms03.alicdn.com/tfs/TB1grYrSXXXXXX1XFXXXXXXXXXX-750-1334.png"
+    }
+  },
+  "author": "Ajuan <zhigang.chen@owulia.com>",
+  "license": "MIT",
+  "dependencies": {}
+}
