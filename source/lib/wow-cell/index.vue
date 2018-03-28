@@ -45,6 +45,7 @@
                       :style="{color:cell_right_color,
                       textAlign: cell_right_text_align,
                       fontSize:cell_right_size}">{{cell_right_txt}}</text>
+                <slot v-if="cell_use_slot"></slot>
             </div>
             <input v-if="cell_use_input && cell_input_type == 'text'" class="cell-right cell-input"
                    :style="{color:cell_right_color,
@@ -106,6 +107,7 @@
         },
         props: {
             cell_use_arrow: { default: config.cell_use_arrow },
+            cell_use_slot: { default: config.cell_use_slot },
             cell_height: { default: config.cell_height },
             cell_left_txt: { default: config.cell_left_txt },
             cell_left_txt_sub: { default: config.cell_left_txt_sub },

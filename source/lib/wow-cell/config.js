@@ -2,6 +2,7 @@
  * Created by Administrator on 2017/11/8.
  */
 export default {
+    cell_use_slot: false,
     cell_use_arrow: true,
     cell_height: 90,
     cell_left_txt: '',
