@@ -6,6 +6,7 @@ import WowCell      from './../lib/wow-cell'
 import WowNull      from './../lib/wow-null'
 import WowNavBar    from './../lib/wow-navbar'
 import WowScroll    from './../lib/wow-scroll'
+import WowSwitch    from './../lib/wow-switch'
 
 export {
     WowView,
@@ -16,4 +17,5 @@ export {
     WowNull,
     WowNavBar,
     WowScroll,
+    WowSwitch,
 }
