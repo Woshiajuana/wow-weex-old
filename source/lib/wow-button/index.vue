@@ -53,9 +53,9 @@
         background-image: linear-gradient(to right, #bbb, #bbb);
     }
     .button-wrap-active{
-        background-image: linear-gradient(to right, #0076FF, #0093FF);
+        background-image: linear-gradient(to right, #EE4432, #EE6833);
     }
     .button-wrap-active:active{
-        background-image: linear-gradient(to right, #0c6eff, #0c74ff);
+        background-image: linear-gradient(to right, #ff4b13, #ff4b13);
     }
 </style>

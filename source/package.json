@@ -1,6 +1,6 @@
 {
   "name": "wow-weex",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "weex ui",
   "main": "dist/index.js",
   "scripts": {
