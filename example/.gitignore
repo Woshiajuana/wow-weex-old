@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.idea/
+.project
+temp/
+platforms/
+tree_history/
