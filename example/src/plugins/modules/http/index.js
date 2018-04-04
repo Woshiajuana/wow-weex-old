@@ -26,7 +26,7 @@ class Http {
         this.api = api;
         this.method = options.method.toLocaleLowerCase();
         this.mode = options.mode.toLocaleLowerCase();
-        this.body = Object.assign(DEFAULT_OPTIONS, data);
+        this.body = Object.assign(DEFAULT_DATA, data);
         return this['_' + this.mode] ();
     }
 

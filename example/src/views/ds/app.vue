@@ -21,6 +21,8 @@
     import source       from 'utils/source'
     import path         from 'modules/path'
     import WowNavBar    from 'wow-weex/lib/wow-navbar'
+//    import jsencrypt    from 'utils/jsencrypt.js'
+    import crypto       from 'utils/crypto-js.js'
     export default {
         data () {
             return {
@@ -50,7 +52,7 @@
         methods: {
             /**事件-全局刷新*/
             handleViewAppear () {
-
+                console.log(crypto)
             },
             /**事件-导航条切换*/
             handleSwitch (index) {
