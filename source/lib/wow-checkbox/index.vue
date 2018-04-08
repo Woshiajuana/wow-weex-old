@@ -14,7 +14,8 @@
         },
         methods: {
             handleClick() {
-                this.$emit('click')
+                this.checkbox_switch = !this.checkbox_switch;
+                this.$emit('input', { value: this.checkbox_switch });
             }
         }
     }
