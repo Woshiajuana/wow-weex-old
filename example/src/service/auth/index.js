@@ -1,5 +1,5 @@
 import store    from 'modules/store';
-import _        from 'utlis/lodash';
+import _        from 'utils/lodash';
 
 const AUTH_KEY_NAME = 'DD_AUTH_STORE_DATA';
 const AUTH_CACHE_KEY_NAME = 'DD_AUTH_CACHE_STORE_DATA';

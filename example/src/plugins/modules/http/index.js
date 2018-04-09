@@ -2,7 +2,7 @@
 
 import loading      from 'modules/loading'
 import config       from 'config/env'
-import auth         from 'utils/auth'
+import auth         from 'service/auth'
 import modal        from 'modules/modal'
 import encrypt      from 'modules/encrypt'
 
@@ -27,6 +27,8 @@ class Http {
         this.method = options.method.toLocaleLowerCase();
         this.mode = options.mode.toLocaleLowerCase();
         this.body = Object.assign(DEFAULT_DATA, data);
+        console.log(this.mode)
+        console.log(api, data, opt)
         return this['_' + this.mode] ();
     }
 
@@ -37,7 +39,7 @@ class Http {
         this.api = config.API_URL + this.api;
         return new Promise((resolve, reject) => {
             this._log('__请求参数：', this.body);
-            jfhttps[method](this.api, this.body, (e) => {
+            jfhttps[this.method](this.api, this.body, (e) => {
                 this._handle(e, resolve, reject)
             });
         });
@@ -53,7 +55,7 @@ class Http {
                 !this.body.mobileNo && (this.body.mobileNo = info.encryptMobileNo);
                 this.body.token = info.token;
                 this._log('__请求参数：', this.body);
-                jfhttps[method](this.api, this.body, (e) => {
+                jfhttps[this.method](this.api, this.body, (e) => {
                     this._handle(e, resolve, reject)
                 });
             }).catch(() => {
@@ -140,7 +142,7 @@ class Http {
 
 export default (api, data = {}, options) => {
     options.loading && loading.show();
-    return new Http(api, options).finally(() => {
+    return new Http(api, data, options).finally(() => {
         options.loading && loading.hide();
     });
 }

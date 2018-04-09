@@ -1,194 +1,172 @@
 <template>
-    <wov-view
+    <wow-view
         :view_header_left_src="close_src"
         view_background_color="#fff"
         view_header_border_width="0"
         @leftItemClick="handleClose"
         :view_not_use_left_default_click="true">
-        <!--<title tit="登录" alt="请填写账号信息"></title>-->
-        <!--<div class="ipt_box">-->
-            <!--<label :icon="user_src" type="tel" placeholder="请输入手机号码" :value="account" @input="handleInput('account', $event)" clearmode="whileedit"></label>-->
-            <!--<label :icon="pwd_src" type="password" placeholder="请输入密码" :value="password" @input="handleInput('password', $event)"></label>-->
-        <!--</div>-->
-        <!--<div>-->
-            <!--<label v-if="codeImage" :icon="code_src" type="text" placeholder="请输入图形验证码" :value="checkCode" @input="handleInput('checkCode', $event)" random="true">-->
-                <!--<div class="code">-->
-                    <!--<image class="code-image" :src="codeImage"></image>-->
-                    <!--<image class="code-icon" :src="refs_src" @click="handleRefsCode"></image>-->
-                <!--</div>-->
-            <!--</label>-->
-        <!--</div>-->
-        <!--<checkbox class="checkbox" :checked="isAgree" @change="handleInput('isAgree', $event)">-->
-            <!--<text class="checkbox-txt">我已阅读并同意</text>-->
-            <!--<text class="checkbox-txt clause" @click="handleService">服务条款</text>-->
-        <!--</checkbox>-->
-        <!--<div class="btn">-->
-            <!--<wov-button @click="handleLogin" button_color="default" button_margin_top="96" :button_disabled="false" button_txt="登录"></wov-button>-->
-        <!--</div>-->
-        <!--<div class="note">-->
-            <!--<div class="btn-container" @click="handleJump('register')">-->
-                <!--<text class="note-txt">注册</text>-->
-            <!--</div>-->
-            <!--<div class="btn-container" @click="handleJump('forgetpwd', {mobileNo: account || ''})">-->
-                <!--<text class="note-txt">忘记密码?</text>-->
-            <!--</div>-->
-        <!--</div>-->
-    </wov-view>
+        <sign-in-title
+            sign_title="登录"
+            sign_alt="请填写账号信息">
+        </sign-in-title>
+        <sign-input
+            class="margin-top-100"
+            :icon="user_src" type="tel"
+            placeholder="请输入手机号码"
+            :value="account"
+            @input="handleInput('account', $event)"
+            clearmode="whileedit">
+        </sign-input>
+        <sign-input
+            :icon="pwd_src"
+            type="password"
+            placeholder="请输入密码"
+            :value="password"
+            @input="handleInput('password', $event)">
+        </sign-input>
+        <div>
+            <sign-input
+                v-if="code_image_src && account"
+                :icon="code_src"
+                type="text"
+                placeholder="请输入图形验证码"
+                :value="check_code"
+                @input="handleInput('check_code', $event)"
+                random="true">
+                <div class="code">
+                    <image class="code-image" :src="code_image_src"></image>
+                    <image class="code-icon" :src="refs_src" @click="handleRefsCode"></image>
+                </div>
+            </sign-input>
+        </div>
+        <wow-check-box class="check-box" :checkbox_switch="is_agree" @input="handleInput('is_agree', $event)">
+            <text class="checkbox-txt margin-left-20">我已阅读并同意</text>
+            <text class="checkbox-txt clause" @click="handleService">服务条款</text>
+        </wow-check-box>
+        <wow-button
+            class="button"
+            button_margin_top="96"
+            button_txt="登录"
+            :button_disabled="!password || !account || (code_image_src && !check_code) || !is_agree"
+            @click="handleSure">
+        </wow-button>
+        <div class="user-link">
+            <text class="note-txt" @click="handleJump('ds_register')">注册</text>
+            <text class="note-txt" @click="handleJump('ds_retrieve', {account: account})">忘记密码?</text>
+        </div>
+    </wow-view>
 </template>
 <script>
-    import WovButton    from 'wow-weex/lib/wow-button';
-    import WovView      from 'wow-weex/lib/wow-view'
-//    import dialogs from 'dd-pipe/plugins/dialogs';
-//    import modal from 'dd-pipe/plugins/modal';
-//    import router from 'dd-pipe/plugins/router';
-//    import meta from 'dd-pipe/plugins/meta';
-//    import loading from 'dd-pipe/plugins/loading';
-//    import channel from 'dd-pipe/plugins/channel';
-//    import auth from 'dd-pipe/auth';
-//    import request from 'dd-pipe/request';
-//    import regx from 'dd-pipe/regx';
-//    import source from 'dd-pipe/source';
-//    import record from 'async/record';
-//    import service from 'async/service';
-//    import jf from 'dd-pipe/jfservice';
+    import WowButton    from 'wow-weex/lib/wow-button'
+    import WowView      from 'wow-weex/lib/wow-view'
+    import WowCheckBox  from 'wow-weex/lib/wow-checkbox'
+    import SignInTitle  from 'ds/sign-in-title'
+    import SignInput    from 'ds/sign-input'
+    import source       from 'utils/source'
+    import regular      from 'utils/regular'
+    import Api          from 'api/login'
+    import modal        from 'modules/modal'
+    import dialogs      from 'modules/dialogs'
+    import router       from 'modules/router'
+    import meta         from 'modules/meta'
+    import channel      from 'modules/channel'
+    import store        from 'modules/store'
+    import storage      from 'modules/storage'
+    import auth         from 'service/auth'
+    const USER_ACCOUNT_KEY = 'USER_ACCOUNT_KEY';
     export default {
-        components : {
-            WovButton,
-            WovView,
-//            label: require('./components/label.vue'),
-//            title: require('./components/title.vue'),
-//            checkbox: require('./components/checkbox.vue')
-        },
         data () {
             return {
-                close_src: source('jfb_login_close_icon.png'),
-                user_src: source('jfb_login_user_icon.png'),
-                pwd_src: source('jfb_login_password_icon.png'),
-                code_src: source('dl_2.png?v=1'),
-                refs_src: source('dl_1.png'),
+                close_src: source('ds-sign-close-icon.png'),
+                user_src: source('ds-sign-user-icon.png'),
+                pwd_src: source('ds-sign-pwd-icon.png'),
+                code_src: source('ds-sign-code-icon.png'),
+                refs_src: source('ds-sign-refs-icon.png'),
+                code_image_src: '',
 
+                is_agree: true,
                 password: '',
                 account: '',
-                checkCode: '',
-                codeImage: '',
-                isError: false,
-                isAgree: true,
-                history: [],
+                check_code: '',
             }
         },
+        created () {
+            this.getHistoryAccount();
+        },
         methods: {
-            /**事件-取值赋值*/
-            handleInput (key, event) {
+            getHistoryAccount() {
+                storage.get(USER_ACCOUNT_KEY).then((result) => {
+                    this.account = result;
+                }).catch(() => {
+                    this.account = '';
+                })
+            },
+            setHistoryAccount() {
+                storage.set(USER_ACCOUNT_KEY, this.account);
+            },
+            handleInput(key, event) {
                 this[key] = event.value;
             },
-            /**事件-服务条款*/
-            handleService () {
-                service.getTipInfo().then((e) => {
-                    dialogs.alert({
-                        message: e.USER_CLIENT_SERVICE_PROTOCOL.tipText,
-                        okTitle: '知道了'
-                    });
-                }).catch( (error) => {});
-            },
-            /**事件-刷新验证码*/
-            handleRefsCode () {
-                var options = {
-                    method: 'POST',
-                    body: {
-                        mobileNo: this.account
-                    },
-                    https: true,
-                };
-                request('GetCheckCode.Req', options).then((result) => {
-                    result.respCode === '0000'
-                        ? this.codeImage = result.checkCode
-                        : dialogs.toast({ message: result.respDesc });
-                }).catch((error) => {
-                    return dialogs.toast({ message: error });
-                });
-            },
-            /**事件-关闭弹窗*/
-            handleClose () {
+            handleClose() {
                 modal.close();
             },
-            /**事件-登录*/
-            handleLogin (call) {
-                if (!this.account) {
-                    call();
-                    return dialogs.toast({ message: '请输入手机号！' });
-                } else if (!regx.isPhone(this.account)) {
-                    call();
-                    return dialogs.toast({ message: '请输入正确的手机号！' });
-                } else if (!this.password) {
-                    call();
-                    return dialogs.toast({ message: '请输入密码！' });
-                } else if (this.isError && !this.checkCode) {
-                    call();
-                    return dialogs.toast({ message: '请输入验证码！' });
-                } else if (!this.isAgree) {
-                    call();
-                    return dialogs.toast({ message: '未同意服务条款！' });
-                } else {
-                    jf.encryptPassword(this.password, this.account).then((pwd) => {
-                        var req = {
-                            mobileNo: this.account,
-                            password: pwd
-                        };
-                        this.checkCode ? req.checkCode = this.checkCode : null; //验证码
-                        var options = {
-                            method: 'POST',
-                            body: req,
-                            https: true,
-                        };
-                        loading.show();
-                        return request('NewUserLogin.Req', options);
-                    }).then((result) => {
-                        if (result.respCode === '0000') {
-                            // 缓存账户以及头像信息
-                            result['authScanRecognizeTimeoutCount'] = 0;
-                            auth.login(result).then((success) => {
-                                record.set({ mobileNo: this.account });
-                                meta.refresh().finally(() => {
-                                    channel.post('$$REFRESH_APP', {});
-                                    modal.close();
-                                });
-                            }).catch((error) => {
-                                dialogs.toast({ message: error });
-                            });
-                        } else {
-                            dialogs.toast({ message: result.respDesc });
-                            if (result.checkCode) {
-                                this.isError = true;
-                                this.codeImage = result.checkCode;
-                            }
-                        }
-                    }).catch((error) => {
-                        return dialogs.toast({ message: error });
-                    }).finally(() => {
-                        call();
-                        loading.hide();
+            handleService() {
+                Api.getTip().then((result) => {
+                    dialogs.alert({
+                        message: result.USER_CLIENT_SERVICE_PROTOCOL.tipText,
+                        okTitle: '知道了'
                     });
-                }
+                }).catch((error) => {
+                    dialogs.toast({ message: error });
+                })
             },
-            /**事件-页面跳转*/
+            handleRefsCode(){
+                Api.refreshCode(this.account).then((result) => {
+                    result.respCode === '0000' ? this.code_image_src = result.checkCode : dialogs.toast({ message: result.respDesc });
+                }).catch(() => {
+                    dialogs.toast({ message: error });
+                })
+            },
+            handleSure(callback) {
+                if(!regular.isPhone(this.account)){
+                    callback();
+                    return dialogs.toast({ message: '请输入正确的手机号！' });
+                }
+                Api.login(this.account, this.password, this.check_code).then((result) => {
+                    if(result.respCode !== '0000'){
+                        this.code_image_src = result.checkCode || '';
+                        throw result.respDesc;
+                    }
+                    result['authScanRecognizeTimeoutCount'] = 0;
+                    return auth.login(result)
+                }).then(() => {
+                    this.setHistoryAccount();
+                    return meta.refresh();
+                }).then(() => {
+                    channel.post('$$REFRESH_APP', {});
+                    router.root();
+                    modal.close();
+                }).catch((error) => {
+                    dialogs.toast({ message: error });
+                }).finally(() => {
+                    callback();
+                })
+            },
             handleJump (page, params = {}) {
                 router.push(page, params);
             },
         },
-        created () {
-            record.get().then((history) => {
-                this.history = history;
-            }).then((history) => {
-                this.account = this.history[0].mobileNo || '';
-            });
+        components : {
+            WowButton,
+            WowView,
+            SignInTitle,
+            SignInput,
+            WowCheckBox,
         },
     }
 
 </script>
 <style>
-    .ipt_box{
-        margin-top: 72px;
-    }
     .code {
         flex-direction: row;
         align-items: center;
@@ -203,27 +181,13 @@
         width: 30px;
         height: 30px;
     }
-    .btn {
-        width: 750px;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-    }
-    .note {
-        width: 750px;
+    .check-box{
         margin-top: 40px;
-        flex-direction: row;
-        padding-left:76px;
-        padding-right:76px;
-        justify-content: space-between;
+        padding-right: 40px;
+        padding-left: 48px;
     }
-    .note-txt {
-        color: #0076ff;
-        font-size: 28px;
-    }
-    .checkbox {
-        margin-top: 40px;
-        padding-left:40px;
+    .margin-top-100{
+        margin-top: 100px;
     }
     .checkbox-txt {
         font-size: 28px;
@@ -231,5 +195,25 @@
     }
     .clause {
         color: #0076ff;
+        margin-left: 10px;
+    }
+    .margin-left-20{
+        margin-left: 20px;
+    }
+    .button{
+        margin-left: 56px;
+    }
+    .user-link{
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 40px;
+        padding-left: 56px;
+        padding-right: 56px;
+    }
+    .note-txt{
+        font-size: 28px;
+        color: #0076FF;
+        padding-left: 10px;
+        padding-right: 10px;
     }
 </style>

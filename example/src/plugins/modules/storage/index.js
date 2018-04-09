@@ -16,7 +16,7 @@ const DEFAULT_FORMAT = {
  * @param   value   {string}    键值对VALUE
  * @param   option  {object}    参数配置
  * */
-const setItem = (key, value, option) => new Promise((resolve, reject) => {
+const set = (key, value, option) => new Promise((resolve, reject) => {
     storage.setItem(key, encode(value, option), e => {
         e.result === 'success' ? resolve() : reject('set store error');
     });
@@ -26,7 +26,7 @@ const setItem = (key, value, option) => new Promise((resolve, reject) => {
  * 获取数据
  * @param   key     {string}    键值对KEY
  * */
-const getItem = key => new Promise((resolve, reject) => {
+const get = key => new Promise((resolve, reject) => {
     storage.getItem(key, e => {
         e.result === 'success' ? resolve(decode(e.data)) : reject(key + ' is undefined');
     });
@@ -36,7 +36,7 @@ const getItem = key => new Promise((resolve, reject) => {
  * 判断数据是否有存储
  * @param   key     {string}    键值对KEY
  * */
-const hasItem = key => new Promise((resolve, reject) => {
+const has = key => new Promise((resolve, reject) => {
     storage.getAllKeys(e => {
         e.data.indexOf(key) !== -1 ? resolve() : reject(key + ' is undefined');
     });
@@ -46,7 +46,7 @@ const hasItem = key => new Promise((resolve, reject) => {
  * 删除数据
  * @param   key     {string}    键值对KEY
  * */
-const removeItem = key => new Promise((resolve, reject) => {
+const remove = key => new Promise((resolve, reject) => {
     storage.removeItem(key, e => {
         if (e.result === 'success') return resolve();
         hasItem(key).then(() => reject('remove store error')).catch(() => resolve());
@@ -91,9 +91,9 @@ const decode = (data) => {
 };
 
 export default {
-    setItem,
-    getItem,
-    hasItem,
-    removeItem,
+    set,
+    get,
+    has,
+    remove,
     clear,
 }

@@ -1,6 +1,6 @@
 const transition = weex.requireModule('transitionModule');
 import path from 'modules/path';
-import Defer from 'utlis/defer';
+import Defer from 'utils/defer';
 
 const defer = new Defer(1000);
 

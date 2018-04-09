@@ -10,7 +10,7 @@
         view_background_color="#f8f8f8"
         view_header_background_image="linear-gradient(to left, #EE6833, #EE4432)">
         <div class="header-wrap">
-            <text class="title">商城</text>
+            <text class="title" @click="handleLogin('ds_login')">商城</text>
             <text class="sub-title">简单购物 轻松付</text>
         </div>
         <div class="body-wrap">
@@ -47,6 +47,7 @@
     import WowInput     from 'wow-weex/lib/wow-input'
     import HistoryPart  from 'ds/history-part'
     import router       from 'modules/router'
+    import modal        from 'modules/modal'
     export default {
         data () {
             return {
@@ -65,6 +66,9 @@
             },
             handleJump(page) {
                 router.push(page);
+            },
+            handleLogin() {
+                modal.show('ds_login');
             }
         },
         components: {
