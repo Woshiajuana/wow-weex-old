@@ -72,6 +72,9 @@ module.exports = {
             'utils': path.resolve(__dirname, '../src/utils/'),
             'modules': path.resolve(__dirname, '../src/plugins/modules/'),
             'ds': path.resolve(__dirname, '../src/components/ds/'),
+            'api': path.resolve(__dirname, '../src/api/'),
+            'config': path.resolve(__dirname, '../src/config/'),
+            'service': path.resolve(__dirname, '../src/service/'),
         }
     },
     module: {

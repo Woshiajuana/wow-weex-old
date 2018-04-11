@@ -73,7 +73,7 @@
                 if(!this.account) return dialogs.toast({ message: '请输入手机号码' });
                 if(!regular.isPhone(this.account)) return dialogs.toast({ message: '请输入正确的手机号!' });
                 Api.sendCode(this.account).then((result) => {
-                    if (result.respCode !== '0000') return dialogs.toast({ message: result.respDesc });
+                    if (result.respCode !== '0000') throw result.respDesc;
                     dialogs.toast({ message: '发送验证码成功' });
                     callback();
                 }).catch((error) => {

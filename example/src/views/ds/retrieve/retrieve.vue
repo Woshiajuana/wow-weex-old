@@ -96,7 +96,7 @@
                 if (!this.real_name) return dialogs.toast({ message: '请输入姓名' });
                 if (!regular.isIDCard(this.card_id)) return dialogs.toast({ message: '请输入有效的身份证号' });
                 Api.sendCode(this.account, this.real_name, this.card_id).then((result) => {
-                    if (result.respCode !== '0000') return dialogs.toast({ message: result.respDesc });
+                    if (result.respCode !== '0000') throw result.respDesc;
                     dialogs.toast({ message: '发送验证码成功' });
                     callback();
                 }).catch((error) => {
