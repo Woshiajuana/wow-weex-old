@@ -3,13 +3,13 @@ import BD_IP from '../../config/ip'
 /**===================本地环境====================*/
 const BD_ENV = {
     /**js地址*/
-    TREE_BASE_URL:'http://'+ BD_IP +':13140/dist/BD/'
+    TREE_BASE_URL:'http://'+ BD_IP +':13140/dist/BD'
 };
 
 /**===================测试环境====================*/
 const CS_ENV = {
     /**js地址*/
-    TREE_BASE_URL:'http://ptstatics.oss-cn-shanghai.aliyuncs.com/dianshua_cs/js/0.0.1/'
+    TREE_BASE_URL:'http://ptstatics.oss-cn-shanghai.aliyuncs.com/dianshua_cs/js/0.0.1'
 };
 
 /**===================生产环境====================*/

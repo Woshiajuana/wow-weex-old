@@ -31,7 +31,7 @@ function setEnv(env) {
     let content = `module.exports = '${env}';`;
     try {
         fs.writeFileSync(path.join(__dirname, '../../config/release/index.js'), content);
-        let content_env = fs.readFileSync(path.join(__dirname, '../../src/config/env/config/'+ env +'.js'));
+        let content_env = fs.readFileSync(path.join(__dirname, '../../src/config/env/'+ env +'.js'));
         log(`${env}环境内容如下：\n${content_env}`);
         fs.writeFileSync(path.join(__dirname, '../../src/config/env/index.js'), content_env);
     } catch (e) {

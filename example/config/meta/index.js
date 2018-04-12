@@ -1,98 +1,153 @@
 
+import bd_env from '../../src/config/env/BD'
+import cs_env from '../../src/config/env/CS'
+import sc_env from '../../src/config/env/SC'
+import env    from '../../config/release'
 
-export default [{
-    "type": "page",
-    "name": "ds_me",
-    "components": [{
-        "type": "ad",
-        "data": [{
-            "icon": "http://dsposweb.oss-cn-hangzhou.aliyuncs.com/Image/wd_11.png",
-            "_middleware": [{
-                "token": true
-            }, {
-                "link": "https://finumi.com/index.html?jf_phone=${PHONE}&appId=${APPID}"
-            }]
-        }, {
-            "icon": "http://dsposweb.oss-cn-hangzhou.aliyuncs.com/Image/wd_8.png",
-            "_middleware": [{
-                "token": true
-            }, {
-                "link": "https://help.91dbq.com/comingpage"
-            }]
-        }]
-    }, {
-        "type": "catg",
-        "data": [{
-            "icon": "http://dsposweb.oss-cn-hangzhou.aliyuncs.com/Image/wd_1.png",
-            "title": "绑定提款卡",
-            "_middleware": [{
-                "token": true
-            }, {
-                "authen": true
-            }, {
-                "push": "drawing_account_manage"
-            }]
-        }, {
-            "icon": "http://dsposweb.oss-cn-hangzhou.aliyuncs.com/Image/wd_5.png",
-            "title": "信用卡验证",
-            "_middleware": [{
-                "token": true
-            }, {
-                "authen": true
-            }, {
-                "push": "credit_card_list"
-            }]
-        }, {
-            "icon": "http://dsposweb.oss-cn-hangzhou.aliyuncs.com/Image/wd_2.png",
-            "title": "绑定微信公众号",
-            "_middleware": [{
-                "token": true
-            }, {
-                "push": "bindWeChat"
-            }]
-        }, {
-            "icon": "http://dsposweb.oss-cn-hangzhou.aliyuncs.com/Image/wd_6.png",
-            "title": "账号安全",
-            "_middleware": [{
-                "token": true
-            }, {
-                "push": "accountsave"
-            }]
-        }, {
-            "icon": "http://dsposweb.oss-cn-hangzhou.aliyuncs.com/Image/wd_4.png",
-            "title": "新手教程",
-            "_middleware": [{
-                "link": "http://www.jfpal.com/kdb/ic/jc/ds.html"
-            }]
-        }, {
-            "icon": "http://dsposweb.oss-cn-hangzhou.aliyuncs.com/Image/wd_3.png",
-            "title": "更多",
-            "_middleware": [{
-                "push": "more"
-            }]
-        }],
-        "options": {
-            "each": 3,
-            "type": "larger"
-        }
-    }]
-}, {
-    "type": "page",
-    "name": "more",
-    "components": [{
-        "type": "list",
-        "data": [{
-            "icon": "http://dsposweb.oss-cn-hangzhou.aliyuncs.com/Image/gd_2.png",
-            "title": "联系客服",
-            "_middleware": [{
-                "dispatch": "call"
-            }]
-        }, {
-            "icon": "http://dsposweb.oss-cn-hangzhou.aliyuncs.com/Image/gd_1.png",
-            "title": "版本信息",
-            "_middleware": [{
-                "push": "version"
-            }]
-        }]
-    }]
-}]
+let url = '';
+switch (env) {
+    case 'BD':
+        url = bd_env.PICTURE_URL;
+        break;
+    case 'CS':
+        url = cs_env.PICTURE_URL;
+        break;
+    case 'SC':
+        url = sc_env.PICTURE_URL;
+        break;
+}
+
+
+export default [
+    {
+        "components":[
+            {
+                "data":[
+                    {
+                        "icon": url + "jfb_mine_menu_1.png",
+                        "_middleware":[
+                            {
+                                "token":true
+                            },
+                            {
+                                "dispatch":"jfb_certification"
+                            }
+                        ],
+                        "title":"实名认证"
+                    },
+                    {
+                        "icon": url + "jfb_mine_menu_2.png",
+                        "_middleware":[
+                            {
+                                "token":true
+                            },
+                            {
+                                "authen":true
+                            },
+                            {
+                                "push":"jfb_drawing_account_manage"
+                            }
+                        ],
+                        "title":"绑定提款卡"
+                    },
+                    {
+                        "icon": url + "jfb_mine_menu_3.png",
+                        "_middleware":[
+                            {
+                                "token":true
+                            },
+                            {
+                                "push":"jfb_trade_record"
+                            }
+                        ],
+                        "title":"交易记录"
+                    },
+                    {
+                        "icon": url + "jfb_mine_menu_4.png",
+                        "_middleware":[
+                            {
+                                "token":true
+                            },
+                            {
+                                "push":"jfb_accountsave"
+                            }
+                        ],
+                        "title":"账号安全"
+                    },
+                    {
+                        "icon": url + "jfb_mine_menu_5.png",
+                        "_middleware":[
+                            {
+                                "token":true
+                            },
+                            {
+                                "authen":true
+                            },
+                            {
+                                "push":"jfb_credit_card_list"
+                            }
+                        ],
+                        "title":"信用卡验证"
+                    },
+                    {
+                        "icon": url + "jfb_mine_menu_6.png",
+                        "_middleware":[
+                            {
+                                "push":"jfb_more"
+                            }
+                        ],
+                        "title":"更多"
+                    }
+                ],
+                "options":{
+                    "type":"larger",
+                    "each":3
+                },
+                "type":"catg"
+            }
+        ],
+        "name":"jfb_mine",
+        "type":"page"
+    },
+    {
+        "components":[
+            {
+                "data":[
+                    {
+                        "icon": url + "jfb_wexin_icon.png",
+                        "_middleware":[
+                            {
+                                "token":true
+                            },
+                            {
+                                "push":"jfb_bindWeChat"
+                            }
+                        ],
+                        "title":"绑定微信公众号"
+                    },
+                    {
+                        "icon": url + "jfb_kefu_icon.png",
+                        "_middleware":[
+                            {
+                                "dispatch":"call"
+                            }
+                        ],
+                        "title":"联系客服"
+                    },
+                    {
+                        "icon": url + "jfb_banben_icon.png",
+                        "_middleware":[
+                            {
+                                "push":"jfb_version"
+                            }
+                        ],
+                        "title":"版本信息"
+                    }
+                ],
+                "type":"list"
+            }
+        ],
+        "name":"jfb_more",
+        "type":"page"
+    }
+]

@@ -17,9 +17,23 @@ let out_tree = {
     resource: {},
     meta: meta_config
 };
+let old_out_tree = {
+    engine: tree_config.engine,
+    entry: tree_config.entry,
+    base: '',
+    version,
+    resource: {},
+    meta: {
+        data: meta_config
+    }
+};
 log(`设置APP入口文件为：${out_tree.entry}`);
 out_tree.base = env_config.TREE_BASE_URL;
-if (env !== 'BD') out_tree.base = `${out_tree.base}/${version}`;
+old_out_tree.base = env_config.TREE_BASE_URL;
+if (env !== 'BD') {
+    out_tree.base = `${out_tree.base}/${version}`;
+    old_out_tree.base = `${old_out_tree.base}/${version}`;
+}
 log(`设置APP页面JS基础地址为：${out_tree.base}`);
 log(`即将遍历views目录下APP所有页面`);
 (function findDirBuildTree(dir) {
@@ -34,7 +48,8 @@ log(`即将遍历views目录下APP所有页面`);
             let file_path_arr = file_path.replace(/\\/g, '/').split('\/');
             file_path_arr = unique(file_path_arr);
             let name = file_path_arr.join('_');
-            out_tree.resource[name] = name + '.js';
+            out_tree.resource[name] = { src: name + '.js' };
+            old_out_tree.resource[name] = name + '.js';
         } else if (stat.isDirectory()) {
             let sub_dir = path.join(dir, file);
             findDirBuildTree(sub_dir);
@@ -50,5 +65,9 @@ function unique(array){
 }
 log(`即将生成tree.json`);
 fs_extra.createWriteStream('tree.json',{defaultEncoding:'utf8'});
+fs_extra.createWriteStream('old_tree.json',{defaultEncoding:'utf8'});
 fs_extra.writeFileSync('./tree.json', JSON.stringify(out_tree, null, 4));
+fs_extra.writeFileSync('./old_tree.json', JSON.stringify(old_out_tree, null, 4));
+fs_extra.ensureDirSync(`./dist/${env}`);
+fs_extra.writeFileSync(`./dist/${env}/tree.json`, JSON.stringify(out_tree, null, 4));
 log(`生成tree.json操作完成`);
