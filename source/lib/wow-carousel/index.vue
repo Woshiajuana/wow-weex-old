@@ -3,12 +3,14 @@
             append="tree"
             :interval="carousel_interval"
             :auto-play="carousel_auto_play"
-            :style="{ height: carousel_height }">
+            :style="{ height: carousel_height,
+             width: carousel_width}">
         <div v-for="(item, index) in carousel_arr"
-             :style="{ height: carousel_height }"
+             :style="{ height: carousel_height,
+             width: carousel_width}">
              :key="index"
              @click="handleClick(item, index)">
-            <image class="carousel-item-image" :src="carousel_arr[0].image"></image>
+            <image class="carousel-item-image" :src="item.image"></image>
         </div>
         <indicator class="carousel-indicator"></indicator>
     </slider>
@@ -18,6 +20,7 @@
         props: {
             carousel_arr: { default: [] },
             carousel_height: { default: 200 },
+            carousel_width: { default: 750 },
             carousel_interval: { default: 3000 },
             carousel_auto_play: { default: 'true' }
         },
