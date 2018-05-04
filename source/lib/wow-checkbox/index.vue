@@ -5,7 +5,7 @@
     </div>
 </template>
 <script>
-    import source from 'utils/source'
+    import source from 'utils/source.util'
     export default{
         props: {
             checkbox_switch: { default: false },

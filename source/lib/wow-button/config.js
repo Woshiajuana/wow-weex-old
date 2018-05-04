@@ -4,7 +4,7 @@
 
 import config from '../../dist/config'
 
-export default {
+export default Object.assign({
     button_width: 640,
     button_height: 100,
     button_txt: '按钮',
@@ -14,5 +14,4 @@ export default {
     button_radius: '8px',
     button_margin_top: 160,
     button_delay: 0,
-    ...config,
-}
+}, config)

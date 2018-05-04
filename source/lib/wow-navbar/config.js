@@ -2,7 +2,7 @@
  * Created by Administrator on 2017/11/8.
  */
 import config from '../../dist/config'
-export default {
+export default Object.assign({
 
     /**是否使用默认导航条*/
     nav_use_menu: true,
@@ -33,5 +33,5 @@ export default {
 
     /**导航条字体颜色*/
     nav_font_color: '#999',
-    ...config,
-}
+
+}, config)

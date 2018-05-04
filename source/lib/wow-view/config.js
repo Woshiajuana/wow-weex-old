@@ -3,7 +3,7 @@
  */
 import source from 'utils/source.util'
 import config from '../../dist/config'
-export default {
+export default Object.assign({
 
     /**是否启用scroller*/
     view_use_scroll: true,
@@ -68,5 +68,4 @@ export default {
     view_header_right_txt_mar_left: 0,
     view_header_right_txt_mar_right: 25,
 
-    ...config,
-}
+}, config)
