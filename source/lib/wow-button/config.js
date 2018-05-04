@@ -1,6 +1,9 @@
 /**
  * Created by Administrator on 2017/11/8.
  */
+
+import config from '../../dist/config'
+
 export default {
     button_width: 640,
     button_height: 100,
@@ -10,5 +13,6 @@ export default {
     button_disabled: false,
     button_radius: '8px',
     button_margin_top: 160,
-    button_delay: 0
+    button_delay: 0,
+    ...config,
 }

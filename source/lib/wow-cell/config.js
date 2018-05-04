@@ -1,6 +1,8 @@
 /**
  * Created by Administrator on 2017/11/8.
  */
+import config from '../../dist/config'
+
 export default {
     cell_use_slot: false,
     cell_use_arrow: true,
@@ -40,4 +42,5 @@ export default {
     cell_right_text_align: 'right',
     cell_input_mar_top: 0,
     cell_left_sub_mar_top: 0,
+    ...config,
 }

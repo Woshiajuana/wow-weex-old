@@ -2,6 +2,7 @@
  * Created by Administrator on 2017/11/8.
  */
 import source from 'utils/source.util'
+import config from '../../dist/config'
 export default {
 
     /**是否启用scroller*/
@@ -67,4 +68,5 @@ export default {
     view_header_right_txt_mar_left: 0,
     view_header_right_txt_mar_right: 25,
 
+    ...config,
 }
