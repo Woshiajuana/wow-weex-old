@@ -44,8 +44,8 @@
 
 <script>
     import config   from './config'
-    import path     from 'modules/path'
-    import dialogs  from 'modules/dialogs'
+    import path     from 'plugins/path.plugin'
+    import dialogs  from 'plugins/dialogs.plugin'
     export default {
         props: {
             nav_use_menu: { default: config.nav_use_menu },

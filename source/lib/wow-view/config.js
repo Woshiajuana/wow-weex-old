@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2017/11/8.
  */
-import source from 'utils/source'
+import source from 'utils/source.util'
 export default {
 
     /**是否启用scroller*/
