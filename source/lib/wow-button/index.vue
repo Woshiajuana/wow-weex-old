@@ -1,8 +1,8 @@
 <template>
     <div class="button-wrap"
-         :class="[!button_disabled ? 'button-wrap-active' : '']"
          @click="clickHandle"
          :style="{height: button_height,
+         backgroundColor: button_disabled ? button_disabled_background_color : button_background_color,
          marginTop: button_margin_top,
          width: button_width,
          borderRadius: button_radius}">
@@ -27,6 +27,8 @@
             button_txt_color: { default: config.button_txt_color },
             button_txt_size: { default: config.button_txt_size },
             button_disabled: { default: config.button_disabled },
+            button_disabled_background_color: { default: config.button_disabled_background_color },
+            button_background_color: { default: config.button_background_color },
             button_radius: { default: config.button_radius },
             button_margin_top: { default: config.button_margin_top },
             button_delay: { default: config.button_delay },
@@ -47,15 +49,16 @@
     .button-wrap {
         align-items: center;
         justify-content: center;
-        background-image: linear-gradient(to right, #bbb, #bbb);
+        /*background-image: linear-gradient(to right, #bbb, #bbb);*/
+        background-color: #bbb;
     }
     .button-wrap:active{
-        background-image: linear-gradient(to right, #bbb, #bbb);
+        background-color: #bbb;
     }
-    .button-wrap-active{
-        background-image: linear-gradient(to right, #EE4432, #EE6833);
-    }
-    .button-wrap-active:active{
-        background-image: linear-gradient(to right, #ff4b13, #ff4b13);
-    }
+    /*.button-wrap-active{*/
+        /*background-image: linear-gradient(to right, #EE4432, #EE6833);*/
+    /*}*/
+    /*.button-wrap-active:active{*/
+        /*background-image: linear-gradient(to right, #ff4b13, #ff4b13);*/
+    /*}*/
 </style>
