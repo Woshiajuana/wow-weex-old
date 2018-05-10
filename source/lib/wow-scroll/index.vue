@@ -12,6 +12,7 @@
     </list>
 </template>
 <script>
+    import config       from './config'
     export default{
         data () {
             return {
@@ -21,9 +22,9 @@
             }
         },
         props: {
-            scroll_delay: { default: 500 },
-            scroll_use_refresh: { default: true },
-            scroll_use_loading: { default: true },
+            scroll_delay: { default: config.scroll_delay },
+            scroll_use_refresh: { default: config.scroll_delay },
+            scroll_use_loading: { default: config.scroll_delay },
         },
         methods: {
             handleRefresh () {
