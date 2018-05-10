@@ -16,13 +16,14 @@
     </slider>
 </template>
 <script>
+    import config       from './config'
     export default {
         props: {
-            carousel_arr: { default: [] },
-            carousel_height: { default: 200 },
-            carousel_width: { default: 750 },
-            carousel_interval: { default: 3000 },
-            carousel_auto_play: { default: 'true' }
+            carousel_arr: { default: config.carousel_arr },
+            carousel_height: { default: config.carousel_height },
+            carousel_width: { default: config.carousel_width },
+            carousel_interval: { default: config.carousel_interval },
+            carousel_auto_play: { default: config.carousel_auto_play }
         },
         methods: {
             handleClick(item, i) {
