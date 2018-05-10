@@ -1,5 +1,18 @@
 <template>
     <div class="nav-bar-wrap" @viewappear="handleViewAppear">
+        <!--主体-->
+        <div class="nav-bar-inner"
+             :style="{ top: nav_position == 'top' ? (+nav_height) - (+nav_height_offset) : 0,
+             bottom: nav_position == 'top' ? 0 : (+nav_height) - (+nav_height_offset) }">
+            <embed class="nav-bar-content"
+                   v-for="(item, index) in nav_arr"
+                   :key="index"
+                   :style="{visibility: item.checked ? 'visible' : 'hidden'}"
+                   :src="item.url"
+                   type="weex">
+            </embed>
+        </div>
+        <!--/主体-->
         <!--导航条-->
         <div class="nav-wrap"
              :class="[nav_position == 'top' ? 'top' : 'bottom']"
@@ -26,19 +39,6 @@
             </div>
         </div>
         <!--/导航条-->
-        <!--主体-->
-        <div class="nav-bar-inner"
-             :style="{ top: nav_position == 'top' ? nav_height : 0,
-             bottom: nav_position == 'top' ? 0 : nav_height }">
-            <embed class="nav-bar-content"
-                   v-for="(item, index) in nav_arr"
-                   :key="index"
-                   :style="{visibility: item.checked ? 'visible' : 'hidden'}"
-                   :src="item.url"
-                   type="weex">
-            </embed>
-        </div>
-        <!--/主体-->
     </div>
 </template>
 
@@ -52,6 +52,7 @@
             nav_arr: { default: config.nav_arr },
             nav_position: { default: config.nav_position },
             nav_height: { default: config.nav_height },
+            nav_height_offset: { default: config.nav_height_offset },
             nav_background_color: { default: config.nav_background_color },
             nav_border_width: { default: config.nav_border_width },
             nav_border_color: { default: config.nav_border_color },
