@@ -7,6 +7,7 @@ export default Object.assign({
     nav_position: 'bottom',
     nav_height: 100,
     nav_background_color: '',
+    nav_height_offset: 0,
     nav_arr: [],
     nav_border_width: 2,
     nav_font_size: 32,
