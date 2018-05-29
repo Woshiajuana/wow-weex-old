@@ -20,6 +20,7 @@
                  @click="leftItemClickHandle">
                 <image class="header-left-image"
                        :class="[view_header_left_src_style]"
+                       autoBitmapRecycle="false"
                        v-if="view_header_left_src"
                        :style="{width: view_header_left_src_size[0] + view_header_left_src_pad_left + view_header_left_src_pad_right,
                        marginLeft: view_header_left_src_mar_left,
@@ -44,6 +45,7 @@
                       fontSize: view_header_center_size }">{{view_header_center_txt}}</text>
                 <image v-if="view_header_center_src"
                        :src="view_header_center_src"
+                       autoBitmapRecycle="false"
                        :style="{width: view_header_center_src_size[0] + view_header_center_src_pad_left + view_header_center_src_pad_right,
                        marginLeft: view_header_center_src_mar_left,
                        marginRight: view_header_center_src_mar_right,
@@ -66,6 +68,7 @@
                       marginRight: view_header_right_txt_mar_right }">{{view_header_right_txt}}</text>
                 <image v-if="view_header_right_src"
                        :src="view_header_right_src"
+                       autoBitmapRecycle="false"
                        :style="{width: view_header_right_src_size[0] + view_header_right_src_pad_left + view_header_right_src_pad_right,
                        marginLeft: view_header_right_src_mar_left,
                        marginRight: view_header_right_src_mar_right,
