@@ -4,12 +4,14 @@
          borderColor: input_border_color,
          borderBottomWidth: input_border_bottom_width,
          borderTopWidth: input_border_top_width}">
+        <slot name="input_left_part"></slot>
         <div class="input-label" v-if="input_label_txt">
             <text class="input-label-text" :style="{color: input_label_color}">{{input_label_txt}}</text>
         </div>
         <input
             class="input"
             v-model="input_value"
+            :type="input_type"
             @input="handleInput"
             :style="{height: +input_height - 2,
             color: input_color}"
@@ -21,6 +23,7 @@
 <script>
     export default {
         props: {
+            input_type: { default: 'text' },
             input_value: { default: '' },
             input_color: { default: '#333' },
             input_height: { default: 90 },
