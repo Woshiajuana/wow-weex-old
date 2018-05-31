@@ -1,6 +1,7 @@
 <template>
     <div class="view-wrap"
          @viewappear="handleViewAppear"
+         @viewdisappear="handleViewDisappear"
          :style="{backgroundColor: view_background_color}">
         <div v-if="padding_top && view_use_compatible" class="view-compatible" :style="{
              height: padding_top,
@@ -77,6 +78,7 @@
                        height: view_header_right_src_size[1]}"
                        class="header-right-image">
                 </image>
+                <div class="header-right-prompt" v-if="view_use_right_prompt"></div>
             </div>
             <!--/右边-->
         </div>
@@ -100,6 +102,7 @@
             }
         },
         props: {
+            view_use_right_prompt: { default: false },
             view_use_compatible: { default: true },
             /**是否启用scroller*/
             view_use_scroll: { default: config.view_use_scroll },
@@ -184,6 +187,9 @@
             },
             handleViewAppear () {
                 this.$emit('viewappear')
+            },
+            handleViewDisappear() {
+                this.$emit('viewdisappear')
             }
         }
     }
@@ -225,5 +231,16 @@
     }
     .view-inner{
         flex: 1;
+    }
+    .header-right-prompt{
+        position: absolute;
+        right: 28px;
+        top: 20px;
+        width: 16px;
+        height: 16px;
+        background-color: #F04632;
+        border-radius: 16px;
+        border-width: 2px;
+        border-color: #fff;
     }
 </style>
