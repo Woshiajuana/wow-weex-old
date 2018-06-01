@@ -13,11 +13,13 @@
             v-model="input_value"
             :type="input_type"
             @input="handleInput"
+            :disabled="input_disabled"
             :style="{height: +input_height - 2,
             color: input_color}"
             :placeholder="input_placeholder"
             :placeholder-color="input_placeholder_color"/>
         <slot name="input_unit"></slot>
+        <slot name="input_other"></slot>
     </div>
 </template>
 <script>
@@ -26,15 +28,16 @@
             input_type: { default: 'text' },
             input_value: { default: '' },
             input_color: { default: '#333' },
-            input_height: { default: 90 },
+            input_height: { default: 100 },
             input_label_txt: { default: '' },
             input_label_color: { default: '#333' },
             input_unit_txt: { default: '' },
             input_border_bottom_width: { default: 1 },
             input_border_top_width: { default: 0 },
-            input_border_color: { default: '' },
+            input_border_color: { default: '#ddd' },
             input_placeholder: {default: ''},
-            input_placeholder_color: {default: '#ccc'},
+            input_placeholder_color: {default: '#DEDEDE'},
+            input_disabled: {default: false},
         },
         methods: {
             handleInput (event) {
@@ -52,6 +55,9 @@
     }
     .input-label{
         margin-right: 32px;
+    }
+    .input-label-text{
+        font-size: 32px;
     }
     .input{
         flex: 1;
