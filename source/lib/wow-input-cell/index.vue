@@ -1,5 +1,6 @@
 <template>
     <div class="input-wrap"
+         @click="handleClick"
          :style="{height: input_height,
          borderColor: input_border_color,
          borderBottomWidth: input_border_bottom_width,
@@ -8,7 +9,9 @@
         <div class="input-label" v-if="input_label_txt">
             <text class="input-label-text" :style="{color: input_label_color}">{{input_label_txt}}</text>
         </div>
+        <text class="input" v-if="!input_use" :style="{color: input_color}">{{input_value}}</text>
         <input
+            v-if="input_use"
             class="input"
             v-model="input_value"
             :type="input_type"
@@ -38,10 +41,14 @@
             input_placeholder: {default: ''},
             input_placeholder_color: {default: '#DEDEDE'},
             input_disabled: {default: false},
+            input_use: {default: true},
         },
         methods: {
             handleInput (event) {
                 this.$emit('input', event)
+            },
+            handleClick (event) {
+                this.$emit('click', event);
             }
         }
     }
@@ -63,5 +70,6 @@
         flex: 1;
         border: none;
         text-align: right;
+        font-size: 32px;
     }
 </style>
