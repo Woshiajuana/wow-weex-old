@@ -15,16 +15,17 @@
     </div>
 </template>
 <script>
+    import config from './config'
     export default{
         props: {
-            null_src: { default: '' },
-            null_txt: { default: '' },
-            null_txt_color: { default: '#979797' },
-            null_txt_size: { default: '26' },
-            null_txt_mar_top: { default: 48 },
-            null_src_mar_top: { default: 0 },
-            null_src_size: { default: [240, 240] },
-            null_use_justify_content: { default: true }
+            null_src: { default: config.null_src },
+            null_txt: { default: config.null_txt },
+            null_txt_color: { default: config.null_txt_color },
+            null_txt_size: { default: config.null_txt_size },
+            null_txt_mar_top: { default: config.null_txt_mar_top },
+            null_src_mar_top: { default: config.null_src_mar_top },
+            null_src_size: { default: config.null_src_size },
+            null_use_justify_content: { default: config.null_use_justify_content }
         }
     }
 </script>

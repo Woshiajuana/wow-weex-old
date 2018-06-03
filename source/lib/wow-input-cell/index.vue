@@ -9,7 +9,7 @@
         <div class="input-label" v-if="input_label_txt">
             <text class="input-label-text" :style="{color: input_label_color}">{{input_label_txt}}</text>
         </div>
-        <text class="input" v-if="!input_use" :style="{color: input_color}">{{input_value}}</text>
+        <text class="input" v-if="!input_use" :style="{color: input_disabled ? input_placeholder_color : input_value ? input_color : input_placeholder_color}">{{input_value || input_placeholder}}</text>
         <input
             v-if="input_use"
             class="input"
@@ -18,7 +18,7 @@
             @input="handleInput"
             :disabled="input_disabled"
             :style="{height: +input_height - 2,
-            color: input_color}"
+            color: input_disabled ? input_placeholder_color : input_color}"
             :placeholder="input_placeholder"
             :placeholder-color="input_placeholder_color"/>
         <slot name="input_unit"></slot>
