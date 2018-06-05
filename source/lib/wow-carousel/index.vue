@@ -7,7 +7,7 @@
              width: carousel_width}">
         <div v-for="(item, index) in carousel_arr"
              :style="{ height: carousel_height,
-             width: carousel_width}">
+             width: carousel_width}"
              :key="index"
              @click="handleClick(item, index)">
             <image class="carousel-item-image" :src="item.image"></image>
