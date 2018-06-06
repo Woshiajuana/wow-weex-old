@@ -22,7 +22,7 @@
         },
         methods: {
             handleInput () {
-                this.$emit('input', this.text_value);
+                this.$emit('input', {value: this.text_value});
             }
         }
     }
