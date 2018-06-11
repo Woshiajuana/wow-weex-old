@@ -75,6 +75,8 @@
     }
     .input-label{
         margin-right: 32px;
+        flex-direction: row;
+        align-items: center;
     }
     .input{
         flex: 1;
