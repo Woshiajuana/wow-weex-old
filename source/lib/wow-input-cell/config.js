@@ -14,6 +14,7 @@ export default Object.assign({
     input_placeholder: '',
     input_placeholder_color: '#DEDEDE',
     input_disabled: false,
+    input_label_src_visible: false,
     input_use: true,
     input_label_src: '',
     input_label_src_size: [],

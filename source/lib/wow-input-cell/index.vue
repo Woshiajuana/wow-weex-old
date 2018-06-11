@@ -11,6 +11,7 @@
             <image
                 class="input-label-image"
                 :style="{width: input_label_src_size[0],
+                visibility: input_label_src_visible ? 'visible' : 'hidden',
                 height: input_label_src_size[1]}"
                 :src="input_label_src"
                 v-if="input_label_src">
@@ -37,6 +38,7 @@
     import config           from './config'
     export default {
         props: {
+            input_label_src_visible: { default: config.input_label_src_visible },
             input_type: { default: config.input_type },
             input_size: { default: config.input_size },
             input_value: { default: config.input_value },
@@ -79,5 +81,8 @@
         border: none;
         text-align: right;
         padding-right: 32px;
+    }
+    .input-label-image{
+        margin-left: 8px;
     }
 </style>
