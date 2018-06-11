@@ -51,6 +51,7 @@
             input_placeholder: { default: config.input_placeholder },
             input_placeholder_color: { default: config.input_placeholder_color },
             input_disabled: { default: config.input_disabled },
+            input_use: { default: config.input_use },
             input_label_src_size: { default: config.input_label_src_size },
             input_label_src: { default: config.input_label_src },
         },
