@@ -7,9 +7,16 @@
          borderTopWidth: input_border_top_width}">
         <slot name="input_left_part"></slot>
         <div class="input-label" v-if="input_label_txt">
-            <text class="input-label-text" :style="{color: input_label_color}">{{input_label_txt}}</text>
+            <text class="input-label-text" :style="{color: input_label_color, fontSize: input_size,}">{{input_label_txt}}</text>
+            <image
+                class="input-label-image"
+                :style="{width: input_label_src_size[0],
+                height: input_label_src_size[1]}"
+                :src="input_label_src"
+                v-if="input_label_src">
+            </image>
         </div>
-        <text class="input" v-if="!input_use" :style="{color: input_disabled ? input_placeholder_color : input_value ? input_color : input_placeholder_color}">{{input_value || input_placeholder}}</text>
+        <text class="input" v-if="!input_use" :style="{color: input_disabled ? input_placeholder_color : input_value ? input_color : input_placeholder_color,fontSize: input_size,}">{{input_value || input_placeholder}}</text>
         <input
             v-if="input_use"
             class="input"
@@ -18,6 +25,7 @@
             @input="handleInput"
             :disabled="input_disabled"
             :style="{height: +input_height - 2,
+            fontSize: input_size,
             color: input_disabled ? input_placeholder_color : input_color}"
             :placeholder="input_placeholder"
             :placeholder-color="input_placeholder_color"/>
@@ -26,22 +34,25 @@
     </div>
 </template>
 <script>
+    import config           from './config'
     export default {
         props: {
-            input_type: { default: 'text' },
-            input_value: { default: '' },
-            input_color: { default: '#333' },
-            input_height: { default: 100 },
-            input_label_txt: { default: '' },
-            input_label_color: { default: '#333' },
-            input_unit_txt: { default: '' },
-            input_border_bottom_width: { default: 1 },
-            input_border_top_width: { default: 0 },
-            input_border_color: { default: '#ddd' },
-            input_placeholder: {default: ''},
-            input_placeholder_color: {default: '#DEDEDE'},
-            input_disabled: {default: false},
-            input_use: {default: true},
+            input_type: { default: config.input_type },
+            input_size: { default: config.input_size },
+            input_value: { default: config.input_value },
+            input_color: { default: config.input_color },
+            input_height: { default: config.input_height },
+            input_label_txt: { default: config.input_label_txt },
+            input_label_color: { default: config.input_label_color },
+            input_unit_txt: { default: config.input_unit_txt },
+            input_border_bottom_width: { default: config.input_border_bottom_width },
+            input_border_top_width: { default: config.input_border_top_width },
+            input_border_color: { default: config.input_border_color },
+            input_placeholder: { default: config.input_placeholder },
+            input_placeholder_color: { default: config.input_placeholder_color },
+            input_disabled: { default: config.input_disabled },
+            input_label_src_size: { default: config.input_label_src_size },
+            input_label_src: { default: config.input_label_src },
         },
         methods: {
             handleInput (event) {
@@ -62,14 +73,10 @@
     .input-label{
         margin-right: 32px;
     }
-    .input-label-text{
-        font-size: 32px;
-    }
     .input{
         flex: 1;
         border: none;
         text-align: right;
-        font-size: 32px;
         padding-right: 32px;
     }
 </style>
