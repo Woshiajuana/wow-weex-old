@@ -17,7 +17,10 @@
                 v-if="input_label_src">
             </image>
         </div>
-        <text class="input" v-if="!input_use" :style="{color: input_disabled ? input_placeholder_color : input_value ? input_color : input_placeholder_color,fontSize: input_size,}">{{input_value || input_placeholder}}</text>
+        <text class="input"
+              v-if="!input_use"
+              :style="{color: input_disabled ? input_placeholder_color : input_value ? input_color : input_placeholder_color,
+              fontSize: input_size, height: input_height, lineHeight: input_height}">{{input_value || input_placeholder}}</text>
         <input
             v-if="input_use"
             class="input"
@@ -62,6 +65,7 @@
                 this.$emit('input', event)
             },
             handleClick (event) {
+                if (this.input_disabled) return;
                 this.$emit('click', event);
             }
         }
