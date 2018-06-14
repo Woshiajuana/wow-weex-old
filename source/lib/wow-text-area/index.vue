@@ -3,9 +3,10 @@
         class="text-area"
         v-model="text_value"
         @input="handleInput"
-        :style="{height: text_height,
-        borderColor: text_border_color,
-        color: text_color}"
+        :maxlength="text_max_lenght"
+        :disable="text_disabled"
+        :style="{borderColor: text_border_color,
+        color: text_disabled ? text_placeholder_color : text_color}"
         :placeholder="text_placeholder"
         :placeholder-color="text_placeholder_color">
     </textarea>
@@ -14,11 +15,12 @@
     export default{
         props: {
             text_value: { default: '' },
-            text_color: { default: '#9F9F9F' },
-            text_height: { default: 210 },
+            text_max_lenght: { default: 9999 },
+            text_color: { default: '#333' },
             text_border_color: { default: '#ddd' },
             text_placeholder: { default: '请输入' },
-            text_placeholder_color: { default: '#9F9F9F' },
+            text_placeholder_color: { default: '#DEDEDE' },
+            text_disabled: { default: '' },
         },
         methods: {
             handleInput () {
@@ -29,7 +31,6 @@
 </script>
 <style>
     .text-area{
-        background-color: #fff;
         border-top-width: 1px;
         border-bottom-width: 1px;
         padding-left: 32px;
@@ -37,6 +38,6 @@
         padding-top: 20px;
         padding-bottom: 20px;
         font-size: 28px;
-        line-height: 45px;
+        line-height: 40px;
     }
 </style>

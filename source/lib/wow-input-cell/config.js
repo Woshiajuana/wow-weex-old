@@ -16,6 +16,8 @@ export default Object.assign({
     input_disabled: false,
     input_label_src_visible: false,
     input_use: true,
+    input_use_right: true,
     input_label_src: '',
     input_label_src_size: [],
+    input_max_length: 9999,
 }, config)

@@ -18,11 +18,11 @@
             </image>
         </div>
         <text class="input"
-              v-if="!input_use"
+              v-if="!input_use && input_use_right"
               :style="{color: input_disabled ? input_placeholder_color : input_value ? input_color : input_placeholder_color,
               fontSize: input_size, height: input_height, lineHeight: input_height}">{{input_value || input_placeholder}}</text>
         <input
-            v-if="input_use"
+            v-if="input_use && input_use_right"
             class="input"
             v-model="input_value"
             :type="input_type"
@@ -41,6 +41,8 @@
     import config           from './config'
     export default {
         props: {
+            input_use_right: { default: config.input_use_right },
+            input_max_length: { default: config.input_max_length },
             input_label_src_visible: { default: config.input_label_src_visible },
             input_type: { default: config.input_type },
             input_size: { default: config.input_size },
