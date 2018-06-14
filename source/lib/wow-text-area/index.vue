@@ -4,7 +4,7 @@
         v-model="text_value"
         @input="handleInput"
         :maxlength="text_max_lenght"
-        :disable="text_disabled"
+        :disabled="text_disabled"
         :style="{borderColor: text_border_color,
         color: text_disabled ? text_placeholder_color : text_color}"
         :placeholder="text_placeholder"
@@ -20,7 +20,7 @@
             text_border_color: { default: '#ddd' },
             text_placeholder: { default: '请输入' },
             text_placeholder_color: { default: '#DEDEDE' },
-            text_disabled: { default: '' },
+            text_disabled: { default: false },
         },
         methods: {
             handleInput () {
