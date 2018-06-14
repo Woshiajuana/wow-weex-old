@@ -3,7 +3,7 @@
         class="text-area"
         v-model="text_value"
         @input="handleInput"
-        :maxlength="text_max_lenght"
+        :maxlength="text_max_lenght || 9999"
         :disabled="text_disabled"
         :style="{borderColor: text_border_color,
         color: text_disabled ? text_placeholder_color : text_color}"

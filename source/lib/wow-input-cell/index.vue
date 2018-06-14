@@ -28,6 +28,7 @@
             :type="input_type"
             @input="handleInput"
             :disabled="input_disabled"
+            :maxlength="input_max_length || 9999"
             :style="{height: +input_height - 2,
             fontSize: input_size,
             color: input_disabled ? input_placeholder_color : input_color}"
