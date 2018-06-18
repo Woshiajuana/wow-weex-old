@@ -1,7 +1,8 @@
 {
-    "entry": "main",
+    "entry": "app1",
     "version": "0.0.1",
     "engine": "0.0.1",
+    "update": "",
     "resource": {
         "app1": {
             "entry": "main_app",
@@ -25,7 +26,7 @@
                 }
             }
         },
-        "auth": {
+        "app2": {
             "entry": "main_app",
             "base": "http://192.180.2.15:22580/dist/BD",
             "version": "0.0.1",
