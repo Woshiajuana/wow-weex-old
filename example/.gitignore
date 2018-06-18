@@ -1,7 +1,5 @@
 node_modules/
 dist/
 .idea/
-.project
-temp/
-platforms/
-tree_history/
+tree.json
+old_tree.json

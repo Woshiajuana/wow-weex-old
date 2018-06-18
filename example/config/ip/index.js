@@ -1,1 +1,0 @@
-export default '192.180.2.117';

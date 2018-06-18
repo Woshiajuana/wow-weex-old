@@ -1,10 +1,10 @@
 let path = require('path');
 let fs = require('fs-extra');
 let webpack = require('webpack');
-let env = require('../config/release');
+let env = require('../config/release.config');
 let entry = {};
 let bannerExcludeFiles = [];
-let log = require('../tools/log');
+let log = require('../tools/log.tool');
 
 switch (env) {
     case 'BD':
@@ -41,7 +41,7 @@ switch (env) {
 function unique(array){
     let n = [];
     for(let i = 0; i < array.length; i++){
-        if (n.indexOf(array[i]) === -1) n.push(array[i]);
+        if (n.indexOf(array[i]) === -1 && array[i] !== 'index') n.push(array[i]);
     }
     return n;
 }
@@ -70,11 +70,14 @@ module.exports = {
     resolve: {
         alias: {
             'utils': path.resolve(__dirname, '../src/utils/'),
-            'modules': path.resolve(__dirname, '../src/plugins/modules/'),
-            'ds': path.resolve(__dirname, '../src/components/ds/'),
+            'plugins': path.resolve(__dirname, '../src/plugins/'),
+            'components': path.resolve(__dirname, '../src/components/'),
             'api': path.resolve(__dirname, '../src/api/'),
+            'extends': path.resolve(__dirname, '../src/api/extends/'),
             'config': path.resolve(__dirname, '../src/config/'),
-            'service': path.resolve(__dirname, '../src/service/'),
+            'services': path.resolve(__dirname, '../src/services/'),
+            'appConfig': path.resolve(__dirname, '../config/'),
+            'text': path.resolve(__dirname, '../src/text/'),
         }
     },
     module: {
