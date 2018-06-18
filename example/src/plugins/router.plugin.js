@@ -6,7 +6,9 @@
 
 import ResourcePlugin                   from 'plugins/resource.plugin'
 import LoadingPlugin                    from 'plugins/loading.plugin'
+import PagePlugin                       from 'plugins/page.plugin'
 import ErrorUtil                        from 'utils/error.util'
+
 const Navigator         = weex.requireModule('navigator');
 
 export default {
@@ -31,4 +33,24 @@ export default {
             LoadingPlugin.hide();
         }
     }),
+
+    /**
+     * 弹出页面
+     * @param options   [object]    参数
+     */
+    pop (options = { animated: 'true' }) {
+        Navigator.pop(options, e => {})
+    },
+
+    /**
+     * 获取页面传递的参数
+     * @param weex      [object]    weex对象
+     */
+    getParams (weex) {
+        let url = weex.$getConfig().bundleUrl,
+            params = url.indexOf('?params=') > -1 ? url.substr(url.indexOf("?params=") + 8) : '';
+        return params ? JSON.parse(decodeURIComponent(decodeURIComponent(params))) : '';
+    },
+
+    ...PagePlugin,
 }
