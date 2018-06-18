@@ -4,8 +4,9 @@
  *
  */
 
-import ResourcePlugin               from 'plugins/resource.plugin'
-
+import ResourcePlugin                   from 'plugins/resource.plugin'
+import LoadingPlugin                    from 'plugins/loading.plugin'
+import ErrorUtil                        from 'utils/error.util'
 const Navigator         = weex.requireModule('navigator');
 
 export default {
@@ -20,13 +21,14 @@ export default {
             let key = options.key || options;
             let animated = options.animated || 'true';
             let close = options.close || 'false';
+            LoadingPlugin.show();
             let url = await ResourcePlugin.get(key);
             !params && (url = `${url}?params=${encodeURIComponent(JSON.stringify(params))}`);
             Navigator.push({url, animated, close});
         } catch (e) {
-            reject(e);
+            ErrorUtil.errorPlugin(e, reject);
         } finally {
-
+            LoadingPlugin.hide();
         }
     }),
 }
