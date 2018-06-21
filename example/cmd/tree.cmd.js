@@ -34,7 +34,7 @@ export default((arr_parameter) => new Promise((resolve, reject) => {
         }
     };
     log(`设置APP入口文件为：${out_tree.entry}`);
-    out_tree.base = `http://${ipConfig}:22580/dist/${env}`;
+    out_tree.base = `http://${ipConfig}:32580/dist/${env}`;
     if (env === 'CS' || env === 'SC') {
         out_tree.base = `http://www.owulia.com/market/js/0.0.1`;
     }

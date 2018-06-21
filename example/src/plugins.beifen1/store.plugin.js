@@ -62,10 +62,10 @@ const remove = async key => new Promise((resolve, reject) => {
         ErrorUtil.errorPlugin(e, reject)
     }
     key = `${config.app_user}_${key}`;
-    storage.removeItem(key, e => {
-        if (e.result === 'success') return resolve();
-        has(key).then(() => reject('remove store error')).catch(() => resolve());
-    });
+    // storage.removeItem(key, e => {
+    //     if (e.result === 'success') return resolve();
+    //     has(key).then(() => reject('remove store error')).catch(() => resolve());
+    // });
 });
 
 /**

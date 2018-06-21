@@ -9,7 +9,7 @@
     "build": "node cmd -r SC&&node cmd -t&&webpack --config build/webpack.config.js&&node cmd -m",
     "md5": "node cmd -m",
     "clean": "rm -vrf dist/*",
-    "serve": "serve -p 22580"
+    "serve": "serve -p 32580"
   },
   "repository": {
     "type": "git",
@@ -41,6 +41,6 @@
     "webpack": "^2.3.2",
     "weex-loader": "^0.4.4",
     "wow-cool": "0.0.2",
-    "wow-weex": "0.0.56"
+    "wow-weex": "^0.0.56"
   }
 }
