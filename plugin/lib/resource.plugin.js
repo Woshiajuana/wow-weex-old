@@ -13,6 +13,7 @@ export default {
     //      key:
     // }
     get: (options) => new Promise((resolve, reject) => {
+        if (Config.MAIN) reject();
         ResourceModule.get(key, e => {
             e.code === '0000' ? resolve(e.data) : reject(e);
         })
