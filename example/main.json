@@ -1,53 +1,32 @@
 {
-    "entry": "app1",
+    "main": "wow",
+    "entry": "app",
+    "base": "http://192.180.2.15:22580/dist/BD",
     "version": "0.0.1",
     "engine": "0.0.1",
-    "update": "",
-    "resource": {
-        "app1": {
-            "entry": "main_app",
+    "insert": {
+        "dsmpos": {
             "base": "http://192.180.2.15:22580/dist/BD",
-            "version": "0.0.1",
-            "engine": "0.0.1",
-            "resource": {
-                "main_app": {
-                    "src": "main_app.js",
-                    "md5": "12345678",
-                    "drive": {
-
-                    }
-                },
-                "main_mine": {
-                    "src": "main_mine.js",
-                    "md5": "12345678",
-                    "drive": {
-
-                    }
-                }
+            "able": {
+                "camera": ["take","pick"],
+                "loading": ["show", "hide"]
             }
         },
-        "app2": {
-            "entry": "main_app",
-            "base": "http://192.180.2.15:22580/dist/BD",
-            "version": "0.0.1",
-            "engine": "0.0.1",
-            "resource": {
-                "main_app": {
-                    "src": "main_app.js",
-                    "md5": "12345678",
-                    "drive": {
+        "dtb": {
+            "base": "http://192.180.2.15:62367/dist/BD",
+            "unable": {
+                "camera": ["take","pick"],
+                "loading": ["show", "hide"]
+            }
+        }
+    },
+    "resource": {
+        "app": {
+            "src": "app.js",
+            "md5": "",
+            "meta": {
 
-                    }
-                },
-                "main_mine": {
-                    "src": "main_mine.js",
-                    "md5": "12345678",
-                    "drive": {
-
-                    }
-                }
             }
         }
     }
-
 }
