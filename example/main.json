@@ -1,7 +1,7 @@
 {
     "main": "wow",
     "entry": "app",
-    "base": "http://192.180.2.15:22580/dist/BD",
+    "base": "http://192.180.2.15:32580/dist/BD",
     "version": "0.0.1",
     "engine": "0.0.1",
     "insert": {
@@ -21,8 +21,15 @@
         }
     },
     "resource": {
-        "app": {
-            "src": "app.js",
+        "wow_app": {
+            "src": "wow_app.js",
+            "md5": "",
+            "meta": {
+
+            }
+        },
+        "wow_list": {
+            "src": "wow_app.js",
             "md5": "",
             "meta": {
 

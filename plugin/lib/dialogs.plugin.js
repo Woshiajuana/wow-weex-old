@@ -1,6 +1,12 @@
 
 // modal 提示弹层模块
+
+import Config                           from '../config'
+
 const Modal = weex.requireModule('modal');
+const {
+    HANDLE_RETURN_FORMAT,
+} = Config;
 
 export default {
 
@@ -8,7 +14,7 @@ export default {
     // 弱提示（默认3s）
     // @param   options     [object]    参数
     toast (options) {
-        let message = options.message || options;
+        let message = options[HANDLE_RETURN_FORMAT.MSG] || options.message || options;
         let duration = options.duration || 3;
         if (typeof message === 'object') message = JSON.stringify(message);
         message = message + '';
@@ -19,7 +25,7 @@ export default {
     // 警告框
     // @param   options     [object]    参数
     // @param   callback    [fn]        回调函数
-    alert: (options, callback) => {
+    alert (options, callback) {
         let message = options.message || options;
         let okTitle = options.okTitle || '知道了';
         if (typeof message === 'object') message = JSON.stringify(message);
@@ -30,7 +36,7 @@ export default {
     // 确认框
     // @param   options     [object]    参数
     // @param   callback    [fn]        回调函数
-    confirm: (options, callback) => {
+    confirm (options, callback) {
         let message = options.message || options;
         let okTitle = options.okTitle || '确认';
         let cancelTitle = options.cancelTitle || '取消';
@@ -42,7 +48,7 @@ export default {
     // 提示框
     // @param   options     [object]    参数
     // @param   callback    [fn]        回调函数
-    prompt: (options, callback) => {
+    prompt (options, callback) {
         let message = options.message || options;
         let okTitle = options.okTitle || '确认';
         let cancelTitle = options.cancelTitle || '取消';
