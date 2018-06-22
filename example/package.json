@@ -42,6 +42,6 @@
     "weex-loader": "^0.4.4",
     "wow-cool": "0.0.2",
     "wow-weex": "^0.0.56",
-    "wow-weex-plugin": "0.0.1"
+    "wow-weex-plugin": "0.0.2"
   }
 }
