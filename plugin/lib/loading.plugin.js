@@ -10,18 +10,18 @@ export default {
     // 显示
     // @param   options     [object]    参数
     show: (opt = {touch: false}) => {
-        let MAIN = Handle.checkKey();
-        if (MAIN.msg) return Handle.error(MAIN);
-        let options = { MAIN, ...opt };
+        let main = Handle.checkKey();
+        if (main.msg) return Handle.error(main);
+        let options = { main, ...opt };
         return Handle(LoadingModule.show, options);
     },
 
     // 隐藏
     // @param   options     [object]    参数
     hide: (opt = {}) => {
-        let MAIN = Handle.checkKey();
-        if (MAIN.msg) return Handle.error(MAIN);
-        let options = { MAIN, ...opt };
-        LoadingModule.hide(options, Handle);
+        let main = Handle.checkKey();
+        if (main.msg) return Handle.error(main);
+        let options = { main, ...opt };
+        return Handle(LoadingModule.hide, options);
     }
 };

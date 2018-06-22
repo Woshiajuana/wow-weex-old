@@ -19,7 +19,7 @@ const Handle = (fire, options) => new Promise((resolve, reject) => {
         let msg = e[HANDLE_RETURN_FORMAT.MSG] || CODE_MAP_MESSAGE[code] || 'none msg';
         let data = e[HANDLE_RETURN_FORMAT.DATA];
         let success = SUCCESS_CALLBACK_CODE.indexOf(code) > -1;
-        return success ? this.success(code, msg, data, resolve) : this.error(code, msg, reject);
+        return success ? this.success({code, msg, data}, resolve) : this.error({code, msg}, reject);
     });
 });
 
@@ -27,14 +27,14 @@ Handle.checkKey = () => {
     return MAIN || {code: OTHER_CODE, msg : 'must be set main'};
 };
 
-Handle.error = (code, msg, reject) => {
+Handle.error = ({code, msg}, reject) => {
     if (!reject) return new Promise((resolve, reject) => {
         return reject(ERROR_CALLBACK(code, msg));
     });
     return reject(ERROR_CALLBACK(code, msg));
 };
 
-Handle.success = (code, msg, data, resolve) => new Promise((resolve, reject) => {
+Handle.success = ({code, msg, data}, resolve) => new Promise((resolve, reject) => {
     return resolve(SUCCESS_CALLBACK(code, msg, data));
 });
 

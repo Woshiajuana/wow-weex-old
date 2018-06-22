@@ -12,10 +12,10 @@ export default {
     //      key:
     // }
     get: (opt) => {
-        let MAIN = Handle.checkKey();
-        if (MAIN.msg) return Handle.error(MAIN);
-        let options = { MAIN, ...opt };
-        ResourceModule.get(options, Handle);
+        let main = Handle.checkKey();
+        if (main.msg) return Handle.error(main);
+        let options = { main, ...opt };
+        return Handle(ResourceModule.get, options);
     },
 
 }
