@@ -1,6 +1,5 @@
 
 // resourceModule 页面js资源管理模块
-//
 
 import Handle                   from '../handle'
 

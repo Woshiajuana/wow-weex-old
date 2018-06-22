@@ -6,6 +6,7 @@ export default Object.assign({
     // CODE码对应的信息
     CODE_MAP_MESSAGE: {
         '0000': 'success',
+        '1111': '请下载最新APP',
         '2001': '网络错误',
         '2002': '下载失败',
         '2003': '文件删除失败',
@@ -15,6 +16,12 @@ export default Object.assign({
 
     // 成功码
     SUCCESS_CALLBACK_CODE: ['0000'],
+
+    // 无对应方法错误码
+    NONE_FUN_CODE: '1111',
+
+    // 其它错误
+    OTHER_CODE: '-1',
 
     // 插件返回格式
     HANDLE_RETURN_FORMAT: {

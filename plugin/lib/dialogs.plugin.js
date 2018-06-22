@@ -1,17 +1,12 @@
 
-/**
- * modal 提示弹层模块
- * weex自带
- * */
-
+// modal 提示弹层模块
 const Modal = weex.requireModule('modal');
 
 export default {
 
-    /**
-     * 弱提示（默认3s）
-     * @param   options     [object]    参数
-     * */
+
+    // 弱提示（默认3s）
+    // @param   options     [object]    参数
     toast (options) {
         let message = options.message || options;
         let duration = options.duration || 3;
@@ -20,11 +15,10 @@ export default {
         Modal.toast({ message, duration });
     },
 
-    /**
-     * 警告框
-     * @param   options     [object]    参数
-     * @param   callback    [fn]        回调函数
-     * */
+
+    // 警告框
+    // @param   options     [object]    参数
+    // @param   callback    [fn]        回调函数
     alert: (options, callback) => {
         let message = options.message || options;
         let okTitle = options.okTitle || '知道了';
@@ -33,11 +27,9 @@ export default {
         Modal.alert({ message, okTitle }, callback);
     },
 
-    /**
-     * 确认框
-     * @param   options     [object]    参数
-     * @param   callback    [fn]        回调函数
-     * */
+    // 确认框
+    // @param   options     [object]    参数
+    // @param   callback    [fn]        回调函数
     confirm: (options, callback) => {
         let message = options.message || options;
         let okTitle = options.okTitle || '确认';
@@ -47,11 +39,9 @@ export default {
         Modal.confirm({ message, okTitle, cancelTitle }, callback);
     },
 
-    /**
-     * 提示框
-     * @param   options     [object]    参数
-     * @param   callback    [fn]        回调函数
-     * */
+    // 提示框
+    // @param   options     [object]    参数
+    // @param   callback    [fn]        回调函数
     prompt: (options, callback) => {
         let message = options.message || options;
         let okTitle = options.okTitle || '确认';
