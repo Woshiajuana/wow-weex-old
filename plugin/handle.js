@@ -19,7 +19,7 @@ const Handle = (e) => {
 };
 
 Handle.checkKey = () => {
-    if (!MAIN) return this.error('')
+    return MAIN || {code: '', msg : 'must be set main'};
 };
 
 Handle.error = (code, msg) => new Promise((resolve, reject) => {

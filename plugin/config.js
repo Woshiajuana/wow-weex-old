@@ -6,7 +6,6 @@ export default Object.assign({
     // CODE码对应的信息
     CODE_MAP_MESSAGE: {
         '0000': 'success',
-        '1000': 'must be set main',
         '2001': '网络错误',
         '2002': '下载失败',
         '2003': '文件删除失败',

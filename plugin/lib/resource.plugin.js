@@ -2,7 +2,6 @@
 // resourceModule 页面js资源管理模块
 //
 
-import Config                   from '../config'
 import Handle                   from '../handle'
 
 const ResourceModule = weex.requireModule('resourceModule');
@@ -13,13 +12,11 @@ export default {
     // opt = {
     //      key:
     // }
-    get: (opt) => new Promise((resolve, reject) => {
-        let { MAIN, CODE_MAP_MESSAGE } = Config;
-        if (!MAIN) return Handle.error(reject, CODE_MAP_MESSAGE);
+    get: (opt) => {
+        let MAIN = Handle.checkKey();
+        if (MAIN.msg) return Handle.error(MAIN);
         let options = { MAIN, ...opt };
-        ResourceModule.get(options, e => {
-            e.code === '0000' ? resolve(e.data) : reject(e);
-        })
-    }),
+        ResourceModule.get(options, Handle);
+    },
 
 }
