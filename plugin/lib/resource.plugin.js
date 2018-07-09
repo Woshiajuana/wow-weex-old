@@ -11,10 +11,7 @@ export default {
     // opt = {
     //      key:
     // }
-    get (opt) {
-        let main = Handle.checkKey();
-        if (main.msg) return Handle.error(main);
-        let options = { main, ...opt };
+    get (options) {
         return Handle(ResourceModule.get, options);
     },
 

@@ -12,7 +12,12 @@ const {
     OTHER_CODE,
 } = Config;
 
-const Handle = (fire, options) => new Promise((resolve, reject) => {
+
+// handle 处理
+const Handle = (fire, opt) => new Promise((resolve, reject) => {
+    let main = Handle.checkKey(opt);
+    if (main.msg) return Handle.error(main);
+    let options = { main, ...opt };
     if (!fire) this.error(NONE_FUN_CODE, CODE_MAP_MESSAGE[NONE_FUN_CODE], reject);
     fire(options, (e) => {
         let code = e[HANDLE_RETURN_FORMAT.CODE] || e.result;
@@ -23,18 +28,21 @@ const Handle = (fire, options) => new Promise((resolve, reject) => {
     });
 });
 
-Handle.checkKey = () => {
-    return MAIN || {code: OTHER_CODE, msg : 'must be set main'};
+// key 检测
+Handle.checkKey = (options) => {
+    return options.MAIN || MAIN || {code: OTHER_CODE, msg : 'must be set main'};
 };
 
-Handle.error = ({code, msg}, reject) => {
+// error 回调
+Handle.error = ({code = , msg}, reject) => {
     if (!reject) return new Promise((resolve, reject) => {
         return reject(ERROR_CALLBACK(code, msg));
     });
     return reject(ERROR_CALLBACK(code, msg));
 };
 
-Handle.success = ({code, msg, data}, resolve) => new Promise((resolve, reject) => {
+// success 回调
+Handle.success = ({code = SUCCESS_CALLBACK_CODE[0] , msg = '', data = null}, resolve) => new Promise((resolve, reject) => {
     return resolve(SUCCESS_CALLBACK(code, msg, data));
 });
 

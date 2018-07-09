@@ -8,20 +8,14 @@ const LoadingModule = weex.requireModule('loadingModule');
 export default {
 
     // 显示
-    // @param   opt     [object]    参数
-    show (opt = {touch: false}) {
-        let main = Handle.checkKey();
-        if (main.msg) return Handle.error(main);
-        let options = { main, ...opt };
+    // @param   options     [object]    参数
+    show (options = {touch: false}) {
         return Handle(LoadingModule.show, options);
     },
 
     // 隐藏
-    // @param   opt     [object]    参数
-    hide (opt = {}) {
-        let main = Handle.checkKey();
-        if (main.msg) return Handle.error(main);
-        let options = { main, ...opt };
+    // @param   options     [object]    参数
+    hide (options = {}) {
         return Handle(LoadingModule.hide, options);
     }
 };
