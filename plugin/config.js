@@ -3,25 +3,17 @@ export default Object.assign({
     // 主键
     MAIN: '',
 
-    // CODE码对应的信息
-    CODE_MAP_MESSAGE: {
-        '0000': 'success',
-        '1111': '请下载最新APP',
-        '2001': '网络错误',
-        '2002': '下载失败',
-        '2003': '文件删除失败',
-        '2004': '文件存储失败',
-        '9999': '未知错误',
-    },
-
     // 成功码
-    SUCCESS_CALLBACK_CODE: ['0000'],
+    ARR_SUCCESS_CALLBACK_CODE: ['0000'],
+    ARR_SUCCESS_CALLBACK_MSG: ['success'],
+
+    // 错误码
+    ARR_ERROR_CALLBACK_CODE: ['9999'],
+    ARR_ERROR_CALLBACK_MSG: ['error'],
 
     // 无对应方法错误码
-    NONE_FUN_CODE: '1111',
-
-    // 其它错误
-    OTHER_CODE: '-1',
+    NONE_FUN_CODE: '-1',
+    NONE_FUN_MSG: '请下载最新APP',
 
     // 插件返回格式
     HANDLE_RETURN_FORMAT: {
@@ -31,12 +23,12 @@ export default Object.assign({
     },
 
     // 错误回调参数格式
-    ERROR_CALLBACK: (code, msg) => {
-        return { code, msg};
+    ERROR_CALLBACK: (error = {}) => {
+        return error;
     },
 
     // 成功回调参数格式
-    SUCCESS_CALLBACK: (code, msg, data) => {
+    SUCCESS_CALLBACK: ({code, msg, data}) => {
         return data;
     },
 

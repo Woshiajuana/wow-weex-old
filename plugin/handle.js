@@ -1,49 +1,62 @@
 
-import Config                      from 'config'
+// 插件处理器
+
+import Config                      from './config'
 
 const {
-    MAIN,
-    CODE_MAP_MESSAGE,
-    SUCCESS_CALLBACK_CODE,
-    HANDLE_RETURN_FORMAT,
-    SUCCESS_CALLBACK,
-    ERROR_CALLBACK,
-    NONE_FUN_CODE,
-    OTHER_CODE,
+    MAIN,                           // 主键
+    ARR_SUCCESS_CALLBACK_CODE,      // 成功码
+    ARR_SUCCESS_CALLBACK_MSG,       // 成功对应提示
+    ARR_ERROR_CALLBACK_CODE,        // 错误码
+    ARR_ERROR_CALLBACK_MSG,         // 错误对应提示
+    NONE_FUN_CODE,                  // 无对应方法错误码
+    NONE_FUN_MSG,                   // 无对应方法错误提示
+    HANDLE_RETURN_FORMAT,           // 插件返回格式
+    ERROR_CALLBACK,                 // 错误回调参数格式
+    SUCCESS_CALLBACK,               // 成功回调参数格式
 } = Config;
 
 
 // handle 处理
-const Handle = (fire, opt) => new Promise((resolve, reject) => {
-    let main = Handle.checkKey(opt);
-    if (main.msg) return Handle.error(main);
-    let options = { main, ...opt };
-    if (!fire) this.error(NONE_FUN_CODE, CODE_MAP_MESSAGE[NONE_FUN_CODE], reject);
+// @params  fire    [Function]      插件方法
+// @params  opt     [Object]        参数
+const Handle = (fire, options = {}) => new Promise((resolve, reject) => {
+    let main = Handle.checkKey(options);
+    if (main.msg) return Handle.error(reject, main);
+    options = { main, ...options };
+    if (!fire) this.error({ code: NONE_FUN_CODE, msg: NONE_FUN_MSG }, reject);
     fire(options, (e) => {
-        let code = e[HANDLE_RETURN_FORMAT.CODE] || e.result;
-        let msg = e[HANDLE_RETURN_FORMAT.MSG] || CODE_MAP_MESSAGE[code] || 'none msg';
-        let data = e[HANDLE_RETURN_FORMAT.DATA];
-        let success = [...SUCCESS_CALLBACK_CODE, 'success'].indexOf(code) > -1;
-        return success ? this.success({code, msg, data}, resolve) : this.error({code, msg}, reject);
+        let code = e[HANDLE_RETURN_FORMAT.CODE]
+            || e.result;
+        let msg = e[HANDLE_RETURN_FORMAT.MSG]
+            || ARR_SUCCESS_CALLBACK_MSG[ARR_SUCCESS_CALLBACK_CODE.indexOf(code)]
+            || ARR_ERROR_CALLBACK_MSG[ARR_ERROR_CALLBACK_CODE.indexOf(code)]
+            || 'none msg';
+        let data = e[HANDLE_RETURN_FORMAT.DATA] || null;
+        let success = [...ARR_SUCCESS_CALLBACK_CODE, 'success'].indexOf(code) > -1;
+        return success ? this.success(resolve, {code, msg, data}) : this.error(reject, {code, msg});
     });
 });
 
 // key 检测
-Handle.checkKey = (options) => {
-    return options.MAIN || MAIN || {code: OTHER_CODE, msg : 'must be set main'};
+Handle.checkKey = (options = {}) => {
+    return options.MAIN || MAIN || { code: ARR_ERROR_CALLBACK_CODE[0], msg: 'must be set main' };
 };
 
 // error 回调
-Handle.error = ({code = , msg}, reject) => {
+Handle.error = (reject, error = { code: ARR_ERROR_CALLBACK_CODE[0], msg: ARR_ERROR_CALLBACK_MSG[0] }) => {
     if (!reject) return new Promise((resolve, reject) => {
-        return reject(ERROR_CALLBACK(code, msg));
+        return reject(ERROR_CALLBACK(error));
     });
-    return reject(ERROR_CALLBACK(code, msg));
+    return reject(ERROR_CALLBACK(error));
 };
 
 // success 回调
-Handle.success = ({code = SUCCESS_CALLBACK_CODE[0] , msg = '', data = null}, resolve) => new Promise((resolve, reject) => {
-    return resolve(SUCCESS_CALLBACK(code, msg, data));
-});
+Handle.success = (resolve, success = { code: ARR_SUCCESS_CALLBACK_CODE[0], msg: ARR_SUCCESS_CALLBACK_MSG[0], data: null }) => {
+    if (!resolve) return new Promise((resolve) => {
+        return resolve(SUCCESS_CALLBACK(success));
+    });
+    return resolve(SUCCESS_CALLBACK(success));
+};
 
 export default Handle;
