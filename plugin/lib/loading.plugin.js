@@ -8,7 +8,7 @@ const LoadingModule = weex.requireModule('loadingModule');
 export default {
 
     // 显示
-    // @param   options     [object]    参数
+    // @param   opt     [object]    参数
     show (opt = {touch: false}) {
         let main = Handle.checkKey();
         if (main.msg) return Handle.error(main);
@@ -17,7 +17,7 @@ export default {
     },
 
     // 隐藏
-    // @param   options     [object]    参数
+    // @param   opt     [object]    参数
     hide (opt = {}) {
         let main = Handle.checkKey();
         if (main.msg) return Handle.error(main);

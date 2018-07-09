@@ -10,7 +10,6 @@ const {
 
 export default {
 
-
     // 弱提示（默认3s）
     // @param   options     [object]    参数
     toast (options) {
@@ -20,7 +19,6 @@ export default {
         message = message + '';
         Modal.toast({ message, duration });
     },
-
 
     // 警告框
     // @param   options     [object]    参数
