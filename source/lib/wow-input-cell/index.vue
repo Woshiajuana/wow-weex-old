@@ -19,7 +19,7 @@
         </div>
         <text class="input"
               v-if="!input_use && input_use_right"
-              :style="{color: input_disabled ? input_placeholder_color : input_value ? input_color : input_placeholder_color,
+              :style="{color: input_disabled ? (input_color && input_placeholder_color) : input_value ? input_color : input_placeholder_color,
               fontSize: input_size, height: input_height, lineHeight: input_height}">{{input_value || input_placeholder}}</text>
         <input
             v-if="input_use && input_use_right"
@@ -31,7 +31,7 @@
             :maxlength="input_max_length || 9999"
             :style="{height: +input_height - 2,
             fontSize: input_size,
-            color: input_disabled ? input_placeholder_color : input_color}"
+            color: input_disabled ? (input_color && input_placeholder_color) : input_color}"
             :placeholder="input_placeholder"
             :placeholder-color="input_placeholder_color"/>
         <slot name="input_unit"></slot>
