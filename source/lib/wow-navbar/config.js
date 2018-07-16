@@ -14,4 +14,5 @@ export default Object.assign({
     nav_checked_color: '#58B7FF',
     nav_border_color: '#ddd',
     nav_font_color: '#999',
+    nav_item_img_style: {},
 }, config)

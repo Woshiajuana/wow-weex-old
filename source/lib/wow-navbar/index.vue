@@ -31,6 +31,7 @@
                  :key="index">
                 <image class="nav-item-img"
                        v-if="item.img_src"
+                       :style="nav_item_img_style"
                        :src="item.checked ? (item.img_checked_src || item.img_src) : item.img_src">
                 </image>
                 <text class="nav-item-txt"
@@ -59,6 +60,7 @@
             nav_font_size: { default: config.nav_font_size },
             nav_font_color: { default: config.nav_font_color },
             nav_checked_color: { default: config.nav_checked_color },
+            nav_item_img_style: { default: config.nav_item_img_style },
         },
         created () {
             this.fetchPageUrl();
