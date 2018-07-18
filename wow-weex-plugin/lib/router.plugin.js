@@ -8,7 +8,7 @@ import ResourcePlugin                   from './resource.plugin'
 import LoadingPlugin                    from './loading.plugin'
 import DialogsPlugin                    from './dialogs.plugin'
 
-const Navigator         = weex.requireModule('navigator');
+const Navigator = weex.requireModule('navigator');
 
 export default {
 

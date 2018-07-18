@@ -4,7 +4,8 @@
     </wow-view>
 </template>
 <script>
-    import WowView                      from 'wow-weex/lib/wow-view'
+    import WowView                      from '../../../../wow-weex-ui/lib/wow-view'
+//    import WowView                      from 'wow-weex/lib/wow-view'
     export default {
         methods: {
             handleClick () {

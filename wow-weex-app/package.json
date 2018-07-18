@@ -41,6 +41,6 @@
     "webpack": "^2.3.2",
     "weex-loader": "^0.4.4",
     "wow-cool": "0.0.2",
-    "wow-weex": "0.0.60"
+    "wow-weex": "0.0.63"
   }
 }
