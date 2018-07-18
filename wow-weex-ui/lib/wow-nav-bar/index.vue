@@ -1,10 +1,10 @@
 <template>
-    <div class="nav-bar-wrap" @viewappear="handleViewAppear">
+    <div class="wrap" @viewappear="handleViewAppear">
         <!--主体-->
-        <div class="nav-bar-inner"
+        <div class="inner"
              :style="{ top: nav_position == 'top' ? (+nav_height) - (+nav_height_offset) : 0,
              bottom: nav_position == 'top' ? 0 : (+nav_height) - (+nav_height_offset) }">
-            <embed class="nav-bar-content"
+            <embed class="content"
                    v-for="(item, index) in nav_arr"
                    :key="index"
                    :style="{visibility: item.checked ? 'visible' : 'hidden'}"
@@ -14,7 +14,7 @@
         </div>
         <!--/主体-->
         <!--导航条-->
-        <div class="nav-wrap"
+        <div class="nav"
              :class="[nav_position == 'top' ? 'top' : 'bottom']"
              :style="{ height: nav_height,
              backgroundColor: nav_background_color }">
@@ -25,16 +25,16 @@
                  borderBottomWidth: item.img_src ? (nav_position == 'top' ? nav_border_width : 0) : (nav_position == 'top' ? nav_border_width : 0),
                  borderTopColor: item.img_src ? nav_border_color : (item.checked ? nav_checked_color : nav_border_color),
                  borderBottomColor: item.img_src ? nav_border_color : (item.checked ? nav_checked_color : nav_border_color)}"
-                 class="nav-item"
+                 class="item"
                  v-for="(item, index) in nav_arr"
                  @click="switchNavHandle(item, index)"
                  :key="index">
-                <image class="nav-item-img"
+                <image class="icon"
                        v-if="item.img_src"
                        :style="nav_item_img_style"
                        :src="item.checked ? (item.img_checked_src || item.img_src) : item.img_src">
                 </image>
-                <text class="nav-item-txt"
+                <text class="text"
                       :style="{color: item.checked ? nav_checked_color : nav_font_color,
                       fontSize: item.img_src ? '22px' : nav_font_size }">{{item.txt}}</text>
             </div>
@@ -44,9 +44,8 @@
 </template>
 
 <script>
-    import config   from './config'
-    import path     from 'plugins/path.plugin'
-    import dialogs  from 'plugins/dialogs.plugin'
+    import config                       from './config'
+    import path                         from 'plugins/path.plugin'
     export default {
         props: {
             nav_use_menu: { default: config.nav_use_menu },
@@ -93,23 +92,23 @@
 </script>
 
 <style>
-    .nav-bar-wrap{
+    .wrap{
         flex: 1;
     }
-    .nav-bar-inner{
+    .inner{
         position: absolute;
         width: 750px;
         left: 0;
         right: 0;
     }
-    .nav-bar-content{
+    .content{
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
     }
-    .nav-wrap {
+    .nav {
         position: absolute;
         left: 0;
         width: 750px;
@@ -122,21 +121,21 @@
     .bottom {
         bottom: 0;
     }
-    .nav-item {
+    .item {
         flex: 1;
         justify-content: center;
         align-items: center;
         border-bottom-style: solid;
         border-top-style: solid;
     }
-    .nav-item:active {
+    .item:active {
         background-color: #ddd;
     }
-    .nav-item-txt {
+    .text {
         justify-content: center;
         align-items: center;
     }
-    .nav-item-img {
+    .icon {
         justify-content: center;
         align-items: center;
         width: 44px;
