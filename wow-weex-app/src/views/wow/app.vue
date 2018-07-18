@@ -1,6 +1,6 @@
 <template>
     <wow-view view_header_center_txt="测试案例">
-        <text @click="handleClick"></text>
+        <text slot="view-inner">11111111</text>
     </wow-view>
 </template>
 <script>

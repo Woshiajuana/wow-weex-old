@@ -1,94 +1,64 @@
 <template>
-    <div class="view-wrap"
+    <div class="wrap"
          @viewappear="handleViewAppear"
          @viewdisappear="handleViewDisappear"
-         :style="{backgroundColor: view_background_color}">
-        <div v-if="padding_top && view_use_compatible" class="view-compatible" :style="{
-             height: padding_top,
-             backgroundColor: view_header_background_color,
-             backgroundImage: view_header_background_image,}"></div>
+         :style="view_style">
         <!--头部-->
-        <div class="view-header"
-             v-if="view_use_header"
-             :style="{ height: view_header_height,
-             backgroundColor: view_header_background_color,
-             backgroundImage: view_header_background_image,
-             borderBottomColor: view_header_border_color,
-             borderBottomWidth: view_header_border_width }">
-            <!--左边-->
-            <div class="view-header-left"
-                 :style="{ height: view_header_height}"
-                 @click="leftItemClickHandle">
-                <image class="header-left-image"
-                       :class="[view_header_left_src_style]"
-                       autoBitmapRecycle="false"
-                       v-if="view_header_left_src"
-                       :style="{width: view_header_left_src_size[0] + view_header_left_src_pad_left + view_header_left_src_pad_right,
-                       marginLeft: view_header_left_src_mar_left,
-                       marginRight: view_header_left_src_mar_right,
-                       paddingLeft: view_header_left_src_pad_left,
-                       paddingRight: view_header_left_src_pad_right,
-                       height: view_header_left_src_size[1]}"
-                       :src="view_header_left_src">
-                </image>
-                <text class="header-left-text"
-                      v-if="view_header_left_txt"
-                      :style="{ color: view_header_left_color,
-                      fontSize: view_header_left_size,
-                      marginLeft: view_header_left_txt_mar_left,
-                      marginRight: view_header_left_txt_mar_right}">{{view_header_left_txt}}</text>
+        <div class="header"
+             :style="view_header_style">
+            <div class="left"
+                 @click="handleLeft"
+                 :style="view_header_left_style">
+                <image
+                    v-if="view_header_left_src"
+                    :src="view_header_left_src"
+                    :style="view_header_left_src_style"
+                    class="left-image"
+                    autoBitmapRecycle="false"
+                ></image>
+                <text
+                    class="left-text"
+                    :style="view_header_left_txt_style"
+                    v-if="view_header_left_txt"
+                >{{view_header_left_txt}}</text>
             </div>
-            <!--/左边-->
-            <!--中间-->
-            <div class="view-header-center" :style="{ height: view_header_height}">
-                <text class="header-center-text"
-                      :style="{ color: view_header_center_color,
-                      fontSize: view_header_center_size }">{{view_header_center_txt}}</text>
-                <image v-if="view_header_center_src"
-                       :src="view_header_center_src"
-                       autoBitmapRecycle="false"
-                       :style="{width: view_header_center_src_size[0] + view_header_center_src_pad_left + view_header_center_src_pad_right,
-                       marginLeft: view_header_center_src_mar_left,
-                       marginRight: view_header_center_src_mar_right,
-                       paddingLeft: view_header_center_src_pad_left,
-                       paddingRight: view_header_center_src_pad_right,
-                       height: view_header_center_src_size[1]}"
-                       class="header-center-image">
-                </image>
+            <div class="center"
+                 :style="view_header_center_style">
+                <text
+                    class="center-text"
+                    :style="view_header_center_txt_style"
+                >{{view_header_center_txt}}</text>
             </div>
-            <!--/中间-->
-            <!--右边-->
-            <div class="view-header-right"
-                 :style="{ height: view_header_height}"
-                 @click="rightItemClickHandle">
-                <text class="header-right-text"
-                      v-if="view_header_right_txt"
-                      :style="{ color: view_header_right_color,
-                      fontSize: view_header_right_size,
-                      marginLeft: view_header_right_txt_mar_left,
-                      marginRight: view_header_right_txt_mar_right }">{{view_header_right_txt}}</text>
-                <image v-if="view_header_right_src"
-                       :src="view_header_right_src"
-                       autoBitmapRecycle="false"
-                       :style="{width: view_header_right_src_size[0] + view_header_right_src_pad_left + view_header_right_src_pad_right,
-                       marginLeft: view_header_right_src_mar_left,
-                       marginRight: view_header_right_src_mar_right,
-                       paddingLeft: view_header_right_src_pad_left,
-                       paddingRight: view_header_right_src_pad_right,
-                       height: view_header_right_src_size[1]}"
-                       class="header-right-image">
-                </image>
-                <div class="header-right-prompt" v-if="view_use_right_prompt"></div>
+            <slot name="view-header-center"></slot>
+            <div class="right"
+                 @click="handleRight"
+                 :style="view_header_right_style">
+                <image
+                    v-if="view_header_right_src"
+                    :src="view_header_right_src"
+                    :style="view_header_right_src_style"
+                    class="right-image"
+                    autoBitmapRecycle="false"
+                ></image>
+                <text
+                    :style="view_header_right_txt_style"
+                    v-if="view_header_right_txt"
+                    class="right-text"
+                >{{view_header_right_txt}}</text>
             </div>
-            <!--/右边-->
+            <slot name="view-header-cue"></slot>
         </div>
+        <slot name="view-header"></slot>
         <!--/头部-->
-        <scroller v-if="view_use_scroll" class="view-inner">
-            <slot></slot>
+
+        <!--主体部分-->
+        <scroller v-if="view_use_scroll" class="inner">
+            <slot name="view-inner"></slot>
         </scroller>
-        <div class="view-inner" v-else>
-            <slot></slot>
+        <div class="inner" v-else>
+            <slot name="view-inner"></slot>
         </div>
+        <!--主体部分-->
     </div>
 </template>
 
@@ -102,70 +72,34 @@
             }
         },
         props: {
-            view_use_right_prompt: { default: false },
-            view_use_compatible: { default: true },
-            /**是否启用scroller*/
+            // 主要
+            view_style: { default: config.view_style },
             view_use_scroll: { default: config.view_use_scroll },
-            view_header_left_src_style: { default: '' },
+            view_use_left_event: { default: config.view_use_left_event },
 
-            /**是否不启用默认点击事件*/
-            view_not_use_left_default_click: { default: config.view_not_use_left_default_click },
-
-            /**主体背景颜色*/
-            view_background_color: { default: config.view_background_color },
-
-            /**头部*/
+            // 头部
             view_use_header: { default: config.view_use_header },
-            view_header_height: { default: config.view_header_height },
-            view_header_border_width: { default: config.view_header_border_width },
-            view_header_border_color: { default: config.view_header_border_color },
+            view_header_style: { default: config.view_header_style },
 
-            /**头部背景色*/
-            view_header_background_color: { default: config.view_header_background_color },
-            view_header_background_image: { default: config.view_header_background_image },
-
-            /**头部左边图片样式定义*/
+            // 头部左边
+            view_header_left_style: { default: Object.assign({ height: config.view_header_style.height },config.view_header_left_style) },
             view_header_left_src: { default: config.view_header_left_src },
-            view_header_left_src_size: { default: config.view_header_left_src_size },
-            view_header_left_src_mar_left: { default: config.view_header_left_src_mar_left },
-            view_header_left_src_mar_right: { default: config.view_header_left_src_mar_right },
-            view_header_left_src_pad_left: { default: config.view_header_left_src_pad_left },
-            view_header_left_src_pad_right: { default: config.view_header_left_src_pad_right },
-
-            /**头部左边文字样式定义*/
+            view_header_left_src_style: { default: config.view_header_left_src_style },
             view_header_left_txt: { default: config.view_header_left_txt },
-            view_header_left_color: { default: config.view_header_left_color },
-            view_header_left_size: { default: config.view_header_left_size },
-            view_header_left_txt_mar_left: { default: config.view_header_left_txt_mar_left },
-            view_header_left_txt_mar_right: { default: config.view_header_left_txt_mar_right },
+            view_header_left_txt_style: { default: config.view_header_left_txt_style },
 
-            /**头部中间图片样式样式定义*/
-            view_header_center_src: { default: config.view_header_center_src },
-            view_header_center_src_size: { default: config.view_header_center_src_size },
-            view_header_center_src_mar_left: { default: config.view_header_center_src_mar_left },
-            view_header_center_src_mar_right: { default: config.view_header_center_src_mar_right },
-            view_header_center_src_pad_left: { default: config.view_header_center_src_pad_left },
-            view_header_center_src_pad_right: { default: config.view_header_center_src_pad_right },
-
-            /**头部中间文字样式定义*/
+            // 头部中间
+            view_header_center_style: { default: Object.assign({ height: config.view_header_style.height },config.view_header_center_style) },
             view_header_center_txt: { default: config.view_header_center_txt },
-            view_header_center_size: { default: config.view_header_center_size },
-            view_header_center_color: { default: config.view_header_center_color },
+            view_header_center_txt_style: { default: config.view_header_center_txt_style },
 
-            /**头部右边图片样式定义*/
+            // 头部右边
+            view_header_right_style: { default: Object.assign({ height: config.view_header_style.height },config.view_header_right_style) },
             view_header_right_src: { default: config.view_header_right_src },
-            view_header_right_src_size: { default: config.view_header_right_src_size },
-            view_header_right_src_mar_left: { default: config.view_header_right_src_mar_left },
-            view_header_right_src_mar_right: { default: config.view_header_right_src_mar_right },
-            view_header_right_src_pad_left: { default: config.view_header_right_src_pad_left },
-            view_header_right_src_pad_right: { default: config.view_header_right_src_pad_right },
-
-            /**头部右边文字样式定义*/
+            view_header_right_src_style: { default: config.view_header_right_src_style },
             view_header_right_txt: { default: config.view_header_right_txt },
-            view_header_right_size: { default: config.view_header_right_size },
-            view_header_right_color: { default: config.view_header_right_color },
-            view_header_right_txt_mar_left: { default: config.view_header_right_txt_mar_left },
-            view_header_right_txt_mar_right: { default: config.view_header_right_txt_mar_right },
+            view_header_right_txt_style: { default: config.view_header_right_txt_style },
+
         },
         created () {
             var env = this.$getConfig().env;
@@ -177,13 +111,11 @@
             }
         },
         methods: {
-            /**右边按钮点击事件*/
-            rightItemClickHandle (event) {
-                this.$emit('rightItemClick',event);
+            handleRight (event) {
+                this.$emit('right',event);
             },
-            /**左边按钮点击事件*/
-            leftItemClickHandle (event) {
-                this.view_not_use_left_default_click ? this.$emit('leftItemClick',event) : navigator.pop();
+            handleLeft (event) {
+                this.view_use_left_event ? navigator.pop() : this.$emit('left',event);
             },
             handleViewAppear () {
                 this.$emit('viewappear')
@@ -196,31 +128,29 @@
 </script>
 
 <style>
-    .view-wrap{
+    .wrap{
         flex: 1;
         width: 750px;
+        height: 2000px;
     }
-    .view-header {
+    .header {
         flex-direction: row;
         width: 750px;
     }
-    .view-header-right,
-    .view-header-left {
+    .left,
+    .right {
         position: absolute;
         flex-direction: row;
         align-items: center;
         bottom: 0;
     }
-    .view-header-right{
+    .right{
         right: 0;
     }
-    .view-header-left{
+    .left{
         left: 0;
     }
-    .view-extend{
-        border-radius: 100px;
-    }
-    .view-header-center{
+    .center{
         position: absolute;
         flex-direction: row;
         left: 120px;
@@ -229,18 +159,7 @@
         justify-content: center;
         align-items: center;
     }
-    .view-inner{
+    .inner{
         flex: 1;
-    }
-    .header-right-prompt{
-        position: absolute;
-        right: 28px;
-        top: 20px;
-        width: 16px;
-        height: 16px;
-        background-color: #F04632;
-        border-radius: 16px;
-        border-width: 2px;
-        border-color: #fff;
     }
 </style>
