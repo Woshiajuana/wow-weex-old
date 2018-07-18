@@ -1,2 +1,2 @@
-import env from './env.cs.config';
+import env from './env.bd.config';
 export default env;

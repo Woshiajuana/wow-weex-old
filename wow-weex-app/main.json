@@ -1,5 +1,5 @@
 {
-    "main": "wow",
+    "app": "wow",
     "entry": "app",
     "base": "http://192.180.2.15:32580/dist/BD",
     "version": "0.0.1",
