@@ -2,7 +2,7 @@
     <div class="arrow" :style="{transform: 'rotate(' + arrow_rotate + 'deg)', borderColor: arrow_color}"></div>
 </template>
 <script>
-    import config       from 'config'
+    import config       from './config'
     export default {
         props: {
             arrow_rotate: { default: config.arrow_rotate },

@@ -5,7 +5,8 @@
          backgroundColor: button_disabled ? button_disabled_background_color : button_background_color,
          marginTop: button_margin_top,
          width: button_width,
-         borderRadius: button_radius}">
+         borderRadius: button_radius,
+         marginLeft: button_margin_left}">
         <text class="button-txt"
               :style="{fontSize: button_txt_size,
               color: button_txt_color}">{{button_txt}}</text>
@@ -25,6 +26,7 @@
             button_height: { default: config.button_height },
             button_txt: { default: config.button_txt },
             button_txt_color: { default: config.button_txt_color },
+            button_margin_left: { default: config.button_margin_left },
             button_txt_size: { default: config.button_txt_size },
             button_disabled: { default: config.button_disabled },
             button_disabled_background_color: { default: config.button_disabled_background_color },
