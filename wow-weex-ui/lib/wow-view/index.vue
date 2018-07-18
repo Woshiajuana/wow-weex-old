@@ -49,10 +49,10 @@
         </div>
         <slot name="view-header"></slot>
         <scroller v-if="view_use_scroll" class="inner">
-            <slot name="view-inner"></slot>
+            <slot></slot>
         </scroller>
         <div class="inner" v-else>
-            <slot name="view-inner"></slot>
+            <slot></slot>
         </div>
     </div>
 </template>

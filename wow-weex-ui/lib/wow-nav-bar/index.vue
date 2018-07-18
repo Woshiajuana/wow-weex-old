@@ -13,6 +13,7 @@
             </embed>
         </div>
         <!--/主体-->
+        <text>1111</text>
         <!--导航条-->
         <div class="nav"
              :class="[nav_position == 'top' ? 'top' : 'bottom']"
@@ -114,6 +115,7 @@
         width: 750px;
         flex-direction: row;
         align-items: center;
+        background-color: red;
     }
     .top {
         top: 0;
