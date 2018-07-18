@@ -4,7 +4,7 @@
 import Config                      from './config'
 
 const {
-    MAIN,                           // 主键
+    APP,                           // 主键
     ARR_SUCCESS_CALLBACK_CODE,      // 成功码
     ARR_SUCCESS_CALLBACK_MSG,       // 成功对应提示
     ARR_ERROR_CALLBACK_CODE,        // 错误码
@@ -21,9 +21,9 @@ const {
 // @params  fire    [Function]      插件方法
 // @params  opt     [Object]        参数
 const Handle = (fire, options = {}) => new Promise((resolve, reject) => {
-    let main = Handle.checkKey(options);
-    if (main.msg) return Handle.error(reject, main);
-    options = { main, ...options };
+    let app = Handle.checkKey(options);
+    if (app.msg) return Handle.error(reject, app);
+    options = { app, ...options };
     if (!fire) this.error({ code: NONE_FUN_CODE, msg: NONE_FUN_MSG }, reject);
     fire(options, (e) => {
         let code = e[HANDLE_RETURN_FORMAT.CODE]
@@ -40,7 +40,7 @@ const Handle = (fire, options = {}) => new Promise((resolve, reject) => {
 
 // key 检测
 Handle.checkKey = (options = {}) => {
-    return options.MAIN || MAIN || { code: ARR_ERROR_CALLBACK_CODE[0], msg: 'must be set main' };
+    return options.APP || APP || { code: ARR_ERROR_CALLBACK_CODE[0], msg: 'must be set app' };
 };
 
 // error 回调

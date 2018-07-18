@@ -1,7 +1,7 @@
 import config from 'config/wow-weex-plugin.config'
 export default Object.assign({
     // 主键
-    MAIN: '',
+    APP: '',
 
     // 成功码
     ARR_SUCCESS_CALLBACK_CODE: ['0000'],

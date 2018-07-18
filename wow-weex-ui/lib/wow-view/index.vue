@@ -3,7 +3,6 @@
          @viewappear="handleViewAppear"
          @viewdisappear="handleViewDisappear"
          :style="view_style">
-        <!--头部-->
         <div class="header"
              :style="view_header_style">
             <div class="left"
@@ -49,16 +48,12 @@
             <slot name="view-header-cue"></slot>
         </div>
         <slot name="view-header"></slot>
-        <!--/头部-->
-
-        <!--主体部分-->
         <scroller v-if="view_use_scroll" class="inner">
             <slot name="view-inner"></slot>
         </scroller>
         <div class="inner" v-else>
             <slot name="view-inner"></slot>
         </div>
-        <!--主体部分-->
     </div>
 </template>
 
