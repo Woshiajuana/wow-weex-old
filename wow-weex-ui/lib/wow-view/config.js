@@ -3,7 +3,8 @@
  */
 import source                       from 'utils/source.util'
 import config                       from '../../config'
-export default Object.assign({
+import Assign                       from '../../assign'
+export default Assign({
     view_style: {
         backgroundColor: '#f8f8f8',
     },
