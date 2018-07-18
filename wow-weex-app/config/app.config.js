@@ -1,1 +1,1 @@
-export default {"appUser":"ds_nfc","signkey":"5bbcba56d48fb6863fa73cbdc1866aba","version":"5.0.1"};
+export default {"app":"wow","version":"0.0.0","entry":"wow-app","base":"http://www.owulia.com"};

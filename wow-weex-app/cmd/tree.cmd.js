@@ -1,11 +1,10 @@
 import wowCool          from 'wow-cool'
 import path             from 'path'
+import fs_extra         from 'fs-extra'
 import log              from './../tools/log.tool'
-import metaConfig       from './../config/meta.config'
-import treeConfig       from './../config/tree.config'
+import appConfig        from './../config/app.config'
 import ipConfig         from './../config/ip.config'
 import env              from './../config/release.config'
-import fs_extra         from 'fs-extra'
 
 /**
  * tree.config.js
@@ -15,30 +14,15 @@ export default((arr_parameter) => new Promise((resolve, reject) => {
         return item === '--tree' || item === '-t';
     });
     if (num_tree_index === -1) return resolve();
-    let out_tree = {
-        engine: treeConfig.engine,
-        entry: treeConfig.entry,
-        base: '',
+    let out_tree = Object.assign({
+        app: 'app',
+        base: `http://${ipConfig}:32580/dist/${env}`,
         version: '0.0.1',
+        entry: 'app',
         resource: {},
-        meta: metaConfig
-    };
-    let old_out_tree = {
-        engine: treeConfig.engine,
-        entry: treeConfig.entry,
-        base: '',
-        version: '0.0.1',
-        resource: {},
-        meta: {
-            data: metaConfig
-        }
-    };
+    }, appConfig);
+    let old_out_tree = {...out_tree};
     log(`设置APP入口文件为：${out_tree.entry}`);
-    out_tree.base = `http://${ipConfig}:32580/dist/${env}`;
-    if (env === 'CS' || env === 'SC') {
-        out_tree.base = `http://www.owulia.com/market/js/0.0.1`;
-    }
-    old_out_tree.base = out_tree.base;
     log(`设置APP页面JS基础地址为：${out_tree.base}`);
     log(`即将遍历views目录下APP所有页面`);
     (function findDirBuildTree(dir) {
