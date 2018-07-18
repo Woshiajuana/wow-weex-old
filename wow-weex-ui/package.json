@@ -1,8 +1,8 @@
 {
-  "name": "wow-weex-util",
-  "version": "0.0.1",
-  "description": "weex util",
-  "main": "index.js",
+  "name": "wow-weex",
+  "version": "0.0.63",
+  "description": "weex ui",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
