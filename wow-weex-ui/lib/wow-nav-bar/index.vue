@@ -2,8 +2,7 @@
     <div class="wrap" @viewappear="handleViewAppear">
         <!--主体-->
         <div class="inner"
-             :style="{ top: nav_position == 'top' ? (+nav_height) - (+nav_height_offset) : 0,
-             bottom: nav_position == 'top' ? 0 : (+nav_height) - (+nav_height_offset) }">
+             :style="nav_inner_style">
             <embed class="content"
                    v-for="(item, index) in nav_arr"
                    :key="index"
@@ -13,31 +12,25 @@
             </embed>
         </div>
         <!--/主体-->
-        <text>1111</text>
         <!--导航条-->
         <div class="nav"
-             :class="[nav_position == 'top' ? 'top' : 'bottom']"
-             :style="{ height: nav_height,
-             backgroundColor: nav_background_color }">
+             :style="nav_bar_style">
             <slot v-if="!nav_use_menu" name="menu"></slot>
             <div v-if="nav_use_menu"
-                 :style="{ height: nav_height,
-                 borderTopWidth: item.img_src ? (nav_position == 'top' ? 0 : nav_border_width) : (nav_position == 'top' ? 0 : nav_border_width),
-                 borderBottomWidth: item.img_src ? (nav_position == 'top' ? nav_border_width : 0) : (nav_position == 'top' ? nav_border_width : 0),
-                 borderTopColor: item.img_src ? nav_border_color : (item.checked ? nav_checked_color : nav_border_color),
-                 borderBottomColor: item.img_src ? nav_border_color : (item.checked ? nav_checked_color : nav_border_color)}"
+                 :style="nav_menu_style"
                  class="item"
                  v-for="(item, index) in nav_arr"
                  @click="switchNavHandle(item, index)"
                  :key="index">
-                <image class="icon"
-                       v-if="item.img_src"
-                       :style="nav_item_img_style"
-                       :src="item.checked ? (item.img_checked_src || item.img_src) : item.img_src">
-                </image>
+                <image
+                    class="icon"
+                    v-if="item.img_src"
+                    :style="nav_menu_icon_style"
+                    :src="item.checked ? (item.img_checked_src || item.img_src) : item.img_src"
+                ></image>
                 <text class="text"
-                      :style="{color: item.checked ? nav_checked_color : nav_font_color,
-                      fontSize: item.img_src ? '22px' : nav_font_size }">{{item.txt}}</text>
+                      :style="nav_menu_txt_style"
+                >{{item.txt}}</text>
             </div>
         </div>
         <!--/导航条-->
@@ -49,18 +42,13 @@
     import path                         from 'plugins/path.plugin'
     export default {
         props: {
-            nav_use_menu: { default: config.nav_use_menu },
             nav_arr: { default: config.nav_arr },
-            nav_position: { default: config.nav_position },
-            nav_height: { default: config.nav_height },
-            nav_height_offset: { default: config.nav_height_offset },
-            nav_background_color: { default: config.nav_background_color },
-            nav_border_width: { default: config.nav_border_width },
-            nav_border_color: { default: config.nav_border_color },
-            nav_font_size: { default: config.nav_font_size },
-            nav_font_color: { default: config.nav_font_color },
-            nav_checked_color: { default: config.nav_checked_color },
-            nav_item_img_style: { default: config.nav_item_img_style },
+            nav_inner_style: { default: config.nav_inner_style },
+            nav_bar_style: { default: config.nav_bar_style },
+            nav_use_menu: { default: config.nav_use_menu },
+            nav_menu_style: { default: config.nav_menu_style },
+            nav_menu_icon_style: { default: config.nav_menu_icon_style },
+            nav_menu_txt_style: { default: config.nav_menu_txt_style },
         },
         created () {
             this.fetchPageUrl();

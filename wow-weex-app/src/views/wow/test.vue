@@ -19,6 +19,7 @@
                         checked: false
                     },
                     {
+                        txt: '我的',
                         src: 'dsnfc_main',
                         img_src: source('dsnfc_tab_main.png'),
                         img_checked_src: source('dsnfc_tab_main.png'),

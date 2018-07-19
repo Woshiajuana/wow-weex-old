@@ -1,56 +1,27 @@
-/**
- * Created by Administrator on 2017/11/8.
- */
-import source                       from 'utils/source.util'
+
 import config                       from '../../config'
 import Assign                       from '../../assign'
 export default Assign({
-    view_style: {
-        backgroundColor: '#f8f8f8',
+    nav_arr: [],
+    nav_inner_style: {
+        top: 0,
+        bottom: 100,
     },
-    view_use_scroll: true,
-    view_use_left_event: true,
-
-    view_use_header: true,
-    view_header_style: {
-        height: 90,
+    nav_bar_style: {
+        bottom: 0,
         backgroundColor: '#fff',
-        borderColor: '#f2f2f2',
-        borderBottomWidth: 1,
     },
-
-    view_header_left_style: {},
-    view_header_left_src: source('view_return_icon.png'),
-    view_header_left_src_style: {
-        width: 48,
-        height: 48,
-        marginLeft: 25,
-        marginRight: 0,
+    nav_use_menu: true,
+    nav_menu_style: {
+        height: 100,
+        borderColor: '#ddd',
+        borderTopWidth: 1,
     },
-    view_header_left_txt: '',
-    view_header_left_txt_style: {
-        color: '#3c3c3c',
-        fontSize: 24,
+    nav_menu_icon_style: {
+        width: 44,
+        height: 44,
     },
-
-    view_header_center_style: {},
-    view_header_center_txt: '',
-    view_header_center_txt_style: {
-        color: '#3c3c3c',
-        fontSize: 34,
-    },
-
-    view_header_right_style: {},
-    view_header_right_src: source('view_return_icon.png'),
-    view_header_right_src_style: {
-        width: 48,
-        height: 48,
-        marginLeft: 0,
-        marginRight: 25,
-    },
-    view_header_right_txt: '',
-    view_header_right_txt_style: {
-        color: '#3c3c3c',
-        fontSize: 24,
+    nav_menu_txt_style: {
+        fontSize: 22,
     },
 }, config)
