@@ -102,6 +102,7 @@
             }
         },
         props: {
+            view_padding_top: { default: config.view_padding_top },
             view_use_right_prompt: { default: false },
             view_use_compatible: { default: true },
             /**是否启用scroller*/
@@ -172,7 +173,7 @@
             if (env.platform === 'iOS') {
                 var deviceWidth = env.deviceWidth / env.scale;
                 this.height = 64.0 * 750.0 / deviceWidth;
-                if (this.height < 149) this.padding_top = 72;
+                if (this.height < 149) this.padding_top = this.view_padding_top || 72;
                 else this.padding_top = Math.floor(this.height - 88);
             }
         },

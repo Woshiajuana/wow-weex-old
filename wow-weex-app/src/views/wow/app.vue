@@ -21,7 +21,7 @@
         },
         methods: {
             handleClick () {
-                ResourcePlugin.get('wow_app').then((path) => {
+                ResourcePlugin.get({key: 'wow_app'}).then((path) => {
                     this.path = path;
                 }).catch((err) => {
                     this.path = err;

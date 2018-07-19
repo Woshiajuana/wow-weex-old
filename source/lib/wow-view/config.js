@@ -5,6 +5,7 @@ import source from 'utils/source.util'
 import config from '../../dist/config'
 export default Object.assign({
 
+    view_padding_top: 0,
     /**是否启用scroller*/
     view_use_scroll: true,
 
