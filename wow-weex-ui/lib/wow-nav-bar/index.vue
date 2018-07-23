@@ -88,6 +88,7 @@
 <style>
     .wrap{
         flex: 1;
+        width: 750px;
     }
     .inner{
         position: absolute;
