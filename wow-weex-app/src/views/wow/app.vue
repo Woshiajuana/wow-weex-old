@@ -4,11 +4,15 @@
             <text @click="handleJump">点击我跳转</text>
             <text @click="handleClick">点击我获取地址</text>
             <text>{{path}}</text>
+            <wow-input-cell v-model="test"></wow-input-cell>
+            <text>调用的次数{{num}}</text>
+            <text @click="handleTest">test的值：{{test}}</text>
         </div>
     </wow-view>
 </template>
 <script>
     import WowView                      from '../../../../wow-weex-ui/lib/wow-view'
+    import WowInputCell                 from '../../../../wow-weex-ui/lib/wow-input-cell'
 //    import ResourcePlugin               from '../../../../wow-weex-plugin/lib/resource.plugin'
     import ResourcePlugin               from '../../wow-weex-plugin/lib/resource.plugin'
 //    import WowView                      from 'wow-weex/lib/wow-view'
@@ -17,6 +21,8 @@
         data () {
             return {
                 path: 'wow_app的地址',
+                test: '1',
+                num: 0
             }
         },
         methods: {
@@ -29,10 +35,14 @@
             },
             handleJump () {
                 RouterPlugin.push('wow_test')
+            },
+            handleTest () {
+                console.log(this.test)
             }
         },
         components: {
             WowView,
+            WowInputCell,
         },
     }
 </script>
