@@ -3,6 +3,7 @@ import config                       from '../../config'
 import Assign                       from '../../assign'
 export default Assign({
     nav_arr: [],
+    nav_use_switch: false,
     nav_inner_style: {
         top: 0,
         bottom: 100,

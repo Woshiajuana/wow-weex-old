@@ -20,7 +20,7 @@
                  :style="nav_menu_style"
                  class="item"
                  v-for="(item, index) in nav_arr"
-                 @click="switchNavHandle(item, index)"
+                 @click="handleSwitch(item, index)"
                  :key="index">
                 <image
                     class="icon"
@@ -42,6 +42,7 @@
     import path                         from 'plugins/path.plugin'
     export default {
         props: {
+            nav_use_switch: { default: config.nav_use_switch },
             nav_arr: { default: config.nav_arr },
             nav_inner_style: { default: config.nav_inner_style },
             nav_bar_style: { default: config.nav_bar_style },
@@ -55,11 +56,17 @@
         },
         methods: {
             /**切换菜单*/
-            switchNavHandle (item, index) {
+            handleSwitch (item, index) {
+                if (!this.nav_use_switch) return this.switchNav(item, index);
+                this.$emit('switch', item, index, () => {
+                    this.switchNav(index);
+                });
+            },
+            // 切换页面
+            switchNav (index) {
                 this.nav_arr.forEach((item, i) => {
                     item.checked = i === index;
                 });
-                this.$emit('switch', item, index);
             },
             handleViewAppear () {
                 this.$emit('viewappear')
@@ -70,9 +77,7 @@
                         if(!item.src) return '';
                         path.page(item.src).then((url) => {
                             this.$set(item, 'url', url);
-                        }).catch((error) => {
-                            dialogs.toast({message: error});
-                        });
+                        }).catch((error) => {});
                     })(it)
                 })
             }
@@ -103,7 +108,6 @@
         width: 750px;
         flex-direction: row;
         align-items: center;
-        background-color: red;
     }
     .top {
         top: 0;
