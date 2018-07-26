@@ -4,6 +4,7 @@
          @viewdisappear="handleEmit('viewdisappear')"
          :style="view_style">
         <div class="header"
+             v-if="view_use_header"
              :style="view_header_style">
             <div class="left"
                  @click="handleLeft"

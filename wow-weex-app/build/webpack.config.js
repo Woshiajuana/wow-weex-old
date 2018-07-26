@@ -78,6 +78,7 @@ module.exports = {
             'services': path.resolve(__dirname, '../src/services/'),
             'appConfig': path.resolve(__dirname, '../config/'),
             'text': path.resolve(__dirname, '../src/text/'),
+            'url': path.resolve(__dirname, '../src/url/'),
         }
     },
     module: {
