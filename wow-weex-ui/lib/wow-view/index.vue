@@ -58,52 +58,36 @@
 </template>
 
 <script>
+    import config                       from './config'
+    import Mixin                        from './mixins'
+    import AssignMixin                  from './../../mixins/assign.mixin'
+
     const navigator = weex.requireModule('navigator');
-    import config from './config'
+
     export default {
-        data () {
-            return {
-                padding_top: 0,
-            }
-        },
+        mixins: [AssignMixin, Mixin],
         props: {
             // 主要
-            view_style: { default: config.view_style },
             view_use_scroll: { default: config.view_use_scroll },
             view_use_left_event: { default: config.view_use_left_event },
 
             // 头部
             view_use_header: { default: config.view_use_header },
-            view_header_style: { default: config.view_header_style },
 
             // 头部左边
-            view_header_left_style: { default: Object.assign({ height: config.view_header_style.height },config.view_header_left_style) },
             view_header_left_src: { default: config.view_header_left_src },
-            view_header_left_src_style: { default: config.view_header_left_src_style },
             view_header_left_txt: { default: config.view_header_left_txt },
-            view_header_left_txt_style: { default: config.view_header_left_txt_style },
 
             // 头部中间
-            view_header_center_style: { default: Object.assign({ height: config.view_header_style.height },config.view_header_center_style) },
             view_header_center_txt: { default: config.view_header_center_txt },
-            view_header_center_txt_style: { default: config.view_header_center_txt_style },
 
             // 头部右边
-            view_header_right_style: { default: Object.assign({ height: config.view_header_style.height },config.view_header_right_style) },
             view_header_right_src: { default: config.view_header_right_src },
-            view_header_right_src_style: { default: config.view_header_right_src_style },
             view_header_right_txt: { default: config.view_header_right_txt },
-            view_header_right_txt_style: { default: config.view_header_right_txt_style },
 
         },
         created () {
-            var env = this.$getConfig().env;
-            if (env.platform === 'iOS') {
-                var deviceWidth = env.deviceWidth / env.scale;
-                this.height = 64.0 * 750.0 / deviceWidth;
-                if (this.height < 149) this.padding_top = 72;
-                else this.padding_top = Math.floor(this.height - 88);
-            }
+            this._wowAssign(Mixin.props, config);
         },
         methods: {
             handleRight (event) {

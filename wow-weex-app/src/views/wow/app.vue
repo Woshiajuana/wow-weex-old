@@ -1,5 +1,6 @@
 <template>
-    <wow-view view_header_center_txt="测试案例">
+    <wow-view
+        view_header_center_txt="测试案例1">
         <div>
             <text @click="handleJump">点击我跳转</text>
             <text @click="handleClick">点击我获取地址</text>
@@ -34,7 +35,7 @@
                 })
             },
             handleJump () {
-                RouterPlugin.push('wow_test')
+                RouterPlugin.push('wow_test1')
             },
             handleTest () {
                 console.log(this.test)

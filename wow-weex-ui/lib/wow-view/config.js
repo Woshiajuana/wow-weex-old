@@ -19,7 +19,9 @@ export default Assign({
         borderBottomWidth: 1,
     },
 
-    view_header_left_style: {},
+    view_header_left_style: {
+        height: 90,
+    },
     view_header_left_src: source('view_return_icon.png'),
     view_header_left_src_style: {
         width: 48,
@@ -33,14 +35,18 @@ export default Assign({
         fontSize: 24,
     },
 
-    view_header_center_style: {},
+    view_header_center_style: {
+        height: 90,
+    },
     view_header_center_txt: '',
     view_header_center_txt_style: {
         color: '#3c3c3c',
         fontSize: 34,
     },
 
-    view_header_right_style: {},
+    view_header_right_style: {
+        height: 90,
+    },
     view_header_right_src: source('view_return_icon.png'),
     view_header_right_src_style: {
         width: 48,
