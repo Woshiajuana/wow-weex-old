@@ -1,7 +1,7 @@
 <template>
     <div class="wrap"
-         @viewappear="handleViewAppear"
-         @viewdisappear="handleViewDisappear"
+         @viewappear="handleEmit('viewappear')"
+         @viewdisappear="handleEmit('viewdisappear')"
          :style="view_style">
         <div class="header"
              :style="view_header_style">
@@ -30,7 +30,7 @@
             </div>
             <slot name="view-header-center"></slot>
             <div class="right"
-                 @click="handleRight"
+                 @click="handleEmit('right')"
                  :style="view_header_right_style">
                 <image
                     v-if="view_header_right_src"
@@ -61,11 +61,12 @@
     import config                       from './config'
     import Mixin                        from './mixins'
     import AssignMixin                  from './../../mixins/assign.mixin'
+    import EmitMixin                    from './../../mixins/emit.mixin'
 
     const navigator = weex.requireModule('navigator');
 
     export default {
-        mixins: [AssignMixin, Mixin],
+        mixins: [AssignMixin, Mixin, EmitMixin],
         props: {
             // 主要
             view_use_scroll: { default: config.view_use_scroll },
@@ -90,18 +91,9 @@
             this._wowAssign(Mixin.props, config);
         },
         methods: {
-            handleRight (event) {
-                this.$emit('right',event);
-            },
             handleLeft (event) {
                 this.view_use_left_event ? navigator.pop() : this.$emit('left',event);
             },
-            handleViewAppear () {
-                this.$emit('viewappear')
-            },
-            handleViewDisappear() {
-                this.$emit('viewdisappear')
-            }
         }
     }
 </script>

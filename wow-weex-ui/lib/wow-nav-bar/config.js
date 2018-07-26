@@ -19,10 +19,9 @@ export default Assign({
         borderTopWidth: 1,
     },
     nav_menu_icon_style: {
+        marginBottom: 6,
         width: 44,
         height: 44,
     },
-    nav_menu_txt_style: {
-        fontSize: 22,
-    },
+    nav_menu_txt_size: 22,
 }, config)

@@ -1,49 +1,47 @@
 <template>
-    <wow-view
-        view_header_center_txt="测试案例1">
-        <div>
-            <text @click="handleJump">点击我跳转</text>
-            <text @click="handleClick">点击我获取地址</text>
-            <text>{{path}}</text>
-            <wow-input-cell v-model="test"></wow-input-cell>
-            <text>调用的次数{{num}}</text>
-            <text @click="handleTest">test的值：{{test}}</text>
-        </div>
-    </wow-view>
+    <wow-nav-bar
+        :nav_arr="nav_arr">
+    </wow-nav-bar>
 </template>
 <script>
-    import WowView                      from '../../../../wow-weex-ui/lib/wow-view'
-    import WowInputCell                 from '../../../../wow-weex-ui/lib/wow-input-cell'
-//    import ResourcePlugin               from '../../../../wow-weex-plugin/lib/resource.plugin'
-    import ResourcePlugin               from '../../wow-weex-plugin/lib/resource.plugin'
-//    import WowView                      from 'wow-weex/lib/wow-view'
-    import RouterPlugin                 from 'plugins/router.plugin'
+    import WowNavBar                    from '../../../../wow-weex-ui/lib/wow-nav-bar'
+    import source                       from 'utils/source.util'
     export default {
         data () {
             return {
-                path: 'wow_app的地址',
-                test: '1',
-                num: 0
-            }
-        },
-        methods: {
-            handleClick () {
-                ResourcePlugin.get({key: 'wow_app'}).then((path) => {
-                    this.path = path;
-                }).catch((err) => {
-                    this.path = err;
-                })
-            },
-            handleJump () {
-                RouterPlugin.push('wow_test1')
-            },
-            handleTest () {
-                console.log(this.test)
+                nav_arr: [
+                    {
+                        txt: 'WoW',
+                        src: 'dsnfc_tutorial',
+                        img_src: source('menu-icon-wow.png'),
+                        img_checked_src: source('menu-icon-wow-checked.png'),
+                        checked: true,
+                        color: '#d6d6cf',
+                        checked_color: '#38363b',
+                    },
+                    {
+                        txt: 'Demo',
+                        src: 'dsnfc_main',
+                        img_src: source('menu-icon-ys.png'),
+                        img_checked_src: source('menu-icon-ys-checked.png'),
+                        checked: false,
+                        color: '#d6d6cf',
+                        checked_color: '#38363b',
+                    },
+                    {
+                        txt: 'Help',
+                        src: 'dsnfc_mine',
+                        img_src: source('menu-icon-help.png'),
+                        img_checked_src: source('menu-icon-help-checked.png'),
+                        checked: false,
+                        color: '#d6d6cf',
+                        checked_color: '#38363b',
+                    }
+                ]
             }
         },
         components: {
-            WowView,
-            WowInputCell,
-        },
+            WowNavBar,
+        }
     }
 </script>

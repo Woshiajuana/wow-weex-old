@@ -1,5 +1,7 @@
 <template>
-    <div class="wrap" @viewappear="handleViewAppear">
+    <div class="wrap"
+         @viewappear="handleEmit('viewappear')"
+         @viewdisappear="handleEmit('viewdisappear')">
         <!--主体-->
         <div class="inner"
              :style="nav_inner_style">
@@ -26,10 +28,11 @@
                     class="icon"
                     v-if="item.img_src"
                     :style="nav_menu_icon_style"
-                    :src="item.checked ? (item.img_checked_src || item.img_src) : item.img_src"
+                    :src="item.checked ? item.img_checked_src : item.img_src"
                 ></image>
                 <text class="text"
-                      :style="nav_menu_txt_style"
+                      :style="{fontSize: nav_menu_txt_size,
+                      color: item.checked ? item.checked_color : item.color}"
                 >{{item.txt}}</text>
             </div>
         </div>
@@ -40,24 +43,31 @@
 <script>
     import config                       from './config'
     import path                         from 'plugins/path.plugin'
+    import Mixin                        from './mixins'
+    import AssignMixin                  from './../../mixins/assign.mixin'
+    import EmitMixin                    from './../../mixins/emit.mixin'
     export default {
+        mixins: [AssignMixin, Mixin, EmitMixin],
         props: {
             nav_use_switch: { default: config.nav_use_switch },
             nav_arr: { default: config.nav_arr },
-            nav_inner_style: { default: config.nav_inner_style },
-            nav_bar_style: { default: config.nav_bar_style },
             nav_use_menu: { default: config.nav_use_menu },
-            nav_menu_style: { default: config.nav_menu_style },
-            nav_menu_icon_style: { default: config.nav_menu_icon_style },
-            nav_menu_txt_style: { default: config.nav_menu_txt_style },
+            nav_menu_txt_size: { default: config.nav_menu_txt_size },
         },
         created () {
+            this._wowAssign(Mixin.props, config);
             this.fetchPageUrl();
         },
+        filters: {
+            filterStyle(style, {checked, color, checked_color}) {
+                style.color = checked ? checked_color : color;
+                return style;
+            },
+        },
         methods: {
-            /**切换菜单*/
+            // 切换菜单
             handleSwitch (item, index) {
-                if (!this.nav_use_switch) return this.switchNav(item, index);
+                if (!this.nav_use_switch) return this.switchNav(index);
                 this.$emit('switch', item, index, () => {
                     this.switchNav(index);
                 });
@@ -67,9 +77,6 @@
                 this.nav_arr.forEach((item, i) => {
                     item.checked = i === index;
                 });
-            },
-            handleViewAppear () {
-                this.$emit('viewappear')
             },
             fetchPageUrl () {
                 this.nav_arr.forEach((it) => {
@@ -109,12 +116,6 @@
         width: 750px;
         flex-direction: row;
         align-items: center;
-    }
-    .top {
-        top: 0;
-    }
-    .bottom {
-        bottom: 0;
     }
     .item {
         flex: 1;
