@@ -2,48 +2,42 @@
     <div class="wrap"
          @viewappear="handleEmit('viewappear')"
          @viewdisappear="handleEmit('viewdisappear')"
-         :style="view_style">
+         :style="d_view_style">
         <div class="header"
              v-if="view_use_header"
-             :style="view_header_style">
+             :style="d_view_header_style">
             <div class="left"
                  @click="handleLeft"
-                 :style="view_header_left_style">
+                 :style="d_view_header_left_style">
                 <image
                     v-if="view_header_left_src"
                     :src="view_header_left_src"
-                    :style="view_header_left_src_style"
-                    class="left-image"
-                    autoBitmapRecycle="false"
+                    :style="d_view_header_left_src_style"
                 ></image>
                 <text
-                    class="left-text"
-                    :style="view_header_left_txt_style"
+                    :style="d_view_header_left_txt_style"
                     v-if="view_header_left_txt"
                 >{{view_header_left_txt}}</text>
             </div>
             <div class="center"
-                 :style="view_header_center_style">
+                 :style="d_view_header_center_style">
                 <text
-                    class="center-text"
-                    :style="view_header_center_txt_style"
+                    :style="d_view_header_center_txt_style"
                 >{{view_header_center_txt}}</text>
             </div>
             <slot name="view-header-center"></slot>
             <div class="right"
                  @click="handleEmit('right')"
-                 :style="view_header_right_style">
+                 :style="d_view_header_right_style">
                 <image
                     v-if="view_header_right_src"
                     :src="view_header_right_src"
-                    :style="view_header_right_src_style"
-                    class="right-image"
+                    :style="d_view_header_right_src_style"
                     autoBitmapRecycle="false"
                 ></image>
                 <text
-                    :style="view_header_right_txt_style"
+                    :style="d_view_header_right_txt_style"
                     v-if="view_header_right_txt"
-                    class="right-text"
                 >{{view_header_right_txt}}</text>
             </div>
             <slot name="view-header-cue"></slot>
@@ -61,35 +55,45 @@
 <script>
     import config                       from './config'
     import Mixin                        from './mixins'
-    import AssignMixin                  from './../../mixins/assign.mixin'
     import EmitMixin                    from './../../mixins/emit.mixin'
+    import AssignMixin                  from './../../mixins/assign.mixin'
 
     const navigator = weex.requireModule('navigator');
 
     export default {
-        mixins: [AssignMixin, Mixin, EmitMixin],
+        mixins: [EmitMixin, Mixin, AssignMixin],
         props: {
             // 主要
+            view_style: { default: {} },
             view_use_scroll: { default: config.view_use_scroll },
             view_use_left_event: { default: config.view_use_left_event },
 
             // 头部
             view_use_header: { default: config.view_use_header },
+            view_header_style: { default: {} },
 
             // 头部左边
+            view_header_left_style: { default: {} },
             view_header_left_src: { default: config.view_header_left_src },
+            view_header_left_src_style: { default: {} },
             view_header_left_txt: { default: config.view_header_left_txt },
+            view_header_left_txt_style: { default: {} },
 
             // 头部中间
+            view_header_center_style: { default: {} },
             view_header_center_txt: { default: config.view_header_center_txt },
+            view_header_center_txt_style: { default: {} },
 
             // 头部右边
+            view_header_right_style: { default: {} },
             view_header_right_src: { default: config.view_header_right_src },
+            view_header_right_src_style: { default: {} },
             view_header_right_txt: { default: config.view_header_right_txt },
+            view_header_right_txt_style: { default: {} },
 
         },
-        created () {
-            this._wowAssign(Mixin.props, config);
+        created(){
+            this._wowAssign(Mixin.data(), config);
         },
         methods: {
             handleLeft (event) {
