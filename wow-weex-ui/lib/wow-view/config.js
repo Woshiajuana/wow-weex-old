@@ -47,7 +47,7 @@ export default Assign({
     view_header_right_style: {
         height: 90,
     },
-    view_header_right_src: source('view_return_icon.png'),
+    view_header_right_src: '',
     view_header_right_src_style: {
         width: 48,
         height: 48,
