@@ -14,6 +14,7 @@
             <image class="logo" :src="src_logo"></image>
             <text class="logo-text">WOW-WEEX</text>
         </div>
+        <wow-button></wow-button>
         <text>{{event}}</text>
         <div class="session">
             <image class="image" :src="src_logo"></image>
@@ -51,6 +52,7 @@
 </template>
 <script>
     import WowView                      from '../../../../../wow-weex-ui/lib/wow-view'
+    import WowButton                    from '../../../../../wow-weex-ui/lib/wow-button'
     import HomeMixin                    from './home.mixin'
     export default {
         mixins: [HomeMixin],
@@ -65,7 +67,8 @@
             }
         },
         components: {
-            WowView
+            WowView,
+            WowButton,
         }
     }
 </script>

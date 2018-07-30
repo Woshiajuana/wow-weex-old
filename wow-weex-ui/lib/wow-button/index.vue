@@ -3,7 +3,7 @@
          @click="handleClick"
          :style="computedButtonStyle">
         <text class="text"
-              :style="button_txt_style"
+              :style="d_button_txt_style"
         >{{button_txt}}</text>
     </div>
 </template>
