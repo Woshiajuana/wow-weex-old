@@ -1,6 +1,6 @@
 const methods = {
-    handleEmit (event) {
-        this.$emit(event)
+    handleEmit (event, $event) {
+        this.$emit(event, $event)
     },
 };
 

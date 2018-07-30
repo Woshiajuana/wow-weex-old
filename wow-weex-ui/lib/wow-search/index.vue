@@ -1,7 +1,7 @@
 <template>
     <div class="wrap"
-         @viewappear="handleEmit('viewappear', $event)"
-         @viewdisappear="handleEmit('viewdisappear', $event)"
+         @viewappear="handleEmit('viewappear')"
+         @viewdisappear="handleEmit('viewdisappear')"
          :style="d_view_style">
         <div class="header"
              v-if="view_use_header"
@@ -27,7 +27,7 @@
             </div>
             <slot name="view-header-center"></slot>
             <div class="right"
-                 @click="handleEmit('right', $event)"
+                 @click="handleEmit('right')"
                  :style="d_view_header_right_style">
                 <image
                     v-if="view_header_right_src"
@@ -43,7 +43,7 @@
             <slot name="view-header-cue"></slot>
         </div>
         <slot name="view-header"></slot>
-        <scroller v-if="view_use_scroll" class="inner" @scroll="handleEmit('scroll', $event)">
+        <scroller v-if="view_use_scroll" class="inner">
             <slot></slot>
         </scroller>
         <div class="inner" v-else>
@@ -97,7 +97,7 @@
         },
         methods: {
             handleLeft (event) {
-                this.view_use_left_event ? navigator.pop() : this.$emit('left', event);
+                this.view_use_left_event ? navigator.pop() : this.$emit('left',event);
             },
         }
     }

@@ -4,7 +4,7 @@
          @viewdisappear="handleEmit('viewdisappear')">
         <!--主体-->
         <div class="inner"
-             :style="nav_inner_style">
+             :style="d_nav_inner_style">
             <embed class="content"
                    v-for="(item, index) in nav_arr"
                    :key="index"
@@ -16,10 +16,10 @@
         <!--/主体-->
         <!--导航条-->
         <div class="nav"
-             :style="nav_bar_style">
+             :style="d_nav_bar_style">
             <slot v-if="!nav_use_menu" name="menu"></slot>
             <div v-if="nav_use_menu"
-                 :style="nav_menu_style"
+                 :style="d_nav_menu_style"
                  class="item"
                  v-for="(item, index) in nav_arr"
                  @click="handleSwitch(item, index)"
@@ -27,7 +27,7 @@
                 <image
                     class="icon"
                     v-if="item.img_src"
-                    :style="nav_menu_icon_style"
+                    :style="d_nav_menu_icon_style"
                     :src="item.checked ? item.img_checked_src : item.img_src"
                 ></image>
                 <text class="text"
@@ -49,13 +49,17 @@
     export default {
         mixins: [AssignMixin, Mixin, EmitMixin],
         props: {
+            nav_inner_style: { default: {} },
+            nav_bar_style: { default: {} },
+            nav_menu_style: { default: {} },
+            nav_menu_icon_style: { default: {} },
             nav_use_switch: { default: config.nav_use_switch },
             nav_arr: { default: config.nav_arr },
             nav_use_menu: { default: config.nav_use_menu },
             nav_menu_txt_size: { default: config.nav_menu_txt_size },
         },
         created () {
-            this._wowAssign(Mixin.props, config);
+            this._wowAssign(Mixin.data(), config);
             this.fetchPageUrl();
         },
         filters: {
