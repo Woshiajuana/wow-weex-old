@@ -3,6 +3,7 @@
         @scroll="handleScroll"
         view_header_left_src=""
         :view_header_style="view_header_style">
+        <wow-search></wow-search>
         <div class="header" slot="view-header-center">
            <div class="input-wrap">
                <image class="search-image" :src="src_search"></image>
@@ -15,44 +16,12 @@
             <text class="logo-text">WOW-WEEX</text>
         </div>
         <wow-button></wow-button>
-        <text>{{event}}</text>
-        <div class="session">
-            <image class="image" :src="src_logo"></image>
-            <text class="title">WOW-WEEX</text>
-        </div>
-        <div class="session">
-            <image class="image" :src="src_logo"></image>
-            <text class="title">WOW-WEEX</text>
-        </div>
-        <div class="session">
-            <image class="image" :src="src_logo"></image>
-            <text class="title">WOW-WEEX</text>
-        </div>
-        <div class="session">
-            <image class="image" :src="src_logo"></image>
-            <text class="title">WOW-WEEX</text>
-        </div>
-        <div class="session">
-            <image class="image" :src="src_logo"></image>
-            <text class="title">WOW-WEEX</text>
-        </div>
-        <div class="session">
-            <image class="image" :src="src_logo"></image>
-            <text class="title">WOW-WEEX</text>
-        </div>
-        <div class="session">
-            <image class="image" :src="src_logo"></image>
-            <text class="title">WOW-WEEX</text>
-        </div>
-        <div class="session">
-            <image class="image" :src="src_logo"></image>
-            <text class="title">WOW-WEEX</text>
-        </div>
     </wow-view>
 </template>
 <script>
     import WowView                      from '../../../../../wow-weex-ui/lib/wow-view'
     import WowButton                    from '../../../../../wow-weex-ui/lib/wow-button'
+    import WowSearch                    from '../../../../../wow-weex-ui/lib/wow-search'
     import HomeMixin                    from './home.mixin'
     export default {
         mixins: [HomeMixin],
@@ -69,6 +38,7 @@
         components: {
             WowView,
             WowButton,
+            WowSearch,
         }
     }
 </script>

@@ -1,54 +1,8 @@
 <template>
-    <div class="wrap"
-         @viewappear="handleEmit('viewappear')"
-         @viewdisappear="handleEmit('viewdisappear')"
-         :style="d_view_style">
-        <div class="header"
-             v-if="view_use_header"
-             :style="d_view_header_style">
-            <div class="left"
-                 @click="handleLeft"
-                 :style="d_view_header_left_style">
-                <image
-                    v-if="view_header_left_src"
-                    :src="view_header_left_src"
-                    :style="d_view_header_left_src_style"
-                ></image>
-                <text
-                    :style="d_view_header_left_txt_style"
-                    v-if="view_header_left_txt"
-                >{{view_header_left_txt}}</text>
-            </div>
-            <div class="center"
-                 :style="d_view_header_center_style">
-                <text
-                    :style="d_view_header_center_txt_style"
-                >{{view_header_center_txt}}</text>
-            </div>
-            <slot name="view-header-center"></slot>
-            <div class="right"
-                 @click="handleEmit('right')"
-                 :style="d_view_header_right_style">
-                <image
-                    v-if="view_header_right_src"
-                    :src="view_header_right_src"
-                    :style="d_view_header_right_src_style"
-                    autoBitmapRecycle="false"
-                ></image>
-                <text
-                    :style="d_view_header_right_txt_style"
-                    v-if="view_header_right_txt"
-                >{{view_header_right_txt}}</text>
-            </div>
-            <slot name="view-header-cue"></slot>
-        </div>
-        <slot name="view-header"></slot>
-        <scroller v-if="view_use_scroll" class="inner">
-            <slot></slot>
-        </scroller>
-        <div class="inner" v-else>
-            <slot></slot>
-        </div>
+    <div class="wrap">
+        <image class="search-image" :src="src_search"></image>
+        <text class="text">搜索你想要的组件</text>
+        <image class="close" :src="src_close"></image>
     </div>
 </template>
 
@@ -63,33 +17,6 @@
     export default {
         mixins: [EmitMixin, Mixin, AssignMixin],
         props: {
-            // 主要
-            view_style: { default: {} },
-            view_use_scroll: { default: config.view_use_scroll },
-            view_use_left_event: { default: config.view_use_left_event },
-
-            // 头部
-            view_use_header: { default: config.view_use_header },
-            view_header_style: { default: {} },
-
-            // 头部左边
-            view_header_left_style: { default: {} },
-            view_header_left_src: { default: config.view_header_left_src },
-            view_header_left_src_style: { default: {} },
-            view_header_left_txt: { default: config.view_header_left_txt },
-            view_header_left_txt_style: { default: {} },
-
-            // 头部中间
-            view_header_center_style: { default: {} },
-            view_header_center_txt: { default: config.view_header_center_txt },
-            view_header_center_txt_style: { default: {} },
-
-            // 头部右边
-            view_header_right_style: { default: {} },
-            view_header_right_src: { default: config.view_header_right_src },
-            view_header_right_src_style: { default: {} },
-            view_header_right_txt: { default: config.view_header_right_txt },
-            view_header_right_txt_style: { default: {} },
 
         },
         created(){
@@ -104,38 +31,23 @@
 </script>
 
 <style>
-    .wrap{
+    .input-wrap{
+        background-color: rgba(255,255,255,0.3);
+        height: 60px;
         flex: 1;
-        width: 750px;
-        height: 2000px;
-    }
-    .header {
-        flex-direction: row;
-        width: 750px;
-    }
-    .left,
-    .right {
-        position: absolute;
         flex-direction: row;
         align-items: center;
-        bottom: 0;
+        padding-left: 15px;
+        padding-right: 15px;
+        border-radius: 60px;
     }
-    .right{
-        right: 0;
+    .search-image{
+        width: 30px;
+        height: 30px;
     }
-    .left{
-        left: 0;
-    }
-    .center{
-        position: absolute;
-        flex-direction: row;
-        left: 120px;
-        right: 120px;
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-    }
-    .inner{
-        flex: 1;
+    .text{
+        margin-left: 8px;
+        font-size: 24px;
+        color: #fff;
     }
 </style>
