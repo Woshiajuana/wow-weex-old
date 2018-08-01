@@ -1,8 +1,39 @@
 <template>
-    <div class="wrap">
-        <image class="search-image" :src="src_search"></image>
-        <text class="text">搜索你想要的组件</text>
-        <image class="close" :src="src_close"></image>
+    <div class="wrap"
+         :style="d_search_style">
+        <div class="wrap"
+             :style="d_search_wrap_style">
+            <image
+                :style="d_search_src_style"
+                v-if="search_src"
+                :src="search_src"
+            ></image>
+            <div class="inner"
+                 :style="d_search_inner_style">
+                <input
+                    v-model="search_value"
+                    class="input"
+                    @input="handleInput"
+                    v-if="search_use_input"
+                    :style="d_search_input_style"
+                    :type="search_input_type"
+                    :maxlength="search_input_max_length || 9999"
+                    :placeholder-color="search_input_placeholder_color"
+                    :placeholder="search_input_placeholder"/>
+                <text
+                    class="input"
+                    :style="d_search_input_style"
+                    v-else
+                >{{search_input_placeholder}}</text>
+            </div>
+            <image
+                @click="handleClear"
+                :style="d_search_close_src_style"
+                v-if="search_close_src && search_value"
+                :src="search_close_src"
+            ></image>
+        </div>
+        <solt name="search-button"></solt>
     </div>
 </template>
 
@@ -17,37 +48,55 @@
     export default {
         mixins: [EmitMixin, Mixin, AssignMixin],
         props: {
-
+            search_style: { default: {} },
+            search_wrap_style: { default: {} },
+            search_src_style: { default: {} },
+            search_close_src_style: { default: {} },
+            search_inner_style: { default: {} },
+            search_input_style: { default: {} },
+            search_value: { default: config.search_value },
+            search_use_input: { default: config.search_use_input },
+            search_src: { default: config.search_src },
+            search_close_src: { default: config.search_close_src },
+            search_input_max_length: { default: config.search_input_max_length },
+            search_input_placeholder: { default: config.search_input_placeholder },
+            search_input_placeholder_color: { default: config.search_input_placeholder_color },
+            search_input_type: { default: config.search_input_type },
+        },
+        model: {
+            prop: 'search_value',
+            event: 'input'
         },
         created(){
             this._wowAssign(Mixin.data(), config);
         },
         methods: {
-            handleLeft (event) {
-                this.view_use_left_event ? navigator.pop() : this.$emit('left',event);
+            handleInput (event) {
+                this.$emit('input', event.value)
             },
+            handleClear () {
+                this.search_value = ' ';
+                setTimeout(() => {
+                    this.search_value = '';
+                }, 200)
+            }
         }
     }
 </script>
 
 <style>
-    .input-wrap{
-        background-color: rgba(255,255,255,0.3);
-        height: 60px;
-        flex: 1;
+    .wrap{
         flex-direction: row;
         align-items: center;
-        padding-left: 15px;
-        padding-right: 15px;
-        border-radius: 60px;
     }
-    .search-image{
-        width: 30px;
-        height: 30px;
+    .inner{
+        flex: 1;
     }
-    .text{
-        margin-left: 8px;
-        font-size: 24px;
-        color: #fff;
+    .input{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
     }
 </style>

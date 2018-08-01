@@ -9,7 +9,7 @@ export default Assign({
         height: 100,
         borderRadius: '8px',
         marginLeft: 55,
-        backgroundColor: '#EE4432',
+        backgroundColor: '#5cc8ff',
     },
     button_disabled_style: {
         backgroundColor: '#bbb',

@@ -3,19 +3,30 @@
         @scroll="handleScroll"
         view_header_left_src=""
         :view_header_style="view_header_style">
-        <wow-search></wow-search>
-        <div class="header" slot="view-header-center">
-           <div class="input-wrap">
-               <image class="search-image" :src="src_search"></image>
-               <text class="text">搜索你想要的组件</text>
-               <image class="close" :src="src_close"></image>
-           </div>
+        <wow-search
+            :search_close_src="src_close"
+            :search_src="src_search"
+            v-model="str_key"
+            slot="view-header-center"
+        ></wow-search>
+        <div>
+            <div class="header">
+
+                <!--<wow-search></wow-search>-->
+                <div class="input-wrap">
+                    <image class="search-image" :src="src_search"></image>
+                    <text class="text">搜索你想要的组件</text>
+                    <image class="close" :src="src_close"></image>
+                </div>
+            </div>
+            <div class="entry-wrap">
+                <image class="logo" :src="src_logo"></image>
+                <text class="logo-text">WOW-WEEX</text>
+            </div>
+            <wow-button @click="handleClick"></wow-button>
+            <text>{{str_key}}</text>
+            <text>{{result}}</text>
         </div>
-        <div class="entry-wrap">
-            <image class="logo" :src="src_logo"></image>
-            <text class="logo-text">WOW-WEEX</text>
-        </div>
-        <wow-button></wow-button>
     </wow-view>
 </template>
 <script>
@@ -23,16 +34,27 @@
     import WowButton                    from '../../../../../wow-weex-ui/lib/wow-button'
     import WowSearch                    from '../../../../../wow-weex-ui/lib/wow-search'
     import HomeMixin                    from './home.mixin'
+    import Resource                     from '../../../wow-weex-plugin/lib/resource.plugin'
     export default {
         mixins: [HomeMixin],
         data () {
             return {
-                event: 'xxx'
+                event: 'xxx',
+                result: '',
+                str_key: '1'
             }
         },
         methods: {
             handleScroll (event) {
                 this.event = event.contentOffset;
+            },
+            handleClick (callback) {
+                callback();
+                Resource.get({key: 'wow-test'}).then((result) => {
+                    this.result = result;
+                }).catch((error) => {
+                    this.result = error;
+                })
             }
         },
         components: {
