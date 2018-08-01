@@ -3,7 +3,7 @@
 
 import Handle                           from '../handle'
 
-const ResourceModule = weex.requireModule('resourceModule');
+const ResourceModule = weex.requireModule('resourceModule') || {};
 
 export default {
 

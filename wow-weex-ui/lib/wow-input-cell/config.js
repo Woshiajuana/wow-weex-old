@@ -17,6 +17,7 @@ export default Assign({
     input_value: '',
     input_style: {
         height: 100,
+        lineHeight: 100,
         fontSize: 32,
         color: '#333',
     },

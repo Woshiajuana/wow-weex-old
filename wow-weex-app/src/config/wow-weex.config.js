@@ -5,4 +5,7 @@ export default {
     view_header_center_txt_style: {
         color: 'red',
     },
+    view_style: {
+        backgroundColor: '#f2f2f2'
+    }
 }
