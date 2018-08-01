@@ -1,10 +1,10 @@
 {
-  "name": "wow-view",
+  "name": "wow-search",
   "version": "0.0.1",
-  "description": "Weex 视图组件",
+  "description": "Weex 搜索组件",
   "main": "index.js",
   "type": "weex",
-  "repository": "https://github.com/Woshiajuana/wow-weex/tree/master/wow-weex-ui/lib/wow-view",
+  "repository": "https://github.com/Woshiajuana/wow-weex/tree/master/wow-weex-ui/lib/wow-search",
   "keywords": [
     "Weex",
     "Vue",

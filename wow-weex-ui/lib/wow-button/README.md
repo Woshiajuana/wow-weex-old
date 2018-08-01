@@ -1,5 +1,5 @@
-# wow-view
+# wow-button
 
-> Weex 视图组件
+> Weex 按钮组件
 
 

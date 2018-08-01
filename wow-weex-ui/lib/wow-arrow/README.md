@@ -1,4 +1,4 @@
-# wow-view
+# wow-arrow
 
 > Weex 箭头组件
 

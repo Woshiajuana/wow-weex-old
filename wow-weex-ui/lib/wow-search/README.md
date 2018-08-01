@@ -1,5 +1,5 @@
-# wow-view
+# wow-search
 
-> Weex 视图组件
+> Weex 搜索组件
 
 

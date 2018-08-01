@@ -1,5 +1,5 @@
 {
-  "name": "wow-view",
+  "name": "wow-button",
   "version": "0.0.1",
   "description": "Weex 按钮组件",
   "main": "index.js",

@@ -1,5 +1,5 @@
-# wow-view
+# wow-input-cell
 
-> Weex input组件
+> Weex 细胞组件
 
 

@@ -1,5 +1,5 @@
 {
-  "name": "wow-view",
+  "name": "wow-nav-bar",
   "version": "0.0.1",
   "description": "Weex 导航条组件",
   "main": "index.js",

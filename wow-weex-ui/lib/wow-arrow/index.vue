@@ -1,12 +1,18 @@
 <template>
-    <div class="arrow" :style="arrow_style"></div>
+    <div class="arrow" :style="d_arrow_style"></div>
 </template>
 <script>
-    import config       from './config'
+    import config                       from './config'
+    import Mixin                        from './mixins'
+    import AssignMixin                  from './../../mixins/assign.mixin'
     export default {
+        mixins: [Mixin, AssignMixin],
         props: {
-            arrow_style: { default: config.arrow_style },
-        }
+            arrow_style: { default: {} },
+        },
+        created(){
+            this._wowAssign(Mixin.data(), config);
+        },
     }
 </script>
 <style>
