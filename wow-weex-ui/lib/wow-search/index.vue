@@ -40,13 +40,13 @@
 <script>
     import config                       from './config'
     import Mixin                        from './mixins'
-    import EmitMixin                    from './../../mixins/emit.mixin'
+    import InputMixin                   from './../../mixins/input.mixin'
     import AssignMixin                  from './../../mixins/assign.mixin'
 
     const navigator = weex.requireModule('navigator');
 
     export default {
-        mixins: [EmitMixin, Mixin, AssignMixin],
+        mixins: [InputMixin, Mixin, AssignMixin],
         props: {
             search_style: { default: {} },
             search_wrap_style: { default: {} },
@@ -71,9 +71,6 @@
             this._wowAssign(Mixin.data(), config);
         },
         methods: {
-            handleInput (event) {
-                this.$emit('input', event.value)
-            },
             handleClear () {
                 this.search_value = ' ';
                 setTimeout(() => {
