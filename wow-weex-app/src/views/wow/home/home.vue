@@ -10,21 +10,14 @@
             slot="view-header-center"
         ></wow-search>
         <div>
-            <div class="header">
-
-                <!--<wow-search></wow-search>-->
-                <div class="input-wrap">
-                    <image class="search-image" :src="src_search"></image>
-                    <text class="text">搜索你想要的组件</text>
-                    <image class="close" :src="src_close"></image>
-                </div>
-            </div>
+            <wow-input-cell v-model="str_cell"></wow-input-cell>
             <div class="entry-wrap">
                 <image class="logo" :src="src_logo"></image>
                 <text class="logo-text">WOW-WEEX</text>
             </div>
             <wow-button @click="handleClick"></wow-button>
             <text>{{str_key}}</text>
+            <text>{{str_cell}}</text>
             <text>{{result}}</text>
         </div>
     </wow-view>
@@ -33,6 +26,7 @@
     import WowView                      from '../../../../../wow-weex-ui/lib/wow-view'
     import WowButton                    from '../../../../../wow-weex-ui/lib/wow-button'
     import WowSearch                    from '../../../../../wow-weex-ui/lib/wow-search'
+    import WowInputCell                 from '../../../../../wow-weex-ui/lib/wow-input-cell'
     import HomeMixin                    from './home.mixin'
     import Resource                     from '../../../wow-weex-plugin/lib/resource.plugin'
     export default {
@@ -41,7 +35,8 @@
             return {
                 event: 'xxx',
                 result: '',
-                str_key: '1'
+                str_key: '1',
+                str_cell: '1',
             }
         },
         methods: {
@@ -61,36 +56,11 @@
             WowView,
             WowButton,
             WowSearch,
+            WowInputCell,
         }
     }
 </script>
 <style>
-    .header{
-        flex: 1;
-        flex-direction: row;
-        align-items: center;
-        padding-left: 32px;
-        padding-right: 32px;
-    }
-    .input-wrap{
-        background-color: rgba(255,255,255,0.3);
-        height: 60px;
-        flex: 1;
-        flex-direction: row;
-        align-items: center;
-        padding-left: 15px;
-        padding-right: 15px;
-        border-radius: 60px;
-    }
-    .search-image{
-        width: 30px;
-        height: 30px;
-    }
-    .text{
-        margin-left: 8px;
-        font-size: 24px;
-        color: #fff;
-    }
     .entry-wrap{
         height: 240px;
         background-color: #5cc8ff;
