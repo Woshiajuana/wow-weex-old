@@ -1,5 +1,5 @@
-# wow-arrow
+# wow-grid
 
-> Weex 箭头组件
+> Weex 格子组件
 
 

@@ -10,15 +10,7 @@
 </template>
 <script>
     import WowView                      from '../../../../../wow-weex-ui/lib/wow-view'
-    import WowButton                    from '../../../../../wow-weex-ui/lib/wow-button'
-    import WowSearch                    from '../../../../../wow-weex-ui/lib/wow-search'
-    import WowInputCell                 from '../../../../../wow-weex-ui/lib/wow-input-cell'
-    import WowArrow                     from '../../../../../wow-weex-ui/lib/wow-arrow'
-    import WowCarousel                  from '../../../../../wow-weex-ui/lib/wow-carousel'
     import WowGrid                      from '../../../../../wow-weex-ui/lib/wow-grid'
-    import Resource                     from '../../../wow-weex-plugin/lib/resource.plugin'
-    import Router                       from '../../../wow-weex-plugin/lib/router.plugin'
-    import Loading                      from '../../../wow-weex-plugin/lib/loading.plugin'
     import Mixin                        from './demo.mixin'
     export default {
         mixins: [Mixin],
@@ -48,16 +40,8 @@
                 ],
             }
         },
-        methods: {
-
-        },
         components: {
             WowView,
-            WowButton,
-            WowSearch,
-            WowInputCell,
-            WowArrow,
-            WowCarousel,
             WowGrid,
         }
     }

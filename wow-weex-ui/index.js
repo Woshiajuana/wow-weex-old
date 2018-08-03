@@ -4,6 +4,9 @@ import WowButton                    from './lib/wow-button'
 import WowInputCell                 from './lib/wow-input-cell'
 import WowNavBar                    from './lib/wow-nav-bar'
 import WowSearch                    from './lib/wow-search'
+import WowSwitch                    from './lib/wow-switch'
+import WowGrid                      from './lib/wow-grid'
+
 
 export {
     WowView,
@@ -12,5 +15,7 @@ export {
     WowInputCell,
     WowNavBar,
     WowSearch,
+    WowSwitch,
+    WowGrid,
 }
 

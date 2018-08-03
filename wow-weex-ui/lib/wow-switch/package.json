@@ -1,10 +1,10 @@
 {
-  "name": "wow-grid",
+  "name": "wow-switch",
   "version": "0.0.1",
-  "description": "Weex 格子组件",
+  "description": "Weex 切换组件",
   "main": "index.js",
   "type": "weex",
-  "repository": "https://github.com/Woshiajuana/wow-weex/tree/master/wow-weex-ui/lib/wow-grid",
+  "repository": "https://github.com/Woshiajuana/wow-weex/tree/master/wow-weex-ui/lib/wow-switch",
   "keywords": [
     "Weex",
     "Vue",
