@@ -61,6 +61,7 @@
     import HomeMixin                    from './home.mixin'
     import Resource                     from '../../../wow-weex-plugin/lib/resource.plugin'
     import Router                       from '../../../wow-weex-plugin/lib/router.plugin'
+    import Loading                      from '../../../wow-weex-plugin/lib/loading.plugin'
     export default {
         mixins: [HomeMixin],
         data () {
@@ -91,12 +92,13 @@
             },
             handleClick (callback) {
                 callback();
-                Resource.get({key: 'wow_test'}).then((result) => {
-                    this.result = result;
-                }).catch((error) => {
-                    this.result = error;
-                });
-                Router.push('wow_test')
+//                Resource.get({key: 'wow_test'}).then((result) => {
+//                    this.result = result;
+//                }).catch((error) => {
+//                    this.result = error;
+//                });
+//                Router.push('wow_test')
+                Loading.show();
             }
         },
         components: {

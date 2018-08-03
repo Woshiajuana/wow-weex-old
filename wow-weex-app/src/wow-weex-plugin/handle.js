@@ -1,8 +1,9 @@
 
 // 插件处理器
-import 'es6-promise.util'
+import './es6-promise.util'
 import Config                      from './config'
 
+import Dialogs                          from './lib/dialogs.plugin'
 const {
     APP,                           // 主键
     ARR_SUCCESS_CALLBACK_CODE,      // 成功码

@@ -3,7 +3,7 @@
 
 import Handle                           from '../handle'
 
-const LoadingModule = weex.requireModule('loadingModule');
+const LoadingModule = weex.requireModule('loadingModule') || {};
 
 export default {
 
