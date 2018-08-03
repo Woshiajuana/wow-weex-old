@@ -107,7 +107,6 @@
     .wrap{
         flex: 1;
         width: 750px;
-        height: 2000px;
     }
     .header {
         flex-direction: row;

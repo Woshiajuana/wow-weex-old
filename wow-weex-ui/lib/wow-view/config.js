@@ -15,7 +15,7 @@ export default Assign({
     view_header_style: {
         height: 90,
         backgroundColor: '#fff',
-        borderColor: '#f2f2f2',
+        borderColor: '#dedede',
         borderBottomWidth: 1,
     },
 

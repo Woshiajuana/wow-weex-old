@@ -21,7 +21,7 @@
                     },
                     {
                         txt: 'Demo',
-                        src: 'dsnfc_main',
+                        src: 'wow_demo',
                         img_src: Source('menu-icon-ys.png'),
                         img_checked_src: Source('menu-icon-ys-checked.png'),
                         checked: false,
@@ -30,7 +30,7 @@
                     },
                     {
                         txt: 'Help',
-                        src: 'dsnfc_mine',
+                        src: 'wow_help',
                         img_src: Source('menu-icon-help.png'),
                         img_checked_src: Source('menu-icon-help-checked.png'),
                         checked: false,

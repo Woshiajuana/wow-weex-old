@@ -15,6 +15,9 @@
             v-model="str_key"
         ></wow-search>
 
+        <wow-grid
+            :grid_arr="arr_grid"
+        ></wow-grid>
         <!--<div class="link-wrap">-->
             <!--<div class="link-item">-->
                 <!--<image class="link-item-image" :src="src_logo"></image>-->
@@ -50,7 +53,12 @@
                 <!--<wow-arrow slot="input-right"></wow-arrow>-->
             <!--</wow-input-cell>-->
 
-            <!--<wow-button @click="handleClick"></wow-button>-->
+        <wow-button
+            :button_style="{
+                marginTop: 120,
+            }"
+            @click="handleClick"
+        ></wow-button>
             <!--<text>{{str_key}}</text>-->
             <!--<text>{{str_cell}}</text>-->
             <!--<text>{{result}}</text>-->
@@ -64,14 +72,26 @@
     import WowInputCell                 from '../../../../../wow-weex-ui/lib/wow-input-cell'
     import WowArrow                     from '../../../../../wow-weex-ui/lib/wow-arrow'
     import WowCarousel                  from '../../../../../wow-weex-ui/lib/wow-carousel'
-    import HomeMixin                    from './home.mixin'
+    import WowGrid                      from '../../../../../wow-weex-ui/lib/wow-grid'
+    import Mixin                        from './home.mixin'
     import Resource                     from '../../../wow-weex-plugin/lib/resource.plugin'
     import Router                       from '../../../wow-weex-plugin/lib/router.plugin'
     import Loading                      from '../../../wow-weex-plugin/lib/loading.plugin'
     export default {
-        mixins: [HomeMixin],
+        mixins: [Mixin],
         data () {
             return {
+                arr_grid: [
+                    { src: 'http://www.owulia.com/static/temp/2.jpg', text: '案例'},
+                    { src: 'http://www.owulia.com/static/temp/2.jpg', text: '案例'},
+                    { src: 'http://www.owulia.com/static/temp/2.jpg', text: '案例'},
+                    { src: 'http://www.owulia.com/static/temp/2.jpg', text: '案例'},
+                    { src: 'http://www.owulia.com/static/temp/2.jpg', text: '案例'},
+                    { src: 'http://www.owulia.com/static/temp/2.jpg', text: '案例'},
+                    { src: 'http://www.owulia.com/static/temp/2.jpg', text: '案例'},
+                    { src: 'http://www.owulia.com/static/temp/2.jpg', text: '案例'},
+                    { src: 'http://www.owulia.com/static/temp/2.jpg', text: '案例'},
+                ],
                 arr_carousel: [
                     {src: 'http://www.owulia.com/static/temp/2.jpg'},
                     {src: 'http://www.owulia.com/static/temp/2.jpg'},
@@ -119,6 +139,7 @@
             WowInputCell,
             WowArrow,
             WowCarousel,
+            WowGrid,
         }
     }
 </script>
