@@ -1,55 +1,60 @@
 <template>
     <wow-view
         @scroll="handleScroll"
+        view_use_scroll=""
+        view_use_header=""
         view_header_left_src=""
         :view_header_style="view_header_style">
+        <wow-carousel
+            :carousel_arr="arr_carousel"
+        ></wow-carousel>
         <wow-search
+            class="search"
             :search_close_src="src_close"
             :search_src="src_search"
             v-model="str_key"
-            slot="view-header-center"
         ></wow-search>
 
-        <div class="link-wrap">
-            <div class="link-item">
-                <image class="link-item-image" :src="src_logo"></image>
-                <text class="link-item-text">WOW-WEEX</text>
-            </div>
-            <div class="link-item">
-                <image class="link-item-image" :src="src_logo"></image>
-                <text class="link-item-text">WOW-WEEX</text>
-            </div>
-            <div class="link-item">
-                <image class="link-item-image" :src="src_logo"></image>
-                <text class="link-item-text">WOW-WEEX</text>
-            </div>
-            <div class="link-item">
-                <image class="link-item-image" :src="src_logo"></image>
-                <text class="link-item-text">WOW-WEEX</text>
-            </div>
-        </div>
+        <!--<div class="link-wrap">-->
+            <!--<div class="link-item">-->
+                <!--<image class="link-item-image" :src="src_logo"></image>-->
+                <!--<text class="link-item-text">WOW-WEEX</text>-->
+            <!--</div>-->
+            <!--<div class="link-item">-->
+                <!--<image class="link-item-image" :src="src_logo"></image>-->
+                <!--<text class="link-item-text">WOW-WEEX</text>-->
+            <!--</div>-->
+            <!--<div class="link-item">-->
+                <!--<image class="link-item-image" :src="src_logo"></image>-->
+                <!--<text class="link-item-text">WOW-WEEX</text>-->
+            <!--</div>-->
+            <!--<div class="link-item">-->
+                <!--<image class="link-item-image" :src="src_logo"></image>-->
+                <!--<text class="link-item-text">WOW-WEEX</text>-->
+            <!--</div>-->
+        <!--</div>-->
 
 
 
-        <div class="header">
-            <image class="logo" :src="src_logo"></image>
-            <text class="logo-text">WOW-WEEX</text>
-        </div>
-        <div class="cell-wrap">
-            <wow-input-cell
-                v-for="(item, index) in arr_data"
-                :key="index"
-                :input_label_txt="item.label"
-                :input_value="item.value"
-                input_use="">
-                <wow-arrow slot="input-right"></wow-arrow>
-            </wow-input-cell>
+        <!--<div class="header">-->
+            <!--<image class="logo" :src="src_logo"></image>-->
+            <!--<text class="logo-text">WOW-WEEX</text>-->
+        <!--</div>-->
+        <!--<div class="cell-wrap">-->
+            <!--<wow-input-cell-->
+                <!--v-for="(item, index) in arr_data"-->
+                <!--:key="index"-->
+                <!--:input_label_txt="item.label"-->
+                <!--:input_value="item.value"-->
+                <!--input_use="">-->
+                <!--<wow-arrow slot="input-right"></wow-arrow>-->
+            <!--</wow-input-cell>-->
 
-            <wow-button @click="handleClick"></wow-button>
-            <text>{{str_key}}</text>
-            <text>{{str_cell}}</text>
-            <text>{{result}}</text>
-        </div>
+            <!--<wow-button @click="handleClick"></wow-button>-->
+            <!--<text>{{str_key}}</text>-->
+            <!--<text>{{str_cell}}</text>-->
+            <!--<text>{{result}}</text>-->
+        <!--</div>-->
     </wow-view>
 </template>
 <script>
@@ -58,6 +63,7 @@
     import WowSearch                    from '../../../../../wow-weex-ui/lib/wow-search'
     import WowInputCell                 from '../../../../../wow-weex-ui/lib/wow-input-cell'
     import WowArrow                     from '../../../../../wow-weex-ui/lib/wow-arrow'
+    import WowCarousel                  from '../../../../../wow-weex-ui/lib/wow-carousel'
     import HomeMixin                    from './home.mixin'
     import Resource                     from '../../../wow-weex-plugin/lib/resource.plugin'
     import Router                       from '../../../wow-weex-plugin/lib/router.plugin'
@@ -66,6 +72,11 @@
         mixins: [HomeMixin],
         data () {
             return {
+                arr_carousel: [
+                    {src: 'http://www.owulia.com/static/temp/2.jpg'},
+                    {src: 'http://www.owulia.com/static/temp/2.jpg'},
+                    {src: 'http://www.owulia.com/static/temp/2.jpg'},
+                ],
                 arr_data: [
                     {
                         label: '左边',
@@ -107,11 +118,19 @@
             WowSearch,
             WowInputCell,
             WowArrow,
+            WowCarousel,
         }
     }
 </script>
 <style>
 
+    .search{
+        position: absolute;
+        width: 750px;
+        height: 60px;
+        top: 20px;
+        left: 0;
+    }
 
     .link-wrap{
         flex-direction: row;

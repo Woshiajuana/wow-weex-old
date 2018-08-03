@@ -1,10 +1,10 @@
 {
-  "name": "wow-arrow",
+  "name": "wow-carousel",
   "version": "0.0.1",
-  "description": "Weex 箭头组件",
+  "description": "Weex 轮播组件",
   "main": "index.js",
   "type": "weex",
-  "repository": "https://github.com/Woshiajuana/wow-weex/tree/master/wow-weex-ui/lib/wow-arrow",
+  "repository": "https://github.com/Woshiajuana/wow-weex/tree/master/wow-weex-ui/lib/wow-carousel",
   "keywords": [
     "Weex",
     "Vue",

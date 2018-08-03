@@ -2,11 +2,20 @@
 import config                       from '../../config'
 import Assign                       from '../../assign'
 export default Assign({
-    arrow_style: {
-        width: 20,
-        height: 20,
-        marginRight: 32,
-        borderColor: '#979797',
-        transform: 'rotate(45deg)',
-    }
+    carousel_arr: [],
+    carousel_style: {
+        width: 750,
+        height: 250,
+    },
+    carousel_inner_style: {
+        width: 750,
+        height: 250,
+    },
+    carousel_src_style: {
+        width: 750,
+        height: 250,
+    },
+    carousel_use_indicator: true,
+    carousel_interval: 3000,
+    carousel_auto_play: 'true',
 }, config)

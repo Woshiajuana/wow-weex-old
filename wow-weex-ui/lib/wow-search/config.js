@@ -3,7 +3,6 @@ import config                       from '../../config'
 import Assign                       from '../../assign'
 export default Assign({
     search_style: {
-        flex: 1,
         paddingLeft: 32,
         paddingRight: 32,
     },

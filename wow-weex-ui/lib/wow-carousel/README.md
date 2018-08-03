@@ -1,5 +1,5 @@
-# wow-arrow
+# wow-carousel
 
-> Weex 箭头组件
+> Weex 轮播组件
 
 
