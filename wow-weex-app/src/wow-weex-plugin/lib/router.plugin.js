@@ -15,14 +15,20 @@ export default {
     // @param options   [object|string] 参数配置，页面key
     // @param params    [object]        页面传参
     push (options, params) {
+        DialogsPlugin.alert('1');
         let key = options.key || options;
         let animated = options.animated || 'true';
         let close = options.close || 'false';
+        DialogsPlugin.alert('2');
         LoadingPlugin.show();
-        ResourcePlugin.get(key).then((url) => {
+        DialogsPlugin.alert('3');
+        ResourcePlugin.get({key}).then((url) => {
+            DialogsPlugin.alert('4');
+            DialogsPlugin.alert(url);
             !params && (url = `${url}?params=${encodeURIComponent(JSON.stringify(params))}`);
             Navigator.push({url, animated, close});
         }).catch((error) => {
+            DialogsPlugin.alert('5');
             DialogsPlugin.toast(error);
         }).finally(() => {
             LoadingPlugin.hide();

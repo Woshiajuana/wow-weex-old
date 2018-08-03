@@ -60,6 +60,7 @@
     import WowArrow                     from '../../../../../wow-weex-ui/lib/wow-arrow'
     import HomeMixin                    from './home.mixin'
     import Resource                     from '../../../wow-weex-plugin/lib/resource.plugin'
+    import Router                       from '../../../wow-weex-plugin/lib/router.plugin'
     export default {
         mixins: [HomeMixin],
         data () {
@@ -94,7 +95,8 @@
                     this.result = result;
                 }).catch((error) => {
                     this.result = error;
-                })
+                });
+                Router.push('wow_test')
             }
         },
         components: {
@@ -126,8 +128,10 @@
     .link-item-image{
         width: 100px;
         height: 100px;
+        background-color: #fff;
     }
     .link-item-text{
+        margin-top: 20px;
         font-size: 24px;
         color: #fff;
     }

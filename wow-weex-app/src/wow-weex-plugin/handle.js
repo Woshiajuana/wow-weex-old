@@ -1,6 +1,6 @@
 
 // 插件处理器
-
+import 'es6-promise.util'
 import Config                      from './config'
 
 const {
