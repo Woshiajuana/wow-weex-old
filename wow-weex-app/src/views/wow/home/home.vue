@@ -39,7 +39,8 @@
             <text>{{is_switch}}</text>
             <!--<text>{{str_key}}</text>-->
             <!--<text>{{str_cell}}</text>-->
-            <!--<text>{{result}}</text>-->
+            <text>{{result}}</text>
+            <text>{{result1}}</text>
             <!--</div>-->
         </scroller>
     </wow-view>
@@ -56,6 +57,7 @@
     import Resource                     from '../../../wow-weex-plugin/lib/resource.plugin'
     import Router                       from '../../../wow-weex-plugin/lib/router.plugin'
     import Loading                      from '../../../wow-weex-plugin/lib/loading.plugin'
+    import PathPlugin                   from 'plugins/path.plugin'
     export default {
         mixins: [Mixin],
         data () {
@@ -82,9 +84,18 @@
                 ],
                 event: 'xxx',
                 result: '',
+                result1: '',
                 str_key: '1',
                 str_cell: '1',
             }
+        },
+        created () {
+            PathPlugin.page('wow_home').then((result) => {
+                this.result = result;
+            });
+            Resource.get({key: 'wow_home'}).then((result) => {
+                this.result1 = result;
+            })
         },
         methods: {
             handleSwitch(callback) {

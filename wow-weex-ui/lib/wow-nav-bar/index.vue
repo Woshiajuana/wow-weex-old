@@ -42,7 +42,8 @@
 
 <script>
     import config                       from './config'
-    import path                         from 'plugins/path.plugin'
+//    import path                         from 'plugins/path.plugin'
+    import resource                     from 'plugins/resource.plugin'
     import Mixin                        from './mixins'
     import AssignMixin                  from './../../mixins/assign.mixin'
     import EmitMixin                    from './../../mixins/emit.mixin'
@@ -86,7 +87,7 @@
                 this.nav_arr.forEach((it) => {
                     ((item) => {
                         if(!item.src) return '';
-                        path.page(item.src).then((url) => {
+                        resource.get({key: item.src}).then((url) => {
                             this.$set(item, 'url', url);
                         }).catch((error) => {});
                     })(it)
