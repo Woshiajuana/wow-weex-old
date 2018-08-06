@@ -6,7 +6,10 @@
 <script>
     import WowNavBar                    from '../../../../wow-weex-ui/lib/wow-nav-bar'
     import Source                       from 'utils/source.util'
+    import Mixin                        from './app.mixin'
+    import ResourceMixin                from '../../wow-weex-plugin/mixins/resource.mixin'
     export default {
+        mixins: [Mixin, ResourceMixin],
         data () {
             return {
                 nav_arr: [
@@ -39,6 +42,9 @@
                     }
                 ]
             }
+        },
+        created () {
+            this.resourceGet(this.nav_arr);
         },
         components: {
             WowNavBar,

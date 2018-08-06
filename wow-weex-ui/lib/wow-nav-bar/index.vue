@@ -42,8 +42,6 @@
 
 <script>
     import config                       from './config'
-//    import path                         from 'plugins/path.plugin'
-    import resource                     from 'plugins/resource.plugin'
     import Mixin                        from './mixins'
     import AssignMixin                  from './../../mixins/assign.mixin'
     import EmitMixin                    from './../../mixins/emit.mixin'
@@ -61,13 +59,6 @@
         },
         created () {
             this._wowAssign(Mixin.data(), config);
-            this.fetchPageUrl();
-        },
-        filters: {
-            filterStyle(style, {checked, color, checked_color}) {
-                style.color = checked ? checked_color : color;
-                return style;
-            },
         },
         methods: {
             // 切换菜单
@@ -83,16 +74,6 @@
                     item.checked = i === index;
                 });
             },
-            fetchPageUrl () {
-                this.nav_arr.forEach((it) => {
-                    ((item) => {
-                        if(!item.src) return '';
-                        resource.get({key: item.src}).then((url) => {
-                            this.$set(item, 'url', url);
-                        }).catch((error) => {});
-                    })(it)
-                })
-            }
         }
     }
 </script>
