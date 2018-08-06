@@ -54,10 +54,11 @@
     import WowCarousel                  from '../../../../../wow-weex-ui/lib/wow-carousel'
     import WowSwitch                    from '../../../../../wow-weex-ui/lib/wow-switch'
     import Mixin                        from './home.mixin'
-    import Resource                     from '../../../wow-weex-plugin/lib/resource.plugin'
-    import Router                       from '../../../wow-weex-plugin/lib/router.plugin'
-    import Loading                      from '../../../wow-weex-plugin/lib/loading.plugin'
+//    import Resource                     from '../../../wow-weex-plugin/lib/resource.plugin'
+    import Router                       from '../../../../../wow-weex-plugin/lib/router.plugin'
+    import Loading                      from '../../../../../wow-weex-plugin/lib/loading.plugin'
     import PathPlugin                   from 'plugins/path.plugin'
+    import Resource                     from '../../../../../wow-weex-plugin/lib/resource.plugin'
     export default {
         mixins: [Mixin],
         data () {
@@ -90,9 +91,9 @@
             }
         },
         created () {
-            PathPlugin.page('wow_home').then((result) => {
-                this.result = result;
-            });
+//            PathPlugin.page('wow_home').then((result) => {
+//                this.result = result;
+//            });
             Resource.get({key: 'wow_home'}).then((result) => {
                 this.result1 = result;
             })

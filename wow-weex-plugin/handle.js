@@ -1,8 +1,9 @@
 
 // 插件处理器
-
+import './es6-promise.util'
 import Config                      from './config'
 
+import Dialogs                          from './lib/dialogs.plugin'
 const {
     APP,                           // 主键
     ARR_SUCCESS_CALLBACK_CODE,      // 成功码
@@ -24,7 +25,7 @@ const Handle = (fire, options = {}) => new Promise((resolve, reject) => {
     let app = Handle.checkKey(options);
     if (app.msg) return Handle.error(reject, app);
     options = { app, ...options };
-    if (!fire) this.error({ code: NONE_FUN_CODE, msg: NONE_FUN_MSG }, reject);
+    if (!fire) Handle.error(reject, { code: NONE_FUN_CODE, msg: NONE_FUN_MSG });
     fire(options, (e) => {
         let code = e[HANDLE_RETURN_FORMAT.CODE]
             || e.result;
@@ -34,7 +35,7 @@ const Handle = (fire, options = {}) => new Promise((resolve, reject) => {
             || 'none msg';
         let data = e[HANDLE_RETURN_FORMAT.DATA] || null;
         let success = [...ARR_SUCCESS_CALLBACK_CODE, 'success'].indexOf(code) > -1;
-        return success ? this.success(resolve, {code, msg, data}) : this.error(reject, {code, msg});
+        return success ? Handle.success(resolve, {code, msg, data}) : Handle.error(reject, {code, msg});
     });
 });
 
