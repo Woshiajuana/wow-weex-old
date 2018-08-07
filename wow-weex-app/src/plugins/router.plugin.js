@@ -22,7 +22,7 @@ export default {
         path.page(pagename).then(nativepath => {
             console.log(nativepath)
             nativepath = parmas ? nativepath + '?parmas=' + encodeURIComponent(JSON.stringify(parmas)) : nativepath;
-            // dialogs.alert({message: url});
+            dialogs.alert({message: nativepath});
             navigator.push({ url: nativepath, animated: animated, close: close }, e => {});
         }).catch(error => {
             dialogs.toast({ message: error });

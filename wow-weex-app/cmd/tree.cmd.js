@@ -38,7 +38,7 @@ export default((arr_parameter) => new Promise((resolve, reject) => {
             let full_path = path.join(directory, file);
             let stat = fs_extra.statSync(full_path);
             let ext_name = path.extname(full_path);
-            if (stat.isFile() && (ext_name === '.vue' || ext_name === '.json')) {
+            if (stat.isFile() && (ext_name === '.vue' || ext_name === '.js')) {
                 let file_path = path.join(dir, path.basename(file, ext_name));
                 let file_path_arr = file_path.replace(/\\/g, '/').split('\/');
                 file_path_arr = unique(file_path_arr);
@@ -46,8 +46,9 @@ export default((arr_parameter) => new Promise((resolve, reject) => {
                 if (ext_name === '.vue') {
                     out_tree.resource[name] ? out_tree.resource[name].src = name + '.js' : out_tree.resource[name] = { src: name + '.js' };
                     old_out_tree.resource[name] = name + '.js';
-                } else {
-                    let json = require( path.join(__dirname, './../src/views', file_path + '.json'));
+                } else if (file_path.indexOf('.meta.json') > -1) {
+                    let json = require( path.join(__dirname, './../src/views', file_path + '.js')).default;
+                    console.log(JSON.stringify(json))
                     name = name.split('.')[0];
                     out_tree.resource[name] ? out_tree.resource[name].meta = json : out_tree.resource[name] = { meta: json };
                 }
