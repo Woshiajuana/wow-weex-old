@@ -15,20 +15,16 @@ export default {
     // @param options   [object|string] 参数配置，页面key
     // @param params    [object]        页面传参
     push (options, params) {
-        DialogsPlugin.alert('1');
         let key = options.key || options;
         let animated = options.animated || 'true';
         let close = options.close || 'false';
-        DialogsPlugin.alert('2');
         LoadingPlugin.show();
-        DialogsPlugin.alert('3');
         ResourcePlugin.get({key}).then((url) => {
-            DialogsPlugin.alert('4');
-            DialogsPlugin.alert(url);
+            // DialogsPlugin.alert(url);
+            // DialogsPlugin.alert(url.replace('file:', 'storage:'));
             !params && (url = `${url}?params=${encodeURIComponent(JSON.stringify(params))}`);
             Navigator.push({url, animated, close});
         }).catch((error) => {
-            DialogsPlugin.alert('5');
             DialogsPlugin.toast(error);
         }).finally(() => {
             LoadingPlugin.hide();
@@ -45,7 +41,7 @@ export default {
     // @param weex      [object]    weex对象
     getParams (weex) {
         let url = weex.$getConfig().bundleUrl,
-            params = url.indexOf('?params=') > -1 ? url.substr(url.indexOf("?params=") + 8) : '';
+            params = url.indexOf('?params=') > -1 ? url.substr(url.indexOf('?params=') + 8) : '';
         return params ? JSON.parse(decodeURIComponent(decodeURIComponent(params))) : '';
     },
 

@@ -36,6 +36,12 @@
             }"
                 @click="handleClick"
             ></wow-button>
+            <wow-button
+                :button_style="{
+                marginTop: 120,
+            }"
+                @click="handleClick1"
+            ></wow-button>
             <text>{{is_switch}}</text>
             <!--<text>{{str_key}}</text>-->
             <!--<text>{{str_cell}}</text>-->
@@ -54,9 +60,12 @@
     import WowCarousel                  from 'wow-weex-ui/lib/wow-carousel'
     import WowSwitch                    from 'wow-weex-ui/lib/wow-switch'
     import Mixin                        from './home.mixin'
-    import Router                       from 'wow-weex-plugin/lib/router.plugin'
+    import Router                       from '../../../../../wow-weex-plugin/lib/router.plugin'
     import Loading                      from 'wow-weex-plugin/lib/loading.plugin'
     import Resource                     from 'wow-weex-plugin/lib/resource.plugin'
+    import Router1                      from 'plugins/router.plugin'
+
+    const Navigator = weex.requireModule('navigator');
     export default {
         mixins: [Mixin],
         data () {
@@ -102,13 +111,21 @@
             },
             handleClick (callback) {
                 callback();
+                console.log(1)
 //                Resource.get({key: 'wow_test'}).then((result) => {
 //                    this.result = result;
 //                }).catch((error) => {
 //                    this.result = error;
 //                });
-//                Router.push('wow_test')
-                Loading.show({touch: true});
+                Router.push('wow_help')
+//                Navigator.push({url: 'file:/storage/emulated/0/Android/data/com.example.wow/file/wow_home.js'})
+//                Navigator.push({url: 'http://20.0.18.93:32580/dist/BD/wow_help.js', animated: 'true',})
+//                Router1.push('wow_help')
+//                Loading.show({touch: true});
+            },
+            handleClick1 (callback) {
+                callback();
+                Router1.push('wow_help')
             }
         },
         components: {

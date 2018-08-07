@@ -44,7 +44,7 @@
             }
         },
         created () {
-            this.resourceGet(this.nav_arr);
+            this.resourceGet(this.arr_nav);
         },
         components: {
             WowNavBar,

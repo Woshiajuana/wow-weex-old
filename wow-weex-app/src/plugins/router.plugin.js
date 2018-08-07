@@ -18,8 +18,11 @@ export default {
         let pagename = _.isObject(input) ? input.url : input;
         let animated = _.isObject(input) ? input.animated:  'true';
         let close = _.isObject(input) ? input.close:  '';
+        console.log(pagename)
         path.page(pagename).then(nativepath => {
+            console.log(nativepath)
             nativepath = parmas ? nativepath + '?parmas=' + encodeURIComponent(JSON.stringify(parmas)) : nativepath;
+            // dialogs.alert({message: url});
             navigator.push({ url: nativepath, animated: animated, close: close }, e => {});
         }).catch(error => {
             dialogs.toast({ message: error });

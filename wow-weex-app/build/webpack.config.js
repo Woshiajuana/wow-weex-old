@@ -89,6 +89,7 @@ module.exports = {
                 include: [
                     path.resolve(__dirname, '../node_modules/wow-weex-ui'),
                     path.resolve(__dirname, '../node_modules/wow-weex-plugin'),
+                    path.resolve(__dirname, '../../wow-weex-plugin'),
                     path.resolve(__dirname, '../src'),
                 ],
                 // exclude: /node_modules/,
