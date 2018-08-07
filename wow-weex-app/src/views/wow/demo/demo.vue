@@ -9,8 +9,8 @@
     </wow-view>
 </template>
 <script>
-    import WowView                      from '../../../../../wow-weex-ui/lib/wow-view'
-    import WowGrid                      from '../../../../../wow-weex-ui/lib/wow-grid'
+    import WowView                      from 'wow-weex-ui/lib/wow-view'
+    import WowGrid                      from 'wow-weex-ui/lib/wow-grid'
     import Mixin                        from './demo.mixin'
     export default {
         mixins: [Mixin],

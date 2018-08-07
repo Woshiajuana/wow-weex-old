@@ -7,7 +7,7 @@
     </wow-view>
 </template>
 <script>
-    import WowView                      from '../../../../../wow-weex-ui/lib/wow-view'
+    import WowView                      from 'wow-weex-ui/lib/wow-view'
     import Mixin                        from './help.mixin'
     export default {
         mixins: [Mixin],

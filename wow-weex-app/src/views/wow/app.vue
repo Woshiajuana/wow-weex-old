@@ -1,18 +1,18 @@
 <template>
     <wow-nav-bar
-        :nav_arr="nav_arr">
+        :nav_arr="arr_nav">
     </wow-nav-bar>
 </template>
 <script>
-    import WowNavBar                    from '../../../../wow-weex-ui/lib/wow-nav-bar'
+    import WowNavBar                    from 'wow-weex-ui/lib/wow-nav-bar'
+    import ResourceMixin                from 'wow-weex-plugin/mixins/resource.mixin'
     import Source                       from 'utils/source.util'
     import Mixin                        from './app.mixin'
-    import ResourceMixin                from '../../../../wow-weex-plugin/mixins/resource.mixin'
     export default {
         mixins: [Mixin, ResourceMixin],
         data () {
             return {
-                nav_arr: [
+                arr_nav: [
                     {
                         txt: 'WoW',
                         src: 'wow_home',

@@ -83,8 +83,20 @@ module.exports = {
     },
     module: {
         rules: [
-            { test: /\.js(\?[^?]+)?$/, loaders: ['babel-loader'], exclude: /node_modules/ },
-            { test: /\.(we|vue)(\?[^?]+)?$/, loader: 'weex-loader' },
+            {
+                test: /\.js(\?[^?]+)?$/,
+                loaders: ['babel-loader'],
+                include: [
+                    path.resolve(__dirname, '../node_modules/wow-weex-ui'),
+                    path.resolve(__dirname, '../node_modules/wow-weex-plugin'),
+                    path.resolve(__dirname, '../src'),
+                ],
+                // exclude: /node_modules/,
+            },
+            {
+                test: /\.(we|vue)(\?[^?]+)?$/,
+                loader: 'weex-loader'
+            },
         ]
     },
     plugins: [uglifyJsPlugin, bannerPlugin]

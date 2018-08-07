@@ -46,19 +46,17 @@
     </wow-view>
 </template>
 <script>
-    import WowView                      from '../../../../../wow-weex-ui/lib/wow-view'
-    import WowButton                    from '../../../../../wow-weex-ui/lib/wow-button'
-    import WowSearch                    from '../../../../../wow-weex-ui/lib/wow-search'
-    import WowInputCell                 from '../../../../../wow-weex-ui/lib/wow-input-cell'
-    import WowArrow                     from '../../../../../wow-weex-ui/lib/wow-arrow'
-    import WowCarousel                  from '../../../../../wow-weex-ui/lib/wow-carousel'
-    import WowSwitch                    from '../../../../../wow-weex-ui/lib/wow-switch'
+    import WowView                      from 'wow-weex-ui/lib/wow-view'
+    import WowButton                    from 'wow-weex-ui/lib/wow-button'
+    import WowSearch                    from 'wow-weex-ui/lib/wow-search'
+    import WowInputCell                 from 'wow-weex-ui/lib/wow-input-cell'
+    import WowArrow                     from 'wow-weex-ui/lib/wow-arrow'
+    import WowCarousel                  from 'wow-weex-ui/lib/wow-carousel'
+    import WowSwitch                    from 'wow-weex-ui/lib/wow-switch'
     import Mixin                        from './home.mixin'
-//    import Resource                     from '../../../wow-weex-plugin/lib/resource.plugin'
-    import Router                       from '../../../../../wow-weex-plugin/lib/router.plugin'
-    import Loading                      from '../../../../../wow-weex-plugin/lib/loading.plugin'
-    import PathPlugin                   from 'plugins/path.plugin'
-    import Resource                     from '../../../../../wow-weex-plugin/lib/resource.plugin'
+    import Router                       from 'wow-weex-plugin/lib/router.plugin'
+    import Loading                      from 'wow-weex-plugin/lib/loading.plugin'
+    import Resource                     from 'wow-weex-plugin/lib/resource.plugin'
     export default {
         mixins: [Mixin],
         data () {
@@ -91,9 +89,6 @@
             }
         },
         created () {
-//            PathPlugin.page('wow_home').then((result) => {
-//                this.result = result;
-//            });
             Resource.get({key: 'wow_home'}).then((result) => {
                 this.result1 = result;
             })
