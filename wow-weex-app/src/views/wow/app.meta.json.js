@@ -1,4 +1,4 @@
-import Source               from 'utils/source.util'
+import Source               from '../../utils/source.util'
 export default {
     data: {
         arr_nav: [

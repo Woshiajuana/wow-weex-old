@@ -7,6 +7,6 @@ export default {
     isBankCard: value => /^(\d{16}|\d{18}|\d{19})$/.test(value),
     // 邮箱
     isEmail: value => /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(value),
-
+    // 金额
     isMoney: value => /^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/.test(value)
 };

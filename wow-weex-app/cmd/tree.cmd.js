@@ -48,7 +48,6 @@ export default((arr_parameter) => new Promise((resolve, reject) => {
                     old_out_tree.resource[name] = name + '.js';
                 } else if (file_path.indexOf('.meta.json') > -1) {
                     let json = require( path.join(__dirname, './../src/views', file_path + '.js')).default;
-                    console.log(JSON.stringify(json))
                     name = name.split('.')[0];
                     out_tree.resource[name] ? out_tree.resource[name].meta = json : out_tree.resource[name] = { meta: json };
                 }
