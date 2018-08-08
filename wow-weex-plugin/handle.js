@@ -3,7 +3,7 @@
 import './es6-promise.util'
 import Config                      from './config'
 
-import Dialogs                          from './lib/dialogs.plugin'
+// import Dialogs                          from './lib/dialogs.plugin'
 const {
     APP,                           // 主键
     ARR_SUCCESS_CALLBACK_CODE,      // 成功码
@@ -25,7 +25,7 @@ const Handle = (fire, options = {}) => new Promise((resolve, reject) => {
     let app = Handle.checkKey(options);
     if (app.msg) return Handle.error(reject, app);
     options = { app, ...options };
-    if (!fire) Handle.error(reject, { code: NONE_FUN_CODE, msg: NONE_FUN_MSG });
+    if (!fire) return Handle.error(reject, { code: NONE_FUN_CODE, msg: NONE_FUN_MSG });
     fire(options, (e) => {
         let code = e[HANDLE_RETURN_FORMAT.CODE]
             || e.result;

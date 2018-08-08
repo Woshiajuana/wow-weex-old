@@ -46,7 +46,7 @@
             <!--<text>{{str_key}}</text>-->
             <!--<text>{{str_cell}}</text>-->
             <text>{{result}}</text>
-            <text>{{result1}}</text>
+            <text>数据：{{arr_nav}}</text>
             <!--</div>-->
         </scroller>
     </wow-view>
@@ -63,13 +63,16 @@
     import Router                       from '../../../../../wow-weex-plugin/lib/router.plugin'
     import Loading                      from 'wow-weex-plugin/lib/loading.plugin'
     import Resource                     from 'wow-weex-plugin/lib/resource.plugin'
-    import Router1                      from 'plugins/router.plugin'
+//    import Router1                      from 'plugins/router.plugin'
+    import MetaMixin                    from '../../../../../wow-weex-plugin/mixins/meta.mixin'
+    import Dialogs                      from 'wow-weex-plugin/lib/dialogs.plugin'
 
     const Navigator = weex.requireModule('navigator');
     export default {
-        mixins: [Mixin],
+        mixins: [Mixin, MetaMixin],
         data () {
             return {
+                arr_nav: '',
                 is_switch: false,
                 arr_carousel: [
                     {src: 'http://www.owulia.com/static/temp/2.jpg'},
@@ -101,6 +104,7 @@
             Resource.get({key: 'wow_home'}).then((result) => {
                 this.result1 = result;
             })
+
         },
         methods: {
             handleSwitch(callback) {
@@ -125,7 +129,10 @@
             },
             handleClick1 (callback) {
                 callback();
-                Router1.push('wow_help')
+//                Router1.push('wow_help')
+                this.metaGetData('wow_app').then(() =>{}).catch((error) => {
+                    Dialogs.toast(error)
+                });
             }
         },
         components: {
