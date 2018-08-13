@@ -66,7 +66,7 @@
 //    import Router1                      from 'plugins/router.plugin'
     import MetaMixin                    from '../../../../../wow-weex-plugin/mixins/meta.mixin'
     import Dialogs                      from 'wow-weex-plugin/lib/dialogs.plugin'
-
+    const MetaModule = weex.requireModule('metaModule') || {};
     const Navigator = weex.requireModule('navigator');
     export default {
         mixins: [Mixin, MetaMixin],
@@ -129,10 +129,19 @@
             },
             handleClick1 (callback) {
                 callback();
-//                Router1.push('wow_help')
-                this.metaGetData('wow_app').then(() =>{}).catch((error) => {
-                    Dialogs.toast(error)
-                });
+////                Router1.push('wow_help')
+//                this.metaGetData('wow_app').then((result) =>{
+//
+//                }).catch((error) => {
+//                    Dialogs.toast(error)
+//                });
+
+                MetaModule.get({app: 'wow', key: 'wow_app'}, (result) => {
+                    this.arr_nav = result;
+                    Dialogs.toast('1')
+                }).catch(() => {
+                    Dialogs.toast('2')
+                })
             }
         },
         components: {
