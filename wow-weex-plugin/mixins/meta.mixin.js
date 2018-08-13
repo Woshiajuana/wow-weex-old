@@ -1,6 +1,10 @@
 
 import MetaPlugin                   from './../lib/meta.plugin'
-import Dialogs                   from './../lib/dialogs.plugin'
+const data = () => {
+    return {
+        $meta: '',
+    }
+};
 
 export const methods = {
     metaGetData (key) {
@@ -9,17 +13,13 @@ export const methods = {
             result = JSON.parse(result);
             let { data } = result;
             for (let key in data) {
-                Dialogs.alert(this.$data)
-                this.$set(this.$data, 'x1', '2');
-                setTimeout(() => {
-                    Dialogs.alert(this.$data)
-                },2000)
-                // this[key] = data[key];
+                // this.$set(this.$meta, key, data[key]);
             }
         })
     }
 };
 
 export default {
+    data,
     methods,
 }

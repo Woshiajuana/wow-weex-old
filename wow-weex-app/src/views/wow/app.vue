@@ -1,6 +1,6 @@
 <template>
     <wow-nav-bar
-        :nav_arr="arr_nav">
+        :nav_arr="$meta.arr_nav">
     </wow-nav-bar>
 </template>
 <script>
@@ -12,19 +12,14 @@
     import Mixin                        from './app.mixin'
     export default {
         mixins: [Mixin, ResourceMixin, MetaMixin],
-        data () {
-            return {
-                arr_nav1: {},
-                arr_nav2: {},
-            }
-        },
         created () {
             this.fetchNavData();
         },
         methods: {
             fetchNavData () {
                 this.metaGetData('wow_app').then(() =>{
-//                    return this.resourceGet(this.arr_nav);
+                    Dialogs.alert(this.$meta)
+//                    return this.resourceGet(this.$meta.arr_nav);
                 }).catch((error) => {
                     Dialogs.alert(error)
                 });
