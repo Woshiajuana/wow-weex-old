@@ -3,7 +3,6 @@
 import Handle                           from '../handle'
 
 const MetaModule = weex.requireModule('metaModule') || {};
-import Dialogs                      from './../lib/dialogs.plugin'
 
 export default {
 
@@ -12,7 +11,6 @@ export default {
     //      key: '',
     // }
     get (options) {
-        Dialogs.alert('1')
         return Handle(MetaModule.get, options);
     },
 

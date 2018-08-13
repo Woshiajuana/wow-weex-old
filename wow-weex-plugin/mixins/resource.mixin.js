@@ -1,6 +1,6 @@
 import Resource             from './../lib/resource.plugin'
 
-const methods = {
+export const methods = {
     // 获取页面地址
     resourceGet (arr_page) {
         arr_page.forEach((it) => {

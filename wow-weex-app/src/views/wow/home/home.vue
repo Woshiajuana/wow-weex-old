@@ -62,12 +62,8 @@
     import Mixin                        from './home.mixin'
     import Router                       from '../../../../../wow-weex-plugin/lib/router.plugin'
     import Loading                      from 'wow-weex-plugin/lib/loading.plugin'
-    import Resource                     from 'wow-weex-plugin/lib/resource.plugin'
-//    import Router1                      from 'plugins/router.plugin'
     import MetaMixin                    from '../../../../../wow-weex-plugin/mixins/meta.mixin'
     import Dialogs                      from 'wow-weex-plugin/lib/dialogs.plugin'
-    const MetaModule = weex.requireModule('metaModule') || {};
-    const Navigator = weex.requireModule('navigator');
     export default {
         mixins: [Mixin, MetaMixin],
         data () {
@@ -100,12 +96,6 @@
                 str_cell: '1',
             }
         },
-        created () {
-            Resource.get({key: 'wow_home'}).then((result) => {
-                this.result1 = result;
-            })
-
-        },
         methods: {
             handleSwitch(callback) {
                 callback && callback();
@@ -115,33 +105,15 @@
             },
             handleClick (callback) {
                 callback();
-                console.log(1)
-//                Resource.get({key: 'wow_test'}).then((result) => {
-//                    this.result = result;
-//                }).catch((error) => {
-//                    this.result = error;
-//                });
                 Router.push('wow_help')
-//                Navigator.push({url: 'file:/storage/emulated/0/Android/data/com.example.wow/file/wow_home.js'})
-//                Navigator.push({url: 'http://20.0.18.93:32580/dist/BD/wow_help.js', animated: 'true',})
-//                Router1.push('wow_help')
-//                Loading.show({touch: true});
             },
             handleClick1 (callback) {
                 callback();
-////                Router1.push('wow_help')
-//                this.metaGetData('wow_app').then((result) =>{
-//
-//                }).catch((error) => {
-//                    Dialogs.toast(error)
-//                });
+                this.metaGetData('wow_app').then((result) =>{
 
-                MetaModule.get({app: 'wow', key: 'wow_app'}, (result) => {
-                    this.arr_nav = result;
-                    Dialogs.toast('1')
-                }).catch(() => {
-                    Dialogs.toast('2')
-                })
+                }).catch((error) => {
+                    Dialogs.toast(error)
+                });
             }
         },
         components: {

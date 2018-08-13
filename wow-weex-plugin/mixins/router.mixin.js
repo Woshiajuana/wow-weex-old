@@ -1,6 +1,6 @@
 import Router                   from './../lib/router.plugin'
 
-const methods = {
+export const methods = {
     // 跳转URL页面
     routerPush (url, params = {}, callback = '') {
         let type = true;
