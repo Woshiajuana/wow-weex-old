@@ -14,7 +14,8 @@
         mixins: [Mixin, ResourceMixin, MetaMixin],
         data () {
             return {
-                arr_nav: {},
+                arr_nav1: {},
+                arr_nav2: {},
             }
         },
         created () {
@@ -23,9 +24,9 @@
         methods: {
             fetchNavData () {
                 this.metaGetData('wow_app').then(() =>{
-                    return this.resourceGet(this.arr_nav);
+//                    return this.resourceGet(this.arr_nav);
                 }).catch((error) => {
-                    Dialogs.toast(error)
+                    Dialogs.alert(error)
                 });
             }
         },
