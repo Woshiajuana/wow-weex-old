@@ -1,8 +1,9 @@
 
 import MetaPlugin                   from './../lib/meta.plugin'
-const data = () => {
+
+export const data = () => {
     return {
-        $meta: '',
+        meta$: {},
     }
 };
 
@@ -13,7 +14,7 @@ export const methods = {
             result = JSON.parse(result);
             let { data } = result;
             for (let key in data) {
-                // this.$set(this.$meta, key, data[key]);
+                this.$set(this.meta$, key, data[key]);
             }
         })
     }
