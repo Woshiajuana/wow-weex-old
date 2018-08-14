@@ -1,10 +1,7 @@
 <template>
-    <div>
-        <text>{{meta$}}</text>
-        <wow-nav-bar
-            :nav_arr="meta$.arr_nav">
-        </wow-nav-bar>
-    </div>
+    <wow-nav-bar
+        :nav_arr="meta$.arr_nav">
+    </wow-nav-bar>
 </template>
 <script>
     import WowNavBar                    from 'wow-weex-ui/lib/wow-nav-bar'
@@ -17,7 +14,7 @@
     export default {
         mixins: [Mixin, RenderService],
         created () {
-            this.render('wow_app', 'arr_nav');
+            this.renderView('wow_app', 'arr_nav');
         },
         components: {
             WowNavBar,

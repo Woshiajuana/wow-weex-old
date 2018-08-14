@@ -6,7 +6,7 @@ import Dialogs                                  from '../lib/dialogs.plugin'
 const methods = {
     ...resourceMethods,
     ...metaMethods,
-    render (key, prop) {
+    renderView (key, prop) {
         this.metaGetData(key).then(() =>{
             return this.resourceGet(this.meta$[prop]);
         }).catch((error) => {
