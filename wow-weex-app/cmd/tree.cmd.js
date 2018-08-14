@@ -49,6 +49,9 @@ export default((arr_parameter) => new Promise((resolve, reject) => {
                 } else if (file_path.indexOf('.meta.json') > -1) {
                     let json = require( path.join(__dirname, './../src/views', file_path + '.js')).default;
                     name = name.split('.')[0];
+                    name = name.split('_');
+                    name = unique(name);
+                    name = name.join('_');
                     out_tree.resource[name] ? out_tree.resource[name].meta = json : out_tree.resource[name] = { meta: json };
                 }
             } else if (stat.isDirectory()) {
