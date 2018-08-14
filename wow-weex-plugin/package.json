@@ -1,6 +1,6 @@
 {
   "name": "wow-weex-plugin",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "weex plugin",
   "main": "index.js",
   "scripts": {

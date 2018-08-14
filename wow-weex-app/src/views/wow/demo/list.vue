@@ -7,7 +7,7 @@
 </template>
 <script>
     import WowView                      from 'wow-weex-ui/lib/wow-view'
-    import RouterMixin                  from '../../../../../wow-weex-plugin/mixins/router.mixin'
+    import RouterMixin                  from 'wow-weex-plugin/mixins/router.mixin'
     export default {
         mixins: [RouterMixin],
         created() {

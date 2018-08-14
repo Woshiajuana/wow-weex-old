@@ -12,7 +12,7 @@
     import WowView                      from 'wow-weex-ui/lib/wow-view'
     import WowGrid                      from 'wow-weex-ui/lib/wow-grid'
     import MetaMixin                    from 'wow-weex-plugin/mixins/meta.mixin'
-    import RouterMixin                  from '../../../../../wow-weex-plugin/mixins/router.mixin'
+    import RouterMixin                  from 'wow-weex-plugin/mixins/router.mixin'
     import Mixin                        from './demo.mixin'
     export default {
         mixins: [Mixin, MetaMixin, RouterMixin],
