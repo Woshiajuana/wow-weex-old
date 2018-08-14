@@ -20,9 +20,7 @@ export default {
         let close = options.close || 'false';
         LoadingPlugin.show();
         ResourcePlugin.get({key}).then((url) => {
-            // DialogsPlugin.alert(url);
-            // DialogsPlugin.alert(url.replace('file:', 'storage:'));
-            !params && (url = `${url}?params=${encodeURIComponent(JSON.stringify(params))}`);
+            params && (url = `${url}?params=${encodeURIComponent(JSON.stringify(params))}`);
             Navigator.push({url, animated, close});
         }).catch((error) => {
             DialogsPlugin.toast(error);

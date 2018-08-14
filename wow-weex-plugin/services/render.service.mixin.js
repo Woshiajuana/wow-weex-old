@@ -8,8 +8,7 @@ const methods = {
     ...metaMethods,
     renderView (key, prop) {
         this.metaGetData(key).then(() =>{
-            Dialogs.alert(this.meta$)
-            // return this.resourceGet(this.meta$[prop]);
+            return this.resourceGet(this.meta$[prop]);
         }).catch((error) => {
             Dialogs.alert(error)
         });
