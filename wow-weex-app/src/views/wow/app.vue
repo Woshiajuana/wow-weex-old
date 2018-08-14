@@ -7,10 +7,10 @@
     import WowNavBar                    from 'wow-weex-ui/lib/wow-nav-bar'
     import Source                       from 'utils/source.util'
     import Dialogs                      from 'wow-weex-plugin/lib/dialogs.plugin'
-    import RenderService                from 'wow-weex-plugin/services/render.service'
+    import RenderServiceMixin           from 'wow-weex-plugin/services/render.service.mixin'
     import Mixin                        from './app.mixin'
     export default {
-        mixins: [Mixin, RenderService],
+        mixins: [Mixin, RenderServiceMixin],
         created () {
             this.renderView('wow_app', 'arr_nav');
         },
