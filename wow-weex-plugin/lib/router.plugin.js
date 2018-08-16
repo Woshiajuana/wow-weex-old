@@ -16,10 +16,11 @@ export default {
     // @param params    [object]        页面传参
     push (options, params) {
         let key = options.key || options;
+        let app = options.app || '';
         let animated = options.animated || 'true';
         let close = options.close || 'false';
         LoadingPlugin.show();
-        ResourcePlugin.get({key}).then((url) => {
+        ResourcePlugin.get({key, app}).then((url) => {
             params && (url = `${url}?params=${encodeURIComponent(JSON.stringify(params))}`);
             Navigator.push({url, animated, close});
         }).catch((error) => {

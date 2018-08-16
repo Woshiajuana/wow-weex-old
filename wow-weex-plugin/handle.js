@@ -5,7 +5,7 @@ import Config                      from './config'
 
 // import Dialogs                          from './lib/dialogs.plugin'
 const {
-    APP,                           // 主键
+    APP,                            // 主键
     ARR_SUCCESS_CALLBACK_CODE,      // 成功码
     ARR_SUCCESS_CALLBACK_MSG,       // 成功对应提示
     ARR_ERROR_CALLBACK_CODE,        // 错误码
@@ -41,7 +41,7 @@ const Handle = (fire, options = {}) => new Promise((resolve, reject) => {
 
 // key 检测
 Handle.checkKey = (options = {}) => {
-    return options.APP || APP || { code: ARR_ERROR_CALLBACK_CODE[0], msg: 'must be set app' };
+    return options.app || APP || { code: ARR_ERROR_CALLBACK_CODE[0], msg: 'must be set app' };
 };
 
 // error 回调

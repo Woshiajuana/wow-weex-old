@@ -105,15 +105,11 @@
             },
             handleClick (callback) {
                 callback();
-                Router.push('wow_help')
+                Router.push({app: 'test', key: 'wow_help'})
             },
             handleClick1 (callback) {
                 callback();
-                this.metaGetData('wow_app').then((result) =>{
-
-                }).catch((error) => {
-                    Dialogs.toast(error)
-                });
+                Router.push('wow_demo');
             }
         },
         components: {
