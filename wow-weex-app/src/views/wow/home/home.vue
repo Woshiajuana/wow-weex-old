@@ -2,6 +2,7 @@
     <wow-view
         @scroll="handleScroll"
         view_header_left_src=""
+        view_use_scroll=""
         view_header_right_txt="GitHub"
         :view_header_style="{
             height: 220
@@ -25,19 +26,85 @@
                 :search_src="src_search"
             ></wow-search>
         </div>
+        <scroller>
 
-        <wow-button
-            :button_style="{
-                marginTop: 120,
-            }"
-            @click="handleClick"
-        ></wow-button>
-        <wow-button
-            :button_style="{
-                marginTop: 120,
-            }"
-            @click="handleClick1"
-        ></wow-button>
+            <div class="inner">
+                <div class="item">
+                    <image class="image" src="http://www.owulia.com/static/temp/2.jpg"></image>
+                    <div class="con">
+                        <text class="text">修改了坡地阿斯皮大蒜捣破啊</text>
+                        <text class="text">修改了坡地阿斯</text>
+                        <text class="text">修改了坡地阿斯大三大四都看得开地爬上爬大</text>
+                        <text class="text">修改了坡</text>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <image class="image" src="http://www.owulia.com/static/temp/2.jpg"></image>
+                    <div class="con">
+                        <text class="text">修改了坡地阿斯皮大蒜捣破啊</text>
+                        <text class="text">修改了坡地阿斯</text>
+                        <text class="text">修改了坡地阿斯大三大四都看得开地爬上爬大</text>
+                        <text class="text">修改了坡</text>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <image class="image" src="http://www.owulia.com/static/temp/2.jpg"></image>
+                    <div class="con">
+                        <text class="text">修改了坡地阿斯皮大蒜捣破啊</text>
+                        <text class="text">修改了坡地阿斯</text>
+                        <text class="text">修改了坡地阿斯大三大四都看得开地爬上爬大</text>
+                        <text class="text">修改了坡</text>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <image class="image" src="http://www.owulia.com/static/temp/2.jpg"></image>
+                    <div class="con">
+                        <text class="text">修改了坡地阿斯皮大蒜捣破啊</text>
+                        <text class="text">修改了坡地阿斯</text>
+                        <text class="text">修改了坡地阿斯大三大四都看得开地爬上爬大</text>
+                        <text class="text">修改了坡</text>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <image class="image" src="http://www.owulia.com/static/temp/2.jpg"></image>
+                    <div class="con">
+                        <text class="text">修改了坡地阿斯皮大蒜捣破啊</text>
+                        <text class="text">修改了坡地阿斯</text>
+                        <text class="text">修改了坡地阿斯大三大四都看得开地爬上爬大</text>
+                        <text class="text">修改了坡</text>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <image class="image" src="http://www.owulia.com/static/temp/2.jpg"></image>
+                    <div class="con">
+                        <text class="text">修改了坡地阿斯皮大蒜捣破啊</text>
+                        <text class="text">修改了坡地阿斯</text>
+                        <text class="text">修改了坡地阿斯大三大四都看得开地爬上爬大</text>
+                        <text class="text">修改了坡</text>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!--<wow-button-->
+                <!--:button_style="{-->
+                <!--marginTop: 120,-->
+            <!--}"-->
+                <!--@click="handleClick"-->
+            <!--&gt;</wow-button>-->
+            <!--<wow-button-->
+                <!--:button_style="{-->
+                <!--marginTop: 120,-->
+            <!--}"-->
+                <!--@click="handleClick1"-->
+            <!--&gt;</wow-button>-->
+        </scroller>
     </wow-view>
 </template>
 <script>
@@ -127,4 +194,38 @@
         margin-top: 16px;
         width: 750px;
     }
+
+
+    .inner{
+        margin-top: 20px;
+        width: 750px;
+        flex-wrap: wrap;
+        padding-left: 20px;
+        padding-right: 20px;
+        justify-content: space-between;
+    }
+    .item{
+        flex: 1;
+        background-color: #fff;
+        border-radius: 8px;
+        flex-direction: row;
+        align-items: center;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        border-color: #dedede;
+        border-width: 1px;
+    }
+    .image{
+        width: 200px;
+        height: 200px;
+        margin-right: 20px;
+        border-radius: 5px;
+    }
+    .con{
+        height: 200px;
+    }
+
 </style>
