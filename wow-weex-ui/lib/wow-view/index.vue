@@ -117,7 +117,6 @@
         position: absolute;
         flex-direction: row;
         align-items: center;
-        bottom: 0;
     }
     .right{
         right: 0;

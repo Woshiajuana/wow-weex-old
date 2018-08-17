@@ -8,24 +8,20 @@
                 v-if="search_src"
                 :src="search_src"
             ></image>
-            <div class="inner"
-                 :style="d_search_inner_style">
-                <input
-                    v-model="search_value"
-                    class="input"
-                    @input="handleInput"
-                    v-if="search_use_input"
-                    :style="d_search_input_style"
-                    :type="search_input_type"
-                    :maxlength="search_input_max_length || 9999"
-                    :placeholder-color="search_input_placeholder_color"
-                    :placeholder="search_input_placeholder"/>
-                <text
-                    class="input"
-                    :style="d_search_input_style"
-                    v-else
-                >{{search_input_placeholder}}</text>
-            </div>
+            <input
+                class="input"
+                v-model="search_value"
+                @input="handleInput"
+                v-if="search_use_input"
+                :style="d_search_input_style"
+                :type="search_input_type"
+                :maxlength="search_input_max_length || 9999"
+                :placeholder-color="search_input_placeholder_color"
+                :placeholder="search_input_placeholder"/>
+            <text
+                :style="d_search_input_style"
+                v-else
+            >{{search_input_placeholder}}</text>
             <image
                 @click="handleClear"
                 :style="d_search_close_src_style"
@@ -86,14 +82,7 @@
         flex-direction: row;
         align-items: center;
     }
-    .inner{
-        flex: 1;
-    }
     .input{
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        flex: 1;
     }
 </style>

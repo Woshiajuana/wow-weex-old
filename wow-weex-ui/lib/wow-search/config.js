@@ -7,9 +7,9 @@ export default Assign({
         paddingRight: 32,
     },
     search_wrap_style: {
-        height: 60,
-        borderRadius: 60,
-        backgroundColor: 'rgba(255,255,255,0.3)',
+        height: 65,
+        borderRadius: 65,
+        backgroundColor: '#fff',
         paddingLeft: 15,
         paddingRight: 15,
         flex: 1,
@@ -30,7 +30,7 @@ export default Assign({
     },
     search_input_style: {
         height: 56,
-        color: '#fff',
+        color: '#333',
         fontSize: 30,
         lineHeight: 56,
     },
@@ -38,6 +38,6 @@ export default Assign({
     search_close_src: '',
     search_input_placeholder: '搜索',
     search_input_type: 'text',
-    search_input_placeholder_color: '#fff',
+    search_input_placeholder_color: '#dedede',
     search_use_input: true,
 }, config)

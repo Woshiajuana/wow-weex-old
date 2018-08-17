@@ -1,60 +1,56 @@
 <template>
     <wow-view
         @scroll="handleScroll"
-        view_use_scroll=""
-        view_use_header=""
         view_header_left_src=""
-        :view_header_style="view_header_style">
-        <wow-carousel
-            :carousel_arr="arr_carousel"
-        ></wow-carousel>
-        <wow-search
-            class="search"
-            :search_close_src="src_close"
-            :search_src="src_search"
-            v-model="str_key"
-        ></wow-search>
-        <scroller>
+        view_header_right_txt="GitHub"
+        :view_header_style="{
+            height: 220
+        }">
+        <div class="header"
+             slot="view-header-center">
+            <image class="logo" :src="src_logo"></image>
+            <wow-search
+                class="search"
+                search_use_input=""
+                :search_style="{
+                    paddingTop: 120,
+                    width: 750
+                }"
+                :search_wrap_style="{
+                    alignItem: 'center',
+                    backgroundColor: 'red',
+                    justifyContent: 'center'
+                }"
+                :search_close_src="src_close"
+                :search_src="src_search"
+                v-model="str_key"
+            ></wow-search>
+        </div>
 
-            <wow-switch
-                @click="handleSwitch"
-                :switch_value="is_switch"
-            ></wow-switch>
-
-            <wow-input-cell
-                v-for="(item, index) in arr_data"
-                :key="index"
-                :input_label_txt="item.label"
-                :input_value="item.value"
-                input_use="">
-                <wow-arrow slot="input-right"></wow-arrow>
-            </wow-input-cell>
-
-            <wow-button
-                :button_style="{
+        <wow-button
+            :button_style="{
                 marginTop: 120,
             }"
-                @click="handleClick"
-            ></wow-button>
-            <wow-button
-                :button_style="{
+            @click="handleClick"
+        ></wow-button>
+        <wow-button
+            :button_style="{
                 marginTop: 120,
             }"
-                @click="handleClick1"
-            ></wow-button>
-            <text>{{is_switch}}</text>
-            <!--<text>{{str_key}}</text>-->
-            <!--<text>{{str_cell}}</text>-->
-            <text>{{result}}</text>
-            <text>数据：{{arr_nav}}</text>
-            <!--</div>-->
-        </scroller>
+            @click="handleClick1"
+        ></wow-button>
+        <text>{{is_switch}}</text>
+        <!--<text>{{str_key}}</text>-->
+        <!--<text>{{str_cell}}</text>-->
+        <text>{{result}}</text>
+        <text>数据：{{arr_nav}}</text>
+        <!--</div>-->
     </wow-view>
 </template>
 <script>
     import WowView                      from 'wow-weex-ui/lib/wow-view'
     import WowButton                    from 'wow-weex-ui/lib/wow-button'
-    import WowSearch                    from 'wow-weex-ui/lib/wow-search'
+    import WowSearch                    from '../../../../../wow-weex-ui/lib/wow-search'
     import WowInputCell                 from 'wow-weex-ui/lib/wow-input-cell'
     import WowArrow                     from 'wow-weex-ui/lib/wow-arrow'
     import WowCarousel                  from 'wow-weex-ui/lib/wow-carousel'
@@ -70,11 +66,6 @@
             return {
                 arr_nav: '',
                 is_switch: false,
-                arr_carousel: [
-                    {src: 'http://www.owulia.com/static/temp/2.jpg'},
-                    {src: 'http://www.owulia.com/static/temp/2.jpg'},
-                    {src: 'http://www.owulia.com/static/temp/2.jpg'},
-                ],
                 arr_data: [
                     {
                         label: '左边',
@@ -95,6 +86,9 @@
                 str_key: '1',
                 str_cell: '1',
             }
+        },
+        created () {
+            this.metaGetData('wow_home');
         },
         methods: {
             handleSwitch(callback) {
@@ -124,11 +118,4 @@
     }
 </script>
 <style>
-    .search{
-        position: absolute;
-        width: 750px;
-        height: 60px;
-        top: 20px;
-        left: 0;
-    }
 </style>
