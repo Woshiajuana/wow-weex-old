@@ -27,15 +27,16 @@
             ></wow-search>
         </div>
         <scroller>
-
             <div class="inner">
                 <div class="item">
+                    <image class="new-icon" :src="src_new"></image>
                     <image class="image" src="http://www.owulia.com/static/temp/2.jpg"></image>
                     <div class="con">
-                        <text class="text">修改了坡地阿斯皮大蒜捣破啊</text>
-                        <text class="text">修改了坡地阿斯</text>
-                        <text class="text">修改了坡地阿斯大三大四都看得开地爬上爬大</text>
-                        <text class="text">修改了坡</text>
+                        <text class="title">V0.0.1</text>
+                        <text class="text">1.修改了坡地阿斯皮大蒜捣破啊</text>
+                        <text class="text">2.修改了坡地阿斯</text>
+                        <text class="text">3.修改了坡地阿斯大三大四都看得开地爬上爬大</text>
+                        <text class="text">5.修改了坡</text>
                     </div>
                 </div>
 
@@ -218,6 +219,9 @@
         border-color: #dedede;
         border-width: 1px;
     }
+    .item:active{
+        background-color: #bbb;
+    }
     .image{
         width: 200px;
         height: 200px;
@@ -227,5 +231,24 @@
     .con{
         height: 200px;
     }
-
+    .new-icon{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 60px;
+        height: 60px;
+    }
+    .title{
+        color: #999;
+        height: 50px;
+        font-size: 32px;
+        line-height: 50px;
+        margin-bottom: 30px;
+    }
+    .text{
+        width: 450px;
+        color: #bbb;
+        font-size: 24px;
+        line-height: 40px;
+    }
 </style>
