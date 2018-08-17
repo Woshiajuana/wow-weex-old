@@ -59,6 +59,6 @@ export default Assign({
     view_header_right_txt_style: {
         color: '#3c3c3c',
         fontSize: 28,
-        marginLeft: 25,
+        marginRight: 25,
     },
 }, config)

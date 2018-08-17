@@ -9,21 +9,20 @@
         <div class="header"
              slot="view-header-center">
             <image class="logo" :src="src_logo"></image>
+            <text class="version">(V0.0.1)</text>
             <wow-search
                 class="search"
+                search_input_placeholder="Search Components or Plugins"
                 search_use_input=""
-                :search_style="{
-                    paddingTop: 120,
-                    width: 750
+                :search_input_style="{
+                    fontSize: 20,
+                    color: '#bbb'
                 }"
                 :search_wrap_style="{
                     alignItem: 'center',
-                    backgroundColor: 'red',
                     justifyContent: 'center'
                 }"
-                :search_close_src="src_close"
                 :search_src="src_search"
-                v-model="str_key"
             ></wow-search>
         </div>
 
@@ -39,26 +38,20 @@
             }"
             @click="handleClick1"
         ></wow-button>
-        <text>{{is_switch}}</text>
-        <!--<text>{{str_key}}</text>-->
-        <!--<text>{{str_cell}}</text>-->
-        <text>{{result}}</text>
-        <text>数据：{{arr_nav}}</text>
-        <!--</div>-->
     </wow-view>
 </template>
 <script>
     import WowView                      from 'wow-weex-ui/lib/wow-view'
     import WowButton                    from 'wow-weex-ui/lib/wow-button'
-    import WowSearch                    from '../../../../../wow-weex-ui/lib/wow-search'
+    import WowSearch                    from 'wow-weex-ui/lib/wow-search'
     import WowInputCell                 from 'wow-weex-ui/lib/wow-input-cell'
     import WowArrow                     from 'wow-weex-ui/lib/wow-arrow'
     import WowCarousel                  from 'wow-weex-ui/lib/wow-carousel'
     import WowSwitch                    from 'wow-weex-ui/lib/wow-switch'
     import Mixin                        from './home.mixin'
-    import Router                       from '../../../../../wow-weex-plugin/lib/router.plugin'
+    import Router                       from 'wow-weex-plugin/lib/router.plugin'
     import Loading                      from 'wow-weex-plugin/lib/loading.plugin'
-    import MetaMixin                    from '../../../../../wow-weex-plugin/mixins/meta.mixin'
+    import MetaMixin                    from 'wow-weex-plugin/mixins/meta.mixin'
     import Dialogs                      from 'wow-weex-plugin/lib/dialogs.plugin'
     export default {
         mixins: [Mixin, MetaMixin],
@@ -118,4 +111,20 @@
     }
 </script>
 <style>
+    .header{
+        align-items: center;
+        padding-top: 30px;
+    }
+    .logo{
+        width: 70px;
+        height: 70px;
+    }
+    .version{
+        font-size: 20px;
+        color: #fff;
+    }
+    .search{
+        margin-top: 16px;
+        width: 750px;
+    }
 </style>
