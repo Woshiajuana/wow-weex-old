@@ -4,12 +4,11 @@
         view_header_left_src=""
         view_use_header=""
         view_offset_accuracy="1">
-        <div class="session header-wrap"
-             :style="{opacity: computedFadeOut}">
-            <image class="logo" :src="src$.src_logo"></image>
-            <text class="version">(V0.0.1)</text>
-            <text class="link">GitHub</text>
-        </div>
+        <head-com
+            class="session header-wrap"
+            :src_logo="src$.src_logo"
+            :style="{opacity: computedFadeOut}"
+        ></head-com>
         <div class="session search-wrap"
              v-for="(item, index) in 2"
              :key="index"
@@ -27,67 +26,7 @@
             ></wow-search>
         </div>
         <div class="inner">
-            <div class="item">
-                <image class="new-icon" :src="src$.src_new"></image>
-                <image class="image" src="http://www.owulia.com/static/temp/2.jpg"></image>
-                <div class="con">
-                    <text class="title">V0.0.1</text>
-                    <text class="text">1.修改了坡地阿斯皮大蒜捣破啊</text>
-                    <text class="text">2.修改了坡地阿斯</text>
-                    <text class="text">3.修改了坡地阿斯大三大四都看得开地爬上爬大</text>
-                    <text class="text">5.修改了坡</text>
-                </div>
-            </div>
-
-            <div class="item">
-                <image class="image" src="http://www.owulia.com/static/temp/2.jpg"></image>
-                <div class="con">
-                    <text class="text">修改了坡地阿斯皮大蒜捣破啊</text>
-                    <text class="text">修改了坡地阿斯</text>
-                    <text class="text">修改了坡地阿斯大三大四都看得开地爬上爬大</text>
-                    <text class="text">修改了坡</text>
-                </div>
-            </div>
-
-            <div class="item">
-                <image class="image" src="http://www.owulia.com/static/temp/2.jpg"></image>
-                <div class="con">
-                    <text class="text">修改了坡地阿斯皮大蒜捣破啊</text>
-                    <text class="text">修改了坡地阿斯</text>
-                    <text class="text">修改了坡地阿斯大三大四都看得开地爬上爬大</text>
-                    <text class="text">修改了坡</text>
-                </div>
-            </div>
-
-            <div class="item">
-                <image class="image" src="http://www.owulia.com/static/temp/2.jpg"></image>
-                <div class="con">
-                    <text class="text">修改了坡地阿斯皮大蒜捣破啊</text>
-                    <text class="text">修改了坡地阿斯</text>
-                    <text class="text">修改了坡地阿斯大三大四都看得开地爬上爬大</text>
-                    <text class="text">修改了坡</text>
-                </div>
-            </div>
-
-            <div class="item">
-                <image class="image" src="http://www.owulia.com/static/temp/2.jpg"></image>
-                <div class="con">
-                    <text class="text">修改了坡地阿斯皮大蒜捣破啊</text>
-                    <text class="text">修改了坡地阿斯</text>
-                    <text class="text">修改了坡地阿斯大三大四都看得开地爬上爬大</text>
-                    <text class="text">修改了坡</text>
-                </div>
-            </div>
-
-            <div class="item">
-                <image class="image" src="http://www.owulia.com/static/temp/2.jpg"></image>
-                <div class="con">
-                    <text class="text">修改了坡地阿斯皮大蒜捣破啊</text>
-                    <text class="text">修改了坡地阿斯</text>
-                    <text class="text">修改了坡地阿斯大三大四都看得开地爬上爬大</text>
-                    <text class="text">修改了坡</text>
-                </div>
-            </div>
+            <version-com :src_new="src$.src_new"></version-com>
         </div>
     </wow-view>
 </template>
@@ -104,6 +43,8 @@
     import Loading                      from 'wow-weex-plugin/lib/loading.plugin'
     import MetaMixin                    from 'wow-weex-plugin/mixins/meta.mixin'
     import Dialogs                      from 'wow-weex-plugin/lib/dialogs.plugin'
+    import VersionCom                   from './components/version-item.component.vue'
+    import HeadCom                      from './components/head-item.component.vue'
     export default {
         mixins: [Mixin, MetaMixin],
         data () {
@@ -152,6 +93,8 @@
             WowArrow,
             WowCarousel,
             WowSwitch,
+            VersionCom,
+            HeadCom,
         }
     }
 </script>
@@ -164,13 +107,6 @@
         align-items: center;
         background-color: #5cc8ff;
     }
-    .link{
-        position: absolute;
-        font-size: 28px;
-        color: #fff;
-        right: 20px;
-        top: 16px;
-    }
     .logo{
         width: 70px;
         height: 70px;
@@ -178,11 +114,6 @@
     .search-logo{
         margin-left: 10px;
     }
-    .version{
-        font-size: 20px;
-        color: #fff;
-    }
-
     .search-wrap{
         height: 90px;
         align-items: center;
@@ -195,8 +126,6 @@
         position: fixed;
         top: 0;
     }
-
-
     .inner{
         margin-top: 20px;
         width: 750px;
@@ -204,51 +133,5 @@
         padding-left: 20px;
         padding-right: 20px;
         justify-content: space-between;
-    }
-    .item{
-        flex: 1;
-        background-color: #fff;
-        border-radius: 8px;
-        flex-direction: row;
-        align-items: center;
-        padding-left: 20px;
-        padding-right: 20px;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        margin-bottom: 20px;
-        border-color: #dedede;
-        border-width: 1px;
-    }
-    .item:active{
-        background-color: #bbb;
-    }
-    .image{
-        width: 200px;
-        height: 200px;
-        margin-right: 20px;
-        border-radius: 5px;
-    }
-    .con{
-        height: 200px;
-    }
-    .new-icon{
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 60px;
-        height: 60px;
-    }
-    .title{
-        color: #999;
-        height: 50px;
-        font-size: 32px;
-        line-height: 50px;
-        margin-bottom: 30px;
-    }
-    .text{
-        width: 450px;
-        color: #bbb;
-        font-size: 24px;
-        line-height: 40px;
     }
 </style>
