@@ -1,18 +1,43 @@
-import Source                       from 'utils/source.util'
+
+import SrcServiceMixin              from 'services/src.service.mixin'
+
+const mixins = [SrcServiceMixin];
+const obj_src = {
+    src_logo: 'wow-logo-fff.png',
+    src_search: 'search-icon-bbb.png',
+    src_close: 'search-close-icon.png',
+    src_new: 'version-new-icon.png',
+};
+
 const data = () => {
     return {
-        src_logo: Source('wow-logo-fff.png'),
-        src_search: Source('search-icon-bbb.png'),
-        src_close: Source('search-close-icon.png'),
-        src_new: Source('version-new-icon.png'),
-        view_header_style: {
-            backgroundColor: '#5cc8ff',
-            // backgroundColor: 'red',
-            borderBottomWidth: 0,
-        }
+        style_search_input_style: {
+            fontSize: 20,
+            color: '#bbb'
+        },
+        style_search_wrap_style: {
+            alignItem: 'center',
+            justifyContent: 'center'
+        },
+        style_search_wrap_style1: {
+            alignItem: 'center',
+            justifyContent: 'center',
+            paddingLeft: 10,
+            paddingRight: 20
+        },
+        style_search_style: {
+            paddingLeft: 10,
+            paddingRight: 16
+        },
     }
+};
+
+const created = function () {
+    this.initSrc(obj_src);
 };
 
 export default {
     data,
+    created,
+    mixins,
 }

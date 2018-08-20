@@ -10,6 +10,7 @@ export default Assign({
     },
     view_use_scroll: true,
     view_use_left_event: true,
+    view_offset_accuracy: 10,
 
     view_use_header: true,
     view_header_style: {

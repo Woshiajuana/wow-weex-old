@@ -38,6 +38,8 @@ export default((arr_parameter) => new Promise((resolve, reject) => {
             let full_path = path.join(directory, file);
             let stat = fs_extra.statSync(full_path);
             let ext_name = path.extname(full_path);
+            let dir_arr = full_path.substring(full_path.indexOf('views') + 6).replace(/\\/g, '/').split('\/');
+            let last_dir = dir_arr[dir_arr.length - 1];
             if (stat.isFile() && (ext_name === '.vue' || ext_name === '.js')) {
                 let file_path = path.join(dir, path.basename(file, ext_name));
                 let file_path_arr = file_path.replace(/\\/g, '/').split('\/');
@@ -54,7 +56,7 @@ export default((arr_parameter) => new Promise((resolve, reject) => {
                     name = name.join('_');
                     out_tree.resource[name] ? out_tree.resource[name].meta = json : out_tree.resource[name] = { meta: json };
                 }
-            } else if (stat.isDirectory()) {
+            } else if (['components'].indexOf(last_dir) === -1 && stat.isDirectory()) {
                 let sub_dir = path.join(dir, file);
                 findDirBuildTree(sub_dir);
             }

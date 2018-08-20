@@ -43,7 +43,11 @@
             <slot name="view-header-cue"></slot>
         </div>
         <slot name="view-header"></slot>
-        <scroller v-if="view_use_scroll" class="inner" @scroll="handleEmit('scroll', $event)">
+        <scroller
+            v-if="view_use_scroll"
+            :offset-accuracy="view_offset_accuracy"
+            class="inner"
+            @scroll="handleEmit('scroll', $event)">
             <slot></slot>
         </scroller>
         <div class="inner" v-else>
@@ -67,6 +71,7 @@
             view_style: { default: {} },
             view_use_scroll: { default: config.view_use_scroll },
             view_use_left_event: { default: config.view_use_left_event },
+            view_offset_accuracy: { default: config.view_offset_accuracy },
 
             // 头部
             view_use_header: { default: config.view_use_header },
