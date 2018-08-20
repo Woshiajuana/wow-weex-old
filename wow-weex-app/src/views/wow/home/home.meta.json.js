@@ -4,6 +4,16 @@ export default {
             { src: 'http://www.owulia.com/static/temp/2.jpg' },
             { src: 'http://www.owulia.com/static/temp/2.jpg' },
             { src: 'http://www.owulia.com/static/temp/2.jpg' },
+        ],
+        arr_version: [
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
         ]
     }
 }

@@ -26,7 +26,12 @@
             ></wow-search>
         </div>
         <div class="inner">
-            <version-com :src_new="src$.src_new"></version-com>
+            <version-com
+                v-if="meta$.arr_version"
+                v-for="(item, index) in meta$.arr_version"
+                :key="index"
+                :src_new="src$.src_new"
+            ></version-com>
         </div>
     </wow-view>
 </template>
