@@ -34,6 +34,7 @@
             button_txt_style: { default: {} },
             button_txt: { default: config.button_txt },
             button_delay: { default: config.button_delay },
+            button_disabled: { default: config.button_disabled },
         },
         created(){
             this._wowAssign(Mixin.data(), config);

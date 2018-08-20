@@ -19,24 +19,18 @@
 </script>
 <style>
     .wrap{
-        flex: 1;
         background-color: #fff;
-        border-radius: 8px;
         flex-direction: row;
         align-items: center;
         padding-left: 20px;
         padding-right: 20px;
         padding-top: 20px;
         padding-bottom: 20px;
-        margin-bottom: 20px;
         border-color: #dedede;
-        border-width: 1px;
+        border-bottom-width: 1px;
     }
     .wrap:active{
         background-color: #bbb;
-    }
-    .inner{
-        height: 200px;
     }
     .new-icon{
         position: absolute;
@@ -53,7 +47,6 @@
         margin-bottom: 30px;
     }
     .text{
-        width: 450px;
         color: #bbb;
         font-size: 24px;
         line-height: 40px;

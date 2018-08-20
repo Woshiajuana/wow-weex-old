@@ -33,10 +33,12 @@
                 :src_new="src$.src_new"
             ></version-com>
         </div>
+        <wow-end></wow-end>
     </wow-view>
 </template>
 <script>
     import WowView                      from '../../../../../wow-weex-ui/lib/wow-view'
+    import WowEnd                       from '../../../../../wow-weex-ui/lib/wow-end'
     import WowButton                    from 'wow-weex-ui/lib/wow-button'
     import WowSearch                    from 'wow-weex-ui/lib/wow-search'
     import WowInputCell                 from 'wow-weex-ui/lib/wow-input-cell'
@@ -100,6 +102,7 @@
             WowSwitch,
             VersionCom,
             HeadCom,
+            WowEnd,
         }
     }
 </script>
@@ -130,13 +133,5 @@
     .search-wrap-fixed{
         position: fixed;
         top: 0;
-    }
-    .inner{
-        margin-top: 20px;
-        width: 750px;
-        flex-wrap: wrap;
-        padding-left: 20px;
-        padding-right: 20px;
-        justify-content: space-between;
     }
 </style>
