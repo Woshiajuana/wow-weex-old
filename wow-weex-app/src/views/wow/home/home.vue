@@ -29,7 +29,8 @@
             <version-com
                 v-if="meta$.arr_version"
                 v-for="(item, index) in meta$.arr_version"
-                :key="index"
+                :key="item"
+                :data="item"
                 :src_new="src$.src_new"
             ></version-com>
         </div>
