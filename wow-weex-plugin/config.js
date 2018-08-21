@@ -3,6 +3,9 @@ export default Object.assign({
     // 主键
     APP: '',
 
+    // 安卓状态栏背景颜色
+    BAR_COLOR: '',
+
     // 成功码
     ARR_SUCCESS_CALLBACK_CODE: ['0000'],
     ARR_SUCCESS_CALLBACK_MSG: ['success'],
