@@ -1,5 +1,6 @@
 <template>
     <div class="wrap"
+         @click="handleEmit('click', $event)"
          :style="d_search_style">
         <div class="wrap"
              :style="d_search_wrap_style">
@@ -36,13 +37,14 @@
 <script>
     import config                       from './config'
     import Mixin                        from './mixins'
+    import EmitMixin                    from './../../mixins/emit.mixin'
     import InputMixin                   from './../../mixins/input.mixin'
     import AssignMixin                  from './../../mixins/assign.mixin'
 
     const navigator = weex.requireModule('navigator');
 
     export default {
-        mixins: [InputMixin, Mixin, AssignMixin],
+        mixins: [InputMixin, EmitMixin, Mixin, AssignMixin],
         props: {
             search_style: { default: {} },
             search_wrap_style: { default: {} },

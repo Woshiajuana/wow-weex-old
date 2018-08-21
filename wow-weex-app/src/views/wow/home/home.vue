@@ -10,6 +10,7 @@
             :style="{opacity: computedFadeOut}"
         ></head-com>
         <div class="session search-wrap"
+             v-if="handleNone(index)"
              v-for="(item, index) in 2"
              :key="index"
              :class="[index && 'search-wrap-fixed']"
@@ -17,6 +18,7 @@
             <image v-if="index" class="logo search-logo" :src="src$.src_logo"></image>
             <wow-search
                 class="search"
+                @click="routerPush('wow_search')"
                 search_input_placeholder="Search Components or Plugins"
                 search_use_input=""
                 :search_input_style="style_search_input_style"
@@ -38,23 +40,16 @@
     </wow-view>
 </template>
 <script>
-    import WowView                      from '../../../../../wow-weex-ui/lib/wow-view'
-    import WowEnd                       from '../../../../../wow-weex-ui/lib/wow-end'
-    import WowButton                    from 'wow-weex-ui/lib/wow-button'
+    import WowView                      from 'wow-weex-ui/lib/wow-view'
+    import WowEnd                       from 'wow-weex-ui/lib/wow-end'
     import WowSearch                    from 'wow-weex-ui/lib/wow-search'
-    import WowInputCell                 from 'wow-weex-ui/lib/wow-input-cell'
-    import WowArrow                     from 'wow-weex-ui/lib/wow-arrow'
-    import WowCarousel                  from 'wow-weex-ui/lib/wow-carousel'
-    import WowSwitch                    from 'wow-weex-ui/lib/wow-switch'
-    import Mixin                        from './home.mixin'
-    import Router                       from 'wow-weex-plugin/lib/router.plugin'
-    import Loading                      from 'wow-weex-plugin/lib/loading.plugin'
     import MetaMixin                    from 'wow-weex-plugin/mixins/meta.mixin'
-    import Dialogs                      from 'wow-weex-plugin/lib/dialogs.plugin'
+    import RouterMixin                  from 'wow-weex-plugin/mixins/router.mixin'
     import VersionCom                   from './components/version-item.component.vue'
     import HeadCom                      from './components/head-item.component.vue'
+    import Mixin                        from './home.mixin'
     export default {
-        mixins: [Mixin, MetaMixin],
+        mixins: [Mixin, RouterMixin, MetaMixin],
         data () {
             return {
                 event: {},
@@ -72,35 +67,25 @@
                 if (y < 20) return 1;
                 if (y > 120) return 0;
                 return 1 - ( y - 20) / 100
-            }
+            },
         },
         created () {
             this.metaGetData('wow_home');
         },
         methods: {
-            handleSwitch(callback) {
-                callback && callback();
-            },
             handleScroll (event) {
                 this.event = event.contentOffset;
             },
-            handleClick (callback) {
-                callback();
-                Router.push({app: 'test', key: 'wow_help'})
+            handleNone (index) {
+                if (index !== 1) return true;
+                let y = -this.event.y || 0;
+                if (y < 20) return false;
+                return true;
             },
-            handleClick1 (callback) {
-                callback();
-                Router.push('wow_demo');
-            }
         },
         components: {
             WowView,
-            WowButton,
             WowSearch,
-            WowInputCell,
-            WowArrow,
-            WowCarousel,
-            WowSwitch,
             VersionCom,
             HeadCom,
             WowEnd,
