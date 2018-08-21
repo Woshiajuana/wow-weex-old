@@ -16,7 +16,7 @@
             <wow-input-cell
                 v-for="(item, index) in computedResult"
                 :key="index"
-                @click="routerPush($event.key, $event)"
+                @click="routerPush(item.key, item)"
                 input_placeholder=""
                 input_use=""
                 :input_label_style="{color: '#999'}"
