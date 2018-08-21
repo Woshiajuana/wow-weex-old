@@ -1,5 +1,5 @@
 <template>
-    <div class="wrap">
+    <div class="wrap" @click="handleEmit('click')">
         <image
             v-if="data.is_new"
             class="image"
@@ -18,7 +18,9 @@
     </div>
 </template>
 <script>
+    import EmitMixin                from 'wow-weex-ui/mixins/emit.mixin'
     export default {
+        mixins: [EmitMixin],
         props: {
             src_new: {default: ''},
             data: { default: {}}

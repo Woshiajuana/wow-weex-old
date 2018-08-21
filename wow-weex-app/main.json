@@ -5,19 +5,8 @@
     "version": "0.0.1",
     "engine": "0.0.1",
     "insert": {
-        "dsmpos": {
-            "base": "http://192.180.2.15:22580/dist/BD",
-            "able": {
-                "camera": ["take","pick"],
-                "loading": ["show", "hide"]
-            }
-        },
-        "dtb": {
-            "base": "http://192.180.2.15:62367/dist/BD",
-            "unable": {
-                "camera": ["take","pick"],
-                "loading": ["show", "hide"]
-            }
+        "test": {
+            "api": "http://20.0.18.93:32580/main.json"
         }
     },
     "resource": {

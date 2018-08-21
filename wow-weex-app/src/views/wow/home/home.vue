@@ -5,6 +5,7 @@
         view_use_header=""
         view_offset_accuracy="1">
         <head-com
+            @click="barSet({color: '#333333'})"
             class="session header-wrap"
             :src_logo="src$.src_logo"
             :style="{opacity: computedFadeOut}"
@@ -29,6 +30,7 @@
         </div>
         <div class="inner">
             <version-com
+                @click="handleClick"
                 v-if="meta$.arr_version"
                 v-for="(item, index) in meta$.arr_version"
                 :key="item"
@@ -45,11 +47,13 @@
     import WowSearch                    from 'wow-weex-ui/lib/wow-search'
     import MetaMixin                    from 'wow-weex-plugin/mixins/meta.mixin'
     import RouterMixin                  from 'wow-weex-plugin/mixins/router.mixin'
+    import Router                       from 'wow-weex-plugin/lib/router.plugin'
     import VersionCom                   from './components/version-item.component.vue'
     import HeadCom                      from './components/head-item.component.vue'
     import Mixin                        from './home.mixin'
+    import BarMixin                     from '../../../../../wow-weex-plugin/mixins/bar.mixin'
     export default {
-        mixins: [Mixin, RouterMixin, MetaMixin],
+        mixins: [Mixin, RouterMixin, MetaMixin, BarMixin],
         data () {
             return {
                 event: {},
@@ -82,6 +86,9 @@
                 if (y < 20) return false;
                 return true;
             },
+            handleClick () {
+                Router.push({app: 'test', key: 'wow_help'})
+            }
         },
         components: {
             WowView,
