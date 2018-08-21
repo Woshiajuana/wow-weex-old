@@ -3,22 +3,67 @@ export default {
         arr_grid: [
             {
                 src: 'https://img.mukewang.com/5b67ab77000123c409360316.jpg',
-                text: 'HELP',
+                text: 'HELP1',
                 key: 'wow_demo_list',
             },
             {
                 src: 'https://img.mukewang.com/5b67ab77000123c409360316.jpg',
-                text: 'HELP',
+                text: 'HELP2',
                 key: 'wow_demo_list',
             },
             {
                 src: 'https://img.mukewang.com/5b67ab77000123c409360316.jpg',
-                text: 'HELP',
+                text: 'HELP3',
                 key: 'wow_demo_list',
             },
             {
                 src: 'https://img.mukewang.com/5b67ab77000123c409360316.jpg',
-                text: 'HELP',
+                text: 'HELP4',
+                key: 'wow_demo_list',
+            },
+            {
+                src: 'https://img.mukewang.com/5b67ab77000123c409360316.jpg',
+                text: 'HELP2',
+                key: 'wow_demo_list',
+            },
+            {
+                src: 'https://img.mukewang.com/5b67ab77000123c409360316.jpg',
+                text: 'HELP3',
+                key: 'wow_demo_list',
+            },
+            {
+                src: 'https://img.mukewang.com/5b67ab77000123c409360316.jpg',
+                text: 'HELP4',
+                key: 'wow_demo_list',
+            },
+            {
+                src: 'https://img.mukewang.com/5b67ab77000123c409360316.jpg',
+                text: 'HELP2',
+                key: 'wow_demo_list',
+            },
+            {
+                src: 'https://img.mukewang.com/5b67ab77000123c409360316.jpg',
+                text: 'HELP3',
+                key: 'wow_demo_list',
+            },
+            {
+                src: 'https://img.mukewang.com/5b67ab77000123c409360316.jpg',
+                text: 'HELP4',
+                key: 'wow_demo_list',
+            },
+            {
+                src: 'https://img.mukewang.com/5b67ab77000123c409360316.jpg',
+                text: 'HELP2',
+                key: 'wow_demo_list',
+            },
+            {
+                src: 'https://img.mukewang.com/5b67ab77000123c409360316.jpg',
+                text: 'HELP3',
+                key: 'wow_demo_list',
+            },
+            {
+                src: 'https://img.mukewang.com/5b67ab77000123c409360316.jpg',
+                text: 'HELP4',
                 key: 'wow_demo_list',
             }
         ]
