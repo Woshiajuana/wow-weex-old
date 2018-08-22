@@ -19,7 +19,7 @@
                 @click="routerPush(item.key, item)"
                 input_placeholder=""
                 input_use=""
-                :input_label_style="{color: '#999'}"
+                :input_label_style="{color: str_search.length > 1 ? '#999' : 'red'}"
                 :input_label_txt="item.text">
                 <image slot="input-left" :src="item.src" class="image"></image>
                 <wow-arrow slot="input-right"></wow-arrow>
@@ -35,7 +35,7 @@
 <script>
     import WowView                      from 'wow-weex-ui/lib/wow-view'
     import WowSearch                    from 'wow-weex-ui/lib/wow-search'
-    import WowInputCell                 from 'wow-weex-ui/lib/wow-input-cell'
+    import WowInputCell                 from '../../../../../wow-weex-ui/lib/wow-input-cell'
     import WowArrow                     from 'wow-weex-ui/lib/wow-arrow'
     import WowEnd                       from 'wow-weex-ui/lib/wow-end'
     import MetaMixin                    from 'wow-weex-plugin/mixins/meta.mixin'

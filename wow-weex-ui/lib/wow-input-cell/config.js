@@ -25,5 +25,6 @@ export default Assign({
     input_placeholder_color: '#DEDEDE',
     input_disabled: false,
     input_use: true,
+    input_use_right: true,
     input_max_length: 9999,
 }, config)

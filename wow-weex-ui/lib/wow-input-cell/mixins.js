@@ -1,3 +1,7 @@
+import WatchUtil               from '../../utils/watch.util'
+
+const { _generateWatch } = WatchUtil;
+
 const data = () => {
    return {
        d_input_wrap_style: {},
@@ -6,6 +10,9 @@ const data = () => {
    }
 };
 
+const watch = _generateWatch(data());
+
 export default {
     data,
+    watch,
 }

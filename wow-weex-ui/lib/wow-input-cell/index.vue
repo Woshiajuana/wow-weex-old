@@ -8,11 +8,11 @@
               :style="d_input_label_style"
         >{{input_label_txt}}</text>
         <text class="input"
-              v-if="!input_use"
+              v-if="!input_use && input_use_right"
               :style="d_input_style"
         >{{input_value || input_placeholder}}</text>
         <input
-            v-if="input_use"
+            v-if="input_use && input_use_right"
             class="input"
             v-model="input_value"
             :type="input_type"
@@ -37,6 +37,7 @@
             input_type: { default: config.input_type },
             input_value: { default: config.input_value },
             input_use: { default: config.input_use },
+            input_use_right: { default: config.input_use_right },
             input_style: { default: {} },
             input_wrap_style: { default: {} },
             input_label_style: { default: {} },
