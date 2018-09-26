@@ -23,7 +23,7 @@
         computed: {
             computedButtonStyle () {
                 this.d_button_style = this.button_disabled
-                    ? Object.assign({}, config.button_style, this.button_style, this.button_disabled_style)
+                    ? Object.assign({}, config.button_style, config.button_disabled_style, this.button_style, this.button_disabled_style)
                     : Object.assign({}, config.button_style, this.button_style,);
                 return this.d_button_style;
             }

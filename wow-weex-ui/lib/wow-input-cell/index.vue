@@ -35,6 +35,7 @@
         mixins: [InputMixin, Mixin, AssignMixin],
         props: {
             input_type: { default: config.input_type },
+            input_disabled: { default: config.input_disabled },
             input_value: { default: config.input_value },
             input_use: { default: config.input_use },
             input_use_right: { default: config.input_use_right },
