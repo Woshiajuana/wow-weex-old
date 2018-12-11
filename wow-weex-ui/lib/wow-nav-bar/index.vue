@@ -19,7 +19,7 @@
              :style="d_nav_bar_style">
             <slot v-if="!nav_use_menu" name="menu"></slot>
             <div v-if="nav_use_menu"
-                 :style="d_nav_menu_style"
+                 :style="computedCompatible"
                  class="item"
                  v-for="(item, index) in nav_arr"
                  @click="handleSwitch(item, index)"
