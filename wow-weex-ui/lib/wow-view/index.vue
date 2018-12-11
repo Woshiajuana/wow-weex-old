@@ -3,6 +3,10 @@
          @viewappear="handleEmit('viewappear', $event)"
          @viewdisappear="handleEmit('viewdisappear', $event)"
          :style="d_view_style">
+        <div class="compatible"
+             v-if="view_use_header || view_use_compatible"
+             :style="computedCompatible"
+        ></div>
         <div class="header"
              v-if="view_use_header"
              :style="d_view_header_style">
@@ -66,6 +70,11 @@
 
     export default {
         mixins: [EmitMixin, Mixin, AssignMixin],
+        data () {
+            return {
+                height: 0,
+            }
+        },
         props: {
             // 主要
             view_style: { default: {} },
@@ -75,6 +84,7 @@
 
             // 头部
             view_use_header: { default: config.view_use_header },
+            view_use_compatible: { default: config.view_use_compatible },
             view_header_style: { default: {} },
 
             // 头部左边
@@ -97,12 +107,34 @@
             view_header_right_txt_style: { default: {} },
 
         },
+        computed: {
+            computedCompatible () {
+                if (!this.d_view_header_style || !this.height)
+                    return {};
+                let style = {...this.d_view_header_style};
+                delete style.height;
+                style.height = this.height;
+                return style;
+            }
+        },
         created(){
             this._wowAssign(Mixin.data(), config);
+            this.fetchPlatform();
         },
         methods: {
             handleLeft (event) {
                 this.view_use_left_event ? navigator.pop() : this.$emit('left', event);
+            },
+            fetchPlatform () {
+                let env = this.$getConfig().env;
+                if (env.platform === 'iOS') {
+                    let deviceWidth = env.deviceWidth / env.scale;
+                    let height = 64.0 * 750.0 / deviceWidth;
+                    if (height < 149) this.height = 72;
+                    else this.height = Math.floor(height - 88);
+                } else {
+                    this.height = 0;
+                }
             },
         }
     }
