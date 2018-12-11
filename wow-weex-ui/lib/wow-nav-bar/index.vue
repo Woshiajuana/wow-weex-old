@@ -65,10 +65,10 @@
         computed: {
             computedCompatible () {
                 if (!this.is_iphoneX)
-                    return this.d_nav_inner_style || {};
-                this.d_nav_inner_style.height = +this.d_nav_inner_style.height + 30;
-                this.$set(this.d_nav_inner_style, 'paddingBottom', '30');
-                return this.d_nav_inner_style;
+                    return this.d_nav_menu_style || {};
+                this.d_nav_menu_style.height = +this.d_nav_menu_style.height + 40;
+                this.$set(this.d_nav_menu_style, 'paddingBottom', '40');
+                return this.d_nav_menu_style;
             }
         },
         created () {
