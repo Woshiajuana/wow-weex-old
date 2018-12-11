@@ -47,6 +47,11 @@
     import EmitMixin                    from './../../mixins/emit.mixin'
     export default {
         mixins: [AssignMixin, Mixin, EmitMixin],
+        data () {
+            return {
+                is_iphoneX: false,
+            }
+        },
         props: {
             nav_inner_style: { default: {} },
             nav_bar_style: { default: {} },
@@ -57,8 +62,18 @@
             nav_use_menu: { default: config.nav_use_menu },
             nav_menu_txt_size: { default: config.nav_menu_txt_size },
         },
+        computed: {
+            computedCompatible () {
+                if (!this.is_iphoneX)
+                    return this.d_nav_inner_style || {};
+                this.d_nav_inner_style.height = +this.d_nav_inner_style.height + 30;
+                this.$set(this.d_nav_inner_style, 'paddingBottom', '30');
+                return this.d_nav_inner_style;
+            }
+        },
         created () {
             this._wowAssign(Mixin.data(), config);
+            this.fetchDeviceInfo();
         },
         methods: {
             // 切换菜单
@@ -74,6 +89,18 @@
                     item.checked = i === index;
                 });
             },
+            // 获取设备信息
+            fetchDeviceInfo () {
+                let { deviceModel } = this.$getConfig().env;
+                this.is_iphoneX =
+                    [
+                        'iPhone10,3',
+                        'iPhone10,6',
+                        'iPhone11,2',
+                        'iPhone11,4',
+                        'iPhone11,8',
+                    ].indexOf(deviceModel) > -1;
+            }
         }
     }
 </script>

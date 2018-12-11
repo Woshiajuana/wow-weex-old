@@ -113,6 +113,7 @@
                     return {};
                 let style = {...this.d_view_header_style};
                 delete style.height;
+                delete style.borderBottomWidth;
                 style.height = this.height;
                 return style;
             }
