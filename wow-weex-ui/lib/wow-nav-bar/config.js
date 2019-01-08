@@ -9,19 +9,26 @@ export default Assign({
         bottom: 100,
     },
     nav_bar_style: {
-        bottom: 0,
         backgroundColor: '#fff',
+        borderColor: '#ddd',
     },
     nav_use_menu: true,
     nav_menu_style: {
         height: 100,
-        borderColor: '#ddd',
-        borderTopWidth: 1,
+    },
+    nav_menu_checked_style: {
+
     },
     nav_menu_icon_style: {
         marginBottom: 6,
         width: 44,
         height: 44,
     },
-    nav_menu_txt_size: 22,
+    nav_menu_txt_style: {
+        fontSize: 22,
+        color: '#999'
+    },
+    nav_menu_txt_checked_style: {
+        color: '#5cc8ff'
+    },
 }, config)

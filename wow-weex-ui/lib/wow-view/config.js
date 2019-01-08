@@ -1,7 +1,6 @@
 /**
  * Created by Administrator on 2017/11/8.
  */
-import source                       from 'utils/source.util'
 import config                       from '../../config'
 import Assign                       from '../../assign'
 export default Assign({
@@ -13,19 +12,20 @@ export default Assign({
     view_offset_accuracy: 10,
 
     view_use_header: true,
-    view_use_compatible: false,
+    view_use_compatible: true,
     view_header_style: {
         height: 90,
+    },
+    view_header_wrap_style: {
         backgroundColor: '#fff',
         borderColor: '#dedede',
         borderBottomWidth: 1,
     },
-
     view_header_left_style: {
         height: 90,
-        top: 0,
+        bottom: 0,
     },
-    view_header_left_src: source('view_return_icon.png'),
+    view_header_left_src: '',
     view_header_left_src_style: {
         width: 48,
         height: 48,
@@ -49,7 +49,7 @@ export default Assign({
 
     view_header_right_style: {
         height: 90,
-        top: 0,
+        bottom: 0,
     },
     view_header_right_src: '',
     view_header_right_src_style: {

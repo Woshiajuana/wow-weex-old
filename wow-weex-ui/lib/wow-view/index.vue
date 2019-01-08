@@ -1,61 +1,64 @@
 <template>
-    <div class="wrap"
-         @viewappear="handleEmit('viewappear', $event)"
-         @viewdisappear="handleEmit('viewdisappear', $event)"
-         :style="d_view_style">
-        <div class="compatible"
-             v-if="view_use_header || view_use_compatible"
-             :style="computedCompatible"
-        ></div>
-        <div class="header"
-             v-if="view_use_header"
-             :style="d_view_header_style">
-            <div class="left"
-                 @click="handleLeft"
-                 :style="d_view_header_left_style">
-                <image
-                    v-if="view_header_left_src"
-                    :src="view_header_left_src"
-                    :style="d_view_header_left_src_style"
-                ></image>
-                <text
-                    :style="d_view_header_left_txt_style"
-                    v-if="view_header_left_txt"
-                >{{view_header_left_txt}}</text>
+    <div class="wrap">
+        <div class="main"
+             :style="computedViewStyle"
+             @viewappear="handleEmit('viewappear', $event)"
+             @viewdisappear="handleEmit('viewdisappear', $event)">
+            <scroller
+                v-if="view_use_scroll"
+                :offset-accuracy="view_offset_accuracy"
+                class="inner"
+                @scroll="handleEmit('scroll', $event)">
+                <slot></slot>
+            </scroller>
+            <div class="inner"
+                 v-else>
+                <slot></slot>
             </div>
-            <div class="center"
-                 :style="d_view_header_center_style">
-                <text
-                    :style="d_view_header_center_txt_style"
-                >{{view_header_center_txt}}</text>
-            </div>
-            <slot name="view-header-center"></slot>
-            <div class="right"
-                 @click="handleEmit('right', $event)"
-                 :style="d_view_header_right_style">
-                <image
-                    v-if="view_header_right_src"
-                    :src="view_header_right_src"
-                    :style="d_view_header_right_src_style"
-                    autoBitmapRecycle="false"
-                ></image>
-                <text
-                    :style="d_view_header_right_txt_style"
-                    v-if="view_header_right_txt"
-                >{{view_header_right_txt}}</text>
-            </div>
-            <slot name="view-header-cue"></slot>
         </div>
-        <slot name="view-header"></slot>
-        <scroller
-            v-if="view_use_scroll"
-            :offset-accuracy="view_offset_accuracy"
-            class="inner"
-            @scroll="handleEmit('scroll', $event)">
-            <slot></slot>
-        </scroller>
-        <div class="inner" v-else>
-            <slot></slot>
+        <div class="head"
+             :class="[computedViewHeaderWrapClass]"
+             :style="computedViewHeaderWrapStyle">
+            <slot name="view-header"></slot>
+            <div class="head-box"
+                 v-if="view_use_header"
+                 :style="computedViewHeaderStyle">
+                <div class="left"
+                     @click="handleLeft"
+                     :style="computedViewHeaderLeftStyle">
+                    <image
+                        v-if="view_header_left_src"
+                        :src="view_header_left_src"
+                        :style="computedViewHeaderLeftSrcStyle"
+                    ></image>
+                    <text
+                        :style="computedViewHeaderLeftTxtStyle"
+                        v-if="view_header_left_txt"
+                    >{{view_header_left_txt}}</text>
+                </div>
+                <div class="center"
+                     :style="computedViewHeaderCenterStyle">
+                    <text
+                        :style="computedViewHeaderCenterTxtStyle"
+                    >{{view_header_center_txt}}</text>
+                </div>
+                <slot name="view-header-center"></slot>
+                <div class="right"
+                     @click="handleEmit('right', $event)"
+                     :style="computedViewHeaderRightStyle">
+                    <image
+                        v-if="view_header_right_src"
+                        :src="view_header_right_src"
+                        :style="computedViewHeaderRightSrcStyle"
+                        autoBitmapRecycle="false"
+                    ></image>
+                    <text
+                        :style="computedViewHeaderRightTxtStyle"
+                        v-if="view_header_right_txt"
+                    >{{view_header_right_txt}}</text>
+                </div>
+                <slot name="view-header-cue"></slot>
+            </div>
         </div>
     </div>
 </template>
@@ -64,18 +67,18 @@
     import config                       from './config'
     import Mixin                        from './mixins'
     import EmitMixin                    from './../../mixins/emit.mixin'
-    import AssignMixin                  from './../../mixins/assign.mixin'
+    import WeexMixin                    from './../../mixins/weex.mixin'
 
     const navigator = weex.requireModule('navigator');
 
     export default {
-        mixins: [EmitMixin, Mixin, AssignMixin],
-        data () {
-            return {
-                height: 0,
-            }
-        },
+        mixins: [
+            EmitMixin,
+            WeexMixin,
+            Mixin,
+        ],
         props: {
+
             // 主要
             view_style: { default: {} },
             view_use_scroll: { default: config.view_use_scroll },
@@ -86,6 +89,7 @@
             view_use_header: { default: config.view_use_header },
             view_use_compatible: { default: config.view_use_compatible },
             view_header_style: { default: {} },
+            view_header_wrap_style: { default: {} },
 
             // 头部左边
             view_header_left_style: { default: {} },
@@ -108,45 +112,54 @@
 
         },
         computed: {
-            computedCompatible () {
-                if (!this.d_view_header_style || !this.height)
-                    return {};
-                let style = {...this.d_view_header_style};
-                delete style.height;
-                delete style.borderBottomWidth;
-                style.height = this.height;
-                return style;
-            }
+            computedViewStyle () {
+                let {
+                    compatible,
+                } = this.weex$;
+                let height = this.view_header_style.height || config.view_header_style.height;
+                let paddingTop = parseInt(height);
+                if (this.view_use_compatible)
+                    paddingTop += compatible;
+                return Object.assign({ paddingTop }, config.view_style, this.view_style);
+            },
+            computedViewHeaderWrapClass () {
+                let {
+                    isX,
+                    platform,
+                } = this.weex$;
+                if (isX)
+                    return 'head-iphoneX';
+                if (platform === 'iOS')
+                    return 'head-iphone';
+                return 'head-def';
+            },
         },
-        created(){
-            this._wowAssign(Mixin.data(), config);
-            this.fetchPlatform();
+        created () {
+            this.weexGet();
         },
         methods: {
             handleLeft (event) {
                 this.view_use_left_event ? navigator.pop() : this.$emit('left', event);
-            },
-            fetchPlatform () {
-                let env = this.$getConfig().env;
-                if (env.platform === 'iOS') {
-                    let deviceWidth = env.deviceWidth / env.scale;
-                    let height = 64.0 * 750.0 / deviceWidth;
-                    if (height < 149) this.height = 72;
-                    else this.height = Math.floor(height - 88);
-                } else {
-                    this.height = 0;
-                }
             },
         }
     }
 </script>
 
 <style>
-    .wrap{
+    .wrap,
+    .main{
         flex: 1;
         width: 750px;
+        background-color: #fff;
     }
-    .header {
+    .head {
+        position: absolute;
+        flex-direction: row;
+        width: 750px;
+        left: 0;
+        top: 0;
+    }
+    .head-box{
         flex-direction: row;
         width: 750px;
     }
@@ -173,5 +186,15 @@
     }
     .inner{
         flex: 1;
+        width: 750px;
+    }
+    .head-def {
+        padding-top: 0;
+    }
+    .head-iphone {
+        padding-top: 40px;
+    }
+    .head-iphoneX {
+        padding-top: 80px;
     }
 </style>

@@ -4,7 +4,7 @@
          @viewdisappear="handleEmit('viewdisappear')">
         <!--主体-->
         <div class="inner"
-             :style="d_nav_inner_style">
+             :style="computedNavInnerStyle">
             <embed class="content"
                    v-for="(item, index) in nav_arr"
                    :key="index"
@@ -14,12 +14,13 @@
             </embed>
         </div>
         <!--/主体-->
+        <slot v-if="!nav_use_menu" name="menu"></slot>
         <!--导航条-->
         <div class="nav"
-             :style="d_nav_bar_style">
-            <slot v-if="!nav_use_menu" name="menu"></slot>
-            <div v-if="nav_use_menu"
-                 :style="computedCompatible"
+             v-if="nav_use_menu"
+             :class="[nav_position]"
+             :style="computedNavBarStyle">
+            <div :style="navMenuStyle(item.checked)"
                  class="item"
                  v-for="(item, index) in nav_arr"
                  @click="handleSwitch(item, index)"
@@ -27,12 +28,11 @@
                 <image
                     class="icon"
                     v-if="item.img_src"
-                    :style="d_nav_menu_icon_style"
+                    :style="computedNavMenuIconStyle"
                     :src="item.checked ? item.img_checked_src : item.img_src"
                 ></image>
                 <text class="text"
-                      :style="{fontSize: nav_menu_txt_size,
-                      color: item.checked ? item.checked_color : item.color}"
+                      :style="navMenuTxtStyle(item.checked)"
                 >{{item.txt}}</text>
             </div>
         </div>
@@ -43,42 +43,70 @@
 <script>
     import config                       from './config'
     import Mixin                        from './mixins'
-    import AssignMixin                  from './../../mixins/assign.mixin'
     import EmitMixin                    from './../../mixins/emit.mixin'
+    import WeexMixin                    from './../../mixins/weex.mixin'
     export default {
-        mixins: [AssignMixin, Mixin, EmitMixin],
-        data () {
-            return {
-                is_iphoneX: false,
-            }
-        },
+        mixins: [
+            Mixin,
+            EmitMixin,
+            WeexMixin,
+        ],
         props: {
+            nav_position: { default: 'bottom' },
+
             nav_inner_style: { default: {} },
             nav_bar_style: { default: {} },
             nav_menu_style: { default: {} },
+            nav_menu_checked_style: { default: {} },
+
             nav_menu_icon_style: { default: {} },
+
+            nav_menu_txt_style: { default: {} },
+            nav_menu_txt_checked_style: { default: {} },
+
             nav_use_switch: { default: config.nav_use_switch },
             nav_arr: { default: config.nav_arr },
             nav_use_menu: { default: config.nav_use_menu },
-            nav_menu_txt_size: { default: config.nav_menu_txt_size },
         },
         computed: {
-            computedCompatible () {
-                if (!this.is_iphoneX)
-                    return this.d_nav_menu_style || {};
-                this.d_nav_menu_style.height = +this.d_nav_menu_style.height + 40;
-                this.$set(this.d_nav_menu_style, 'paddingBottom', '40');
-                return this.d_nav_menu_style;
-            }
+            computedNavInnerStyle () {
+                let top = 0;
+                let bottom = this.nav_menu_style.height || config.nav_menu_style.height;
+                let {
+                    isX,
+                } = this.weex$;
+                if (isX && this.nav_position === 'bottom')
+                    bottom += 40;
+                if (this.nav_position === 'top') {
+                    top = bottom;
+                    bottom = 0;
+                }
+                return Object.assign({}, config.nav_inner_style, {top, bottom}, this.nav_inner_style)
+            },
+            computedNavBarStyle () {
+                let borderTopWidth = 1;
+                let borderBottomWidth = 0;
+                let paddingBottom = 0;
+                let {
+                    isX,
+                } = this.weex$;
+                if (isX && this.nav_position === 'bottom')
+                    paddingBottom = 40;
+                if (this.nav_position === 'top') {
+                    borderTopWidth = 0;
+                    borderBottomWidth = 1;
+                }
+                return Object.assign({}, config.nav_bar_style, { borderTopWidth, borderBottomWidth, paddingBottom }, this.nav_bar_style );
+            },
         },
         created () {
-            this._wowAssign(Mixin.data(), config);
-            this.fetchDeviceInfo();
+            this.weexGet();
         },
         methods: {
             // 切换菜单
             handleSwitch (item, index) {
-                if (!this.nav_use_switch) return this.switchNav(index);
+                if (!this.nav_use_switch)
+                    return this.switchNav(index);
                 this.$emit('switch', item, index, () => {
                     this.switchNav(index);
                 });
@@ -89,18 +117,16 @@
                     item.checked = i === index;
                 });
             },
-            // 获取设备信息
-            fetchDeviceInfo () {
-                let { deviceModel } = this.$getConfig().env;
-                this.is_iphoneX =
-                    [
-                        'iPhone10,3',
-                        'iPhone10,6',
-                        'iPhone11,2',
-                        'iPhone11,4',
-                        'iPhone11,8',
-                    ].indexOf(deviceModel) > -1;
-            }
+            navMenuStyle (checked) {
+                return checked
+                    ? Object.assign({}, config.nav_menu_style, this.nav_menu_style, config.nav_menu_checked_style, this.nav_menu_checked_style)
+                    : Object.assign({}, config.nav_menu_style, this.nav_menu_style);
+            },
+            navMenuTxtStyle (checked) {
+                return checked
+                    ? Object.assign({}, config.nav_menu_txt_style, this.nav_menu_txt_style, config.nav_menu_txt_checked_style, this.nav_menu_txt_checked_style)
+                    : Object.assign({}, config.nav_menu_txt_style, this.nav_menu_txt_style);
+            },
         }
     }
 </script>
@@ -130,6 +156,12 @@
         flex-direction: row;
         align-items: center;
     }
+    .top {
+        top: 0;
+    }
+    .bottom {
+        bottom: 0;
+    }
     .item {
         flex: 1;
         justify-content: center;
@@ -138,7 +170,7 @@
         border-top-style: solid;
     }
     .item:active {
-        background-color: #ddd;
+        background-color: #dedede;
     }
     .text {
         justify-content: center;
