@@ -1,20 +1,13 @@
-import WatchUtil               from '../../utils/watch.util'
 
-const { _generateWatch } = WatchUtil;
+import GenerateUtil            from '../../utils/generate.util'
+import config                  from './config'
 
-const data = () => {
-    return {
-        d_grid_style: {},
-        d_grid_src_style: {},
-        d_grid_item_style: {},
-        d_grid_txt_style: {},
-    }
-};
+const {
+    _generateComputed,
+} = GenerateUtil;
 
-const watch = _generateWatch(data());
+const computed = _generateComputed(config);
 
 export default {
-    data,
-    watch,
+    computed,
 }
-
