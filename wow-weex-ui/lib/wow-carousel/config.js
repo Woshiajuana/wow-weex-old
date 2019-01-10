@@ -5,11 +5,9 @@ export default Assign({
     carousel_arr: [],
     carousel_style: {
         width: 750,
-        height: 250,
     },
     carousel_inner_style: {
         width: 750,
-        height: 250,
     },
     carousel_src_style: {
         width: 750,
