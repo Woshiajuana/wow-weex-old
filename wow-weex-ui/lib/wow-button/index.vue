@@ -3,7 +3,7 @@
          @click="handleClick"
          :style="computedButtonStyle">
         <text class="text"
-              :style="d_button_txt_style"
+              :style="computedButtonTxtStyle"
         >{{button_txt}}</text>
     </div>
 </template>
@@ -11,10 +11,12 @@
     import config                       from './config'
     import Mixin                        from './mixins'
     import EmitMixin                    from './../../mixins/emit.mixin'
-    import AssignMixin                  from './../../mixins/assign.mixin'
 
     export default {
-        mixins: [EmitMixin, Mixin, AssignMixin],
+        mixins: [
+            EmitMixin,
+            Mixin,
+        ],
         data () {
             return {
                 flag: true
@@ -35,9 +37,6 @@
             button_txt: { default: config.button_txt },
             button_delay: { default: config.button_delay },
             button_disabled: { default: config.button_disabled },
-        },
-        created(){
-            this._wowAssign(Mixin.data(), config);
         },
         methods: {
             handleClick () {

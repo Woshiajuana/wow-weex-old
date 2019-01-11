@@ -1,9 +1,9 @@
 <template>
-    <div class="wrap">
+    <div class="wrap"
+         @viewappear="handleEmit('viewappear', $event)"
+         @viewdisappear="handleEmit('viewdisappear', $event)">
         <div class="main"
-             :style="computedViewStyle"
-             @viewappear="handleEmit('viewappear', $event)"
-             @viewdisappear="handleEmit('viewdisappear', $event)">
+             :style="computedViewStyle">
             <scroller
                 v-if="view_use_scroll"
                 :offset-accuracy="view_offset_accuracy"

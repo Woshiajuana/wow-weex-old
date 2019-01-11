@@ -7,7 +7,8 @@ import Assign                       from '../../assign'
 export default Assign({
     count_max: 60,
     count_txt: '获取验证码',
-    count_disabled_txt: 's',
+    count_disabled_before_txt: '已发送',
+    count_disabled_after_txt: 's',
     count_style: {
         width: 150,
         height: 60,
