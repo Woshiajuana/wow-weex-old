@@ -72,6 +72,7 @@
             computedNavInnerStyle () {
                 let top = 0;
                 let bottom = this.nav_menu_style.height || config.nav_menu_style.height;
+                if (!this.nav_use_menu) bottom = 0;
                 let {
                     isX,
                 } = this.weex$;
