@@ -3,7 +3,6 @@ import config                       from '../../config'
 import Assign                       from '../../assign'
 export default Assign({
     input_wrap_style: {
-        height: 100,
         borderColor: '#ddd',
         borderBottomWidth: 1,
         backgroundColor: '#fff',

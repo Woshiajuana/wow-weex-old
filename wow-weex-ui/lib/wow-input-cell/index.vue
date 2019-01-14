@@ -1,16 +1,17 @@
 <template>
     <div class="wrap"
          @click="handleClick"
-         :style="d_input_wrap_style">
+         :style="computedInputWrapStyle">
         <slot name="input-left"></slot>
         <text class="label"
               v-if="input_label_txt"
-              :style="d_input_label_style"
+              :style="computedInputLabelStyle"
         >{{input_label_txt}}</text>
         <text class="input"
               v-if="!input_use && input_use_right"
-              :style="d_input_style"
+              :style="computedInputStyle"
         >{{input_value || input_placeholder}}</text>
+        <div class="null" v-if="!input_use_right" :style="computedInputStyle"></div>
         <input
             v-if="input_use && input_use_right"
             class="input"
@@ -19,7 +20,7 @@
             @input="handleInput"
             :disabled="input_disabled"
             :maxlength="input_max_length || 9999"
-            :style="d_input_style"
+            :style="computedInputStyle"
             :placeholder="input_placeholder"
             :placeholder-color="input_placeholder_color"/>
         <slot name="input-other"></slot>
@@ -30,9 +31,12 @@
     import config                       from './config'
     import Mixin                        from './mixins'
     import InputMixin                   from './../../mixins/input.mixin'
-    import AssignMixin                  from './../../mixins/assign.mixin'
+
     export default {
-        mixins: [InputMixin, Mixin, AssignMixin],
+        mixins: [
+            InputMixin,
+            Mixin,
+        ],
         props: {
             input_type: { default: config.input_type },
             input_disabled: { default: config.input_disabled },
@@ -51,9 +55,6 @@
             prop: 'input_value',
             event: 'input'
         },
-        created(){
-            this._wowAssign(Mixin.data(), config);
-        },
         methods: {
             handleClick (event) {
                 if (this.input_disabled) return;
@@ -67,6 +68,7 @@
         flex-direction: row;
         align-items: center;
         padding-left: 32px;
+        justify-content: space-between;
     }
     .label{
         margin-right: 32px;
