@@ -1,0 +1,25 @@
+{
+  "name": "wow-action-sheet",
+  "version": "0.0.1",
+  "description": "Weex 弹窗组件",
+  "main": "index.js",
+  "type": "weex",
+  "repository": "https://github.com/Woshiajuana/wow-weex/tree/master/wow-weex-ui/lib/wow-action-sheet",
+  "keywords": [
+    "Weex",
+    "Vue",
+    "WeexComponent",
+    "Layout",
+    "view",
+    "wow"
+  ],
+  "weex": {
+    "plugins": {},
+    "market": {
+      "thumbnail": "http://gtms03.alicdn.com/tfs/TB1grYrSXXXXXX1XFXXXXXXXXXX-750-1334.png"
+    }
+  },
+  "author": "Ajuan <zhigang.chen@owulia.com>",
+  "license": "MIT",
+  "dependencies": {}
+}
