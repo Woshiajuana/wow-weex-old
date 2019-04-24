@@ -108,8 +108,12 @@
             handleSwitch (item, index) {
                 if (!this.nav_use_switch)
                     return this.switchNav(index);
-                this.$emit('switch', item, index, () => {
-                    this.switchNav(index);
+                this.$emit('switch', {
+                    item,
+                    index,
+                    callback: () => {
+                        this.switchNav(index);
+                    }
                 });
             },
             // 切换页面
